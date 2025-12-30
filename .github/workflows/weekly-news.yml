@@ -3,7 +3,7 @@ name: Weekly News Update
 on:
   schedule:
     # Every Tuesday at 5:30 AM JST (Monday 20:30 UTC)
-    - cron: '30 20 * * 1'
+    - cron: '30 20 * * 0' # 毎週日曜の20:30 UTC（日本時間 月曜 05:30）
   workflow_dispatch: # Allow manual trigger
 
 jobs:

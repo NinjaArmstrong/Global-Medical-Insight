@@ -23,7 +23,7 @@ async function run() {
         // Phase 2: Loop Summarize (Max 10 minutes or until done)
         console.log('--- Phase 2: Summarizing ---');
         const startTime = Date.now();
-        const TIMEOUT_MS = 10 * 60 * 1000; // 10 mins
+        const TIMEOUT_MS = 60 * 60 * 1000; // 60 mins (Extended for slow Free Tier)
 
         let loopCount = 0;
         while (Date.now() - startTime < TIMEOUT_MS) {
