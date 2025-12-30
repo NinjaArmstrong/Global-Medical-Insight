@@ -37,6 +37,7 @@ export default async function Home() {
 
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+              <a href="/archives" className="hover:text-blue-600 transition-colors">Archives</a>
               <a href="#" className="hover:text-blue-600 transition-colors">Africa</a>
               <a href="#" className="hover:text-blue-600 transition-colors">Middle East</a>
               <a href="#" className="hover:text-blue-600 transition-colors">South Asia</a>
