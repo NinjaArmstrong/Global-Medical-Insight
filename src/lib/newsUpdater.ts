@@ -77,12 +77,34 @@ export async function updateNews(limit = 30) {
         } catch (e: any) {
             console.error('Gemini Error:', e);
             const msg = e.message || '';
-            logs.push(`Gemini Error: ${msg.slice(0, 100)}`);
+            logs.push(`Gemini Err: ${msg.slice(0, 50)}...`);
 
-            // Abort if Rate Limited to prevent timeout loops
-            if (msg.includes('429') || msg.includes('Too Many Requests') || msg.includes('Quota')) {
-                logs.push('ABORT: Rate Limit Reached');
-                break;
+            // Fallback: Use raw data if AI fails
+            console.log('Falling back to raw content...');
+            logs.push('Using Fallback (No AI)');
+
+            const fallbackPayload = {
+                title: raw.title || 'No Title',
+                original_title: raw.title,
+                url: raw.url,
+                source_domain: new URL(raw.url).hostname,
+                published_at: raw.publishedAt,
+                summary_points: [raw.description || 'No description available'],
+                importance: 'AI unavailable during update.',
+                japan_impact: 'AI unavailable.',
+                region: ['World'], // Default
+                category: 'Other',
+                image_url: raw.urlToImage
+            };
+
+            const { error: insertErr } = await supabase.from('articles').insert(fallbackPayload);
+            if (insertErr) {
+                console.error('Failed to insert fallback:', insertErr);
+                logs.push(`Fallback Insert Err: ${insertErr.message}`);
+            } else {
+                console.log('Saved fallback successfully.');
+                processedCount++;
+                logs.push(`Saved (Raw): ${raw.title?.slice(0, 10)}...`);
             }
         }
     }
