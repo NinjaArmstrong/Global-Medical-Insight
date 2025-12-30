@@ -6,27 +6,51 @@ import { RefreshCcw } from 'lucide-react';
 
 export function UpdateNewsButton() {
     const [isUpdating, setIsUpdating] = useState(false);
+    const [progress, setProgress] = useState(0);
 
     const handleUpdate = async () => {
         if (isUpdating) return;
 
-        if (!confirm('最新ニュースの取得を開始しますか？\n（完了まで数分かかる場合があります）')) {
+        if (!confirm('最新ニュースの取得を開始しますか？\n（最大30件まで検索・追加します。数分かかる場合があります）')) {
             return;
         }
 
         setIsUpdating(true);
+        setProgress(0);
+        let totalProcessed = 0;
+        const TARGET_LIMIT = 30;
+
         try {
-            const result = await triggerUpdateNews();
-            if (result.success) {
-                alert(`更新完了: ${result.count}件の新しい記事を追加しました。`);
+            while (totalProcessed < TARGET_LIMIT) {
+                const result = await triggerUpdateNews();
+
+                if (!result.success) {
+                    throw new Error('Update failed');
+                }
+
+                if ((result.count ?? 0) === 0) {
+                    // No more new articles found
+                    break;
+                }
+
+                totalProcessed += (result.count ?? 0);
+                setProgress(totalProcessed);
+
+                // Wait a bit to be nice to the server
+                await new Promise(r => setTimeout(r, 1000));
+            }
+
+            if (totalProcessed > 0) {
+                alert(`更新完了: 合計${totalProcessed}件の新しい記事を追加しました。`);
             } else {
-                alert('更新に失敗しました。詳細を確認してください。');
+                alert('新しい記事は見つかりませんでした（すべて最新です）。');
             }
         } catch (e) {
             console.error(e);
-            alert('エラーが発生しました。');
+            alert('更新中にエラーが発生しました。時間を置いて再試行してください。');
         } finally {
             setIsUpdating(false);
+            setProgress(0);
         }
     };
 
@@ -43,7 +67,7 @@ export function UpdateNewsButton() {
       `}
         >
             <RefreshCcw size={16} className={isUpdating ? 'animate-spin' : ''} />
-            {isUpdating ? '更新中...' : '最新ニュースを取得'}
+            {isUpdating ? `更新中... ${progress}件` : '最新ニュースを取得'}
         </button>
     );
 }

@@ -3,23 +3,21 @@ import { fetchRawNews } from './news';
 import { summarizeArticleWithGemini } from './gemini';
 import { supabase } from './supabase';
 
-export async function updateNews() {
+export async function updateNews(limit = 30) {
     console.log('Starting news update...');
 
     // 1. Fetch
     const allRawArticles = await fetchRawNews();
-    console.log(`Fetched ${allRawArticles.length} raw articles.`);
-
-    // Limit to 30 for production safety (Gemini Free Tier constraint)
-    const rawArticles = allRawArticles.slice(0, 30);
+    // Limit articles based on call (manual=small batch, scheduled=large batch)
+    // We iterate through all fetched articles but stop once we've successfully processed 'limit' NEW articles.
 
     let processedCount = 0;
 
-    for (const raw of rawArticles) {
-        if (!raw.url) continue;
+    for (const raw of allRawArticles) {
+        // Stop if we have processed enough new articles
+        if (processedCount >= limit) break;
 
-        // Rate limit throttle
-        await new Promise(resolve => setTimeout(resolve, 4000));
+        if (!raw.url) continue;
 
         // 2. Check Duplication
         const { data: existing } = await supabase
@@ -32,6 +30,9 @@ export async function updateNews() {
             console.log(`Skipping existing article: ${raw.title}`);
             continue;
         }
+
+        // Rate limit throttle (Reduced to 1s to prevent Vercel 10s timeout)
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         // 3. Summarize
         console.log(`Processing: ${raw.title}`);
