@@ -28,22 +28,18 @@ export function UpdateNewsButton() {
                 throw new Error(result.error);
             }
 
-            if ((result.count ?? 0) === 0) {
-                if ((result.totalFetched ?? 0) === 0) {
-                    alert('ニュースの取得に失敗しました（APIキー設定等を確認してください）。');
-                } else {
-                    alert('新しい記事はありませんでした（すべて取得済み）。');
-                }
-                setIsUpdating(false);
-                return;
+            const totalNew = result.count ?? 0;
+
+            if (totalNew === 0) {
+                console.log('No new articles fetched. Checking for pending summaries...');
+                setStatusText('新着なし。未処理記事を確認中...');
+            } else {
+                setStatusText(`取得完了: ${totalNew}件。AI要約を開始します...`);
             }
 
-            // Phase 2: Start Summarization
-            const totalNew = result.count ?? 0;
-            setStatusText(`取得完了: ${totalNew} 件。AI要約を開始します...`);
-            await new Promise(r => setTimeout(r, 1500));
-
-            await performSummarization(totalNew);
+            // Phase 2: Start Summarization (Always run this, in case of pending items)
+            await new Promise(r => setTimeout(r, 1000));
+            await performSummarization(totalNew); // Valid to pass 0 here, logic handles it
 
         } catch (e: any) {
             console.error(e);
