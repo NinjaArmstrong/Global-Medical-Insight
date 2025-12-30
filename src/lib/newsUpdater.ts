@@ -37,41 +37,46 @@ export async function updateNews(limit = 30) {
 
         // 3. Summarize
         console.log(`Processing: ${raw.title}`);
-        const summary = await summarizeArticleWithGemini(
-            raw.title,
-            raw.description || raw.content || '',
-            raw.url,
-            raw.source.name
-        );
 
-        if (summary && summary.title) {
-            // 4. Save
-            const articlePayload = {
-                title: summary.title, // translated
-                original_title: raw.title,
-                url: raw.url,
-                source_domain: new URL(raw.url).hostname,
-                published_at: raw.publishedAt,
-                summary_points: summary.summary_points, // Jsonb array
-                importance: summary.importance,
-                japan_impact: summary.japan_impact,
-                region: summary.region?.join(','), // string for safety, though array supported if configured. Text[] works too.
-                category: summary.category,
-                image_url: raw.urlToImage
-            };
+        try {
+            const summary = await summarizeArticleWithGemini(
+                raw.title,
+                raw.description || raw.content || '',
+                raw.url,
+                raw.source.name
+            );
 
-            const { error } = await supabase.from('articles').insert(articlePayload);
-            if (error) {
-                console.error('Failed to insert:', error);
-                logs.push(`Insert Error: ${error.message}`);
+            if (summary && summary.title) {
+                // 4. Save
+                const articlePayload = {
+                    title: summary.title, // translated
+                    original_title: raw.title,
+                    url: raw.url,
+                    source_domain: new URL(raw.url).hostname,
+                    published_at: raw.publishedAt,
+                    summary_points: summary.summary_points, // Jsonb array
+                    importance: summary.importance,
+                    japan_impact: summary.japan_impact,
+                    region: summary.region?.join(','), // string for safety, though array supported if configured. Text[] works too.
+                    category: summary.category,
+                    image_url: raw.urlToImage
+                };
+
+                const { error } = await supabase.from('articles').insert(articlePayload);
+                if (error) {
+                    console.error('Failed to insert:', error);
+                    logs.push(`Insert Error: ${error.message}`);
+                } else {
+                    console.log('Saved successfully.');
+                    processedCount++;
+                    logs.push(`Saved: ${summary.title.slice(0, 10)}...`);
+                }
             } else {
-                console.log('Saved successfully.');
-                processedCount++;
-                logs.push(`Saved: ${summary.title.slice(0, 10)}...`);
+                logs.push(`Gemini Invalid Resp: ${raw.title?.slice(0, 10)}`);
             }
-        } else {
-            console.log('Skipping due to failed summary.');
-            logs.push(`Gemini Fail: ${raw.title?.slice(0, 10)}...`);
+        } catch (e: any) {
+            console.error('Gemini Error:', e);
+            logs.push(`Gemini Error: ${e.message.slice(0, 100)}`);
         }
     }
 

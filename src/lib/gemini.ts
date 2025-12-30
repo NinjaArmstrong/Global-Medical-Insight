@@ -67,8 +67,8 @@ export async function summarizeArticleWithGemini(
             category: data.category as Category,
             region: data.region as Region[],
         };
-    } catch (error) {
+    } catch (error: any) {
         console.error('Gemini processing failed:', error);
-        return null;
+        throw new Error(error.message || JSON.stringify(error));
     }
 }
