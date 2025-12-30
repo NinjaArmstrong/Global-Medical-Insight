@@ -28,8 +28,14 @@ export function UpdateNewsButton() {
                     throw new Error(result.error || 'Update failed');
                 }
 
+                // API returned 0 raw articles -> Likely API Limit or Query Issue
+                if ((result.totalFetched ?? 0) === 0) {
+                    alert('エラー: ニュースAPIから記事が1件も取得できませんでした。\nAPIキーの制限または設定を確認してください。');
+                    break;
+                }
+
+                // No NEW articles found (but raw articles exist) -> Duplicates
                 if ((result.count ?? 0) === 0) {
-                    // No more new articles found
                     break;
                 }
 
@@ -42,8 +48,8 @@ export function UpdateNewsButton() {
 
             if (totalProcessed > 0) {
                 alert(`更新完了: 合計${totalProcessed}件の新しい記事を追加しました。`);
-            } else {
-                alert('新しい記事は見つかりませんでした（すべて最新です）。');
+            } else if (totalProcessed === 0) {
+                alert('新しい記事は見つかりませんでした（すべて最新、またはAPI制限の可能性があります）。');
             }
         } catch (e: any) {
             console.error(e);

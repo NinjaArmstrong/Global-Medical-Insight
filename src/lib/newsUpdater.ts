@@ -72,5 +72,5 @@ export async function updateNews(limit = 30) {
     }
 
     console.log('Update complete.');
-    return { success: true, count: processedCount };
+    return { success: true, count: processedCount, totalFetched: allRawArticles.length };
 }
