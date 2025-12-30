@@ -35,13 +35,13 @@ export function UpdateNewsButton() {
                 const isRateLimited = logsStr.includes('429') || logsStr.includes('Quota') || logsStr.includes('Rate Limit') || logsStr.includes('Error fetching');
 
                 if (isRateLimited) {
-                    // Start Cooldown
-                    const cooldown = 15;
+                    // Start Cooldown (Extended to 60s to clear penalty box)
+                    const cooldown = 60;
                     for (let i = cooldown; i > 0; i--) {
                         setStatusText(`待機中(制限)... ${i}秒`);
                         await new Promise(r => setTimeout(r, 1000));
                     }
-                    setStatusText(`再開中 (v3.0)... ${progress}件`);
+                    setStatusText(`再開中... ${progress}件`);
                     continue; // Retry loop
                 }
 
