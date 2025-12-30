@@ -10,6 +10,7 @@ async function getArticles() {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
+    .neq('importance', 'PENDING_SUMMARY') // Only show processed articles
     .order('published_at', { ascending: false });
 
   if (error) {
