@@ -1,5 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+import { triggerFetchNews, triggerSummarizeNews } from '@/app/actions';
+import { RefreshCcw, Database, Sparkles } from 'lucide-react';
+
 export function UpdateNewsButton() {
     const [isUpdating, setIsUpdating] = useState(false);
     const [statusText, setStatusText] = useState('');
