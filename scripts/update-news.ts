@@ -14,6 +14,13 @@ async function run() {
     const { fetchAndSaveRawArticles, processPendingArticles } = await import('../src/lib/newsUpdater');
     const { supabase } = await import('../src/lib/supabase');
 
+    // CRITICAL: Validate Cloud Secrets immediately
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || !process.env.NEWS_API_KEY || !process.env.GEMINI_API_KEY) {
+        console.error('❌ Cloud Configuration Error: One or more Secrets are missing.');
+        console.error('Required: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEWS_API_KEY, GEMINI_API_KEY');
+        process.exit(1);
+    }
+
     try {
         // Phase 1: Fetch
         console.log('--- Phase 1: Fetching ---');

@@ -9,7 +9,10 @@ dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
 async function run() {
     const { supabase } = await import('../src/lib/supabase');
-    const { count } = await supabase.from('articles').select('*', { count: 'exact', head: true }).eq('importance', 'PENDING_SUMMARY');
-    console.log(`PENDING_COUNT=${count}`);
+    const { count: pending } = await supabase.from('articles').select('*', { count: 'exact', head: true }).eq('importance', 'PENDING_SUMMARY');
+    const { count: processed } = await supabase.from('articles').select('*', { count: 'exact', head: true }).neq('importance', 'PENDING_SUMMARY');
+
+    console.log(`PENDING_COUNT=${pending}`);
+    console.log(`PROCESSED_COUNT=${processed}`);
 }
 run();
