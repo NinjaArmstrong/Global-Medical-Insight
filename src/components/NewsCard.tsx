@@ -46,7 +46,15 @@ export function NewsCard({ article }: NewsCardProps) {
                 {/* Meta */}
                 <div className="flex items-center justify-between text-xs text-gray-400 mb-3">
                     <time dateTime={article.published_at} className="font-mono">
-                        {format(new Date(article.published_at), 'yyyy.MM.dd')}
+                        {(() => {
+                            try {
+                                const d = new Date(article.published_at);
+                                if (isNaN(d.getTime())) return '----.--.--';
+                                return format(d, 'yyyy.MM.dd');
+                            } catch (e) {
+                                return '----.--.--';
+                            }
+                        })()}
                     </time>
                     <span className="flex items-center gap-1 hover:text-blue-600 transition-colors">
                         {article.source_domain}
