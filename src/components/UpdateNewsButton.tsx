@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { triggerFetchNews, triggerSummarizeNews } from '@/app/actions';
 import { RefreshCcw, Database, Sparkles } from 'lucide-react';
 
 export function UpdateNewsButton() {
+    const router = useRouter();
     const [isUpdating, setIsUpdating] = useState(false);
     const [statusText, setStatusText] = useState('');
     const [progress, setProgress] = useState(0);
@@ -35,6 +37,7 @@ export function UpdateNewsButton() {
                 setStatusText('新着なし。未処理記事を確認中...');
             } else {
                 setStatusText(`取得完了: ${totalNew}件。AI要約を開始します...`);
+                router.refresh(); // Refresh to show any Raw articles if you wanted to display them
             }
 
             // Phase 2: Start Summarization (Always run this, in case of pending items)
@@ -78,6 +81,15 @@ export function UpdateNewsButton() {
 
                 const count = result.count ?? 0;
 
+                if (count > 0) {
+                    processed += count;
+                    setStatusText(`AI要約中... ${processed}件完了`);
+                    setProgress(processed);
+
+                    // ✨ LIVE UPDATE: Refresh the page data to show new article immediately ✨
+                    router.refresh();
+                }
+
                 if (count === 0) {
                     consecutiveZeroes++;
                     // If we have no rate limit but 0 count, maybe we are done?
@@ -95,15 +107,13 @@ export function UpdateNewsButton() {
                 }
 
                 consecutiveZeroes = 0;
-                processed += count;
-                setStatusText(`AI要約中... ${processed}件完了`);
-                setProgress(processed);
 
                 // Throttle slightly
                 await new Promise(r => setTimeout(r, 1000));
             }
 
             alert(`更新完了！\n${processed}件の記事を要約しました。\n（RAW保存: ${targetCount}件）`);
+            router.refresh(); // Final refresh
 
         } catch (e: any) {
             console.error(e);
