@@ -19,8 +19,14 @@ async function getArticles() {
   return data as Article[];
 }
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   const articles = await getArticles();
+  const sp = await searchParams;
+  const isAdmin = process.env.NODE_ENV === 'development' || sp.admin === 'true';
 
   return (
     <div className="min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -43,7 +49,7 @@ export default async function Home() {
               <a href="#" className="hover:text-blue-600 transition-colors">South Asia</a>
             </nav>
             <div className="pl-0 md:pl-4 md:border-l md:border-slate-200">
-              <UpdateNewsButton />
+              {isAdmin && <UpdateNewsButton />}
             </div>
           </div>
         </div>
