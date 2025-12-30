@@ -32,16 +32,16 @@ export function UpdateNewsButton() {
 
                 // Check for Rate Limits (Gemini 429) in logs
                 const logsStr = result.logs?.join(' ') || '';
-                const isRateLimited = logsStr.includes('429') || logsStr.includes('Quota') || logsStr.includes('Rate Limit');
+                const isRateLimited = logsStr.includes('429') || logsStr.includes('Quota') || logsStr.includes('Rate Limit') || logsStr.includes('Error fetching');
 
                 if (isRateLimited) {
                     // Start Cooldown
                     const cooldown = 15;
                     for (let i = cooldown; i > 0; i--) {
-                        setStatusText(`API制限待機中... ${i}秒`);
+                        setStatusText(`待機中(制限)... ${i}秒`);
                         await new Promise(r => setTimeout(r, 1000));
                     }
-                    setStatusText(`更新再開... ${progress}件`);
+                    setStatusText(`再開中 (v3.0)... ${progress}件`);
                     continue; // Retry loop
                 }
 
@@ -61,6 +61,7 @@ export function UpdateNewsButton() {
                             // If errors occurred but weren't rate limits, maybe show them?
                             // For now, if count is 0 and not rate limited, we assume we are done or stuck.
                             console.log('Zero count returned, stopping.', result.logs);
+                            alert(`詳細ログ:\n${result.logs.slice(0, 5).join('\n')}\n(他 ${Math.max(0, result.logs.length - 5)} 件)`);
                         }
                     }
                     break; // Stop if 0 articles added and not rate limited
@@ -101,7 +102,7 @@ export function UpdateNewsButton() {
       `}
         >
             <RefreshCcw size={16} className={isUpdating ? 'animate-spin' : ''} />
-            {isUpdating ? statusText : '最新ニュースを取得'}
+            {isUpdating ? statusText : '最新ニュースを取得 (v3.0)'}
         </button>
     );
 }
