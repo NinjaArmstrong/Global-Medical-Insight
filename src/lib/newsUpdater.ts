@@ -88,8 +88,8 @@ export async function processPendingArticles(limit: number): Promise<{ success: 
     logs.push(`Found ${pendingArticles.length} pending items.`);
 
     for (const article of pendingArticles) {
-        // Rate limit throttle (5s) for safer Free Tier usage (12 RPM)
-        await new Promise(r => setTimeout(r, 5000));
+        // Rate limit throttle moved to Client-side to prevent Vercel Timeout
+        // await new Promise(r => setTimeout(r, 5000));
 
         try {
             console.log(`Summarizing: ${article.title}`);
