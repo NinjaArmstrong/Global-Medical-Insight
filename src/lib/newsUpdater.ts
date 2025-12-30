@@ -32,8 +32,8 @@ export async function updateNews(limit = 30) {
             continue;
         }
 
-        // Rate limit throttle (Reduced to 1s to prevent Vercel 10s timeout)
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Rate limit throttle (Increased to 4s for Gemini Free Tier 15RPM)
+        await new Promise(resolve => setTimeout(resolve, 4000));
 
         // 3. Summarize
         console.log(`Processing: ${raw.title}`);
@@ -76,7 +76,14 @@ export async function updateNews(limit = 30) {
             }
         } catch (e: any) {
             console.error('Gemini Error:', e);
-            logs.push(`Gemini Error: ${e.message.slice(0, 100)}`);
+            const msg = e.message || '';
+            logs.push(`Gemini Error: ${msg.slice(0, 100)}`);
+
+            // Abort if Rate Limited to prevent timeout loops
+            if (msg.includes('429') || msg.includes('Too Many Requests') || msg.includes('Quota')) {
+                logs.push('ABORT: Rate Limit Reached');
+                break;
+            }
         }
     }
 
