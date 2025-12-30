@@ -63,7 +63,7 @@ export default async function Home({
               Latest Medical Intelligence
             </h2>
             <p className="text-slate-500 mt-1">
-              アフリカ・中東・南アジアの医療ビジネス最新動向
+              アフリカ・中東・南アジアのヘルスケアビジネス最新動向
             </p>
           </div>
           {/* Legend / Status (Optional) */}
