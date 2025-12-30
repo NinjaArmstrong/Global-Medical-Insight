@@ -7,6 +7,7 @@ import { RefreshCcw } from 'lucide-react';
 export function UpdateNewsButton() {
     const [isUpdating, setIsUpdating] = useState(false);
     const [statusText, setStatusText] = useState('');
+    const [progress, setProgress] = useState(0);
 
     const handleUpdate = async () => {
         if (isUpdating) return;
