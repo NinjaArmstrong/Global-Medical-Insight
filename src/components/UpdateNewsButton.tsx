@@ -20,6 +20,7 @@ export function UpdateNewsButton() {
         setStatusText('更新中...');
         setProgress(0);
         let totalProcessed = 0;
+        let zeroCountRetries = 0;
         const TARGET_LIMIT = 30;
 
         try {
@@ -51,21 +52,31 @@ export function UpdateNewsButton() {
                     break;
                 }
 
-                // No NEW articles found (but raw articles exist) -> Duplicates
+                // No NEW articles found (but raw articles exist)
                 if ((result.count ?? 0) === 0) {
-                    // Only show alert if we really are done (not just rate limited, which is handled above)
-                    if (result.logs && result.logs.length > 0) {
-                        // Check if it was purely duplicates
-                        const isAllDupes = result.logs.every(l => l.includes('Skip') || l.includes('Dup'));
-                        if (!isAllDupes) {
-                            // If errors occurred but weren't rate limits, maybe show them?
-                            // For now, if count is 0 and not rate limited, we assume we are done or stuck.
-                            console.log('Zero count returned, stopping.', result.logs);
-                            alert(`詳細ログ:\n${result.logs.slice(0, 5).join('\n')}\n(他 ${Math.max(0, result.logs.length - 5)} 件)`);
+                    zeroCountRetries++;
+                    console.log(`Zero count returned. Retry ${zeroCountRetries}/5...`);
+
+                    if (zeroCountRetries > 5) {
+                        // Only show alert if we really are done (not just rate limited, which is handled above)
+                        if (result.logs && result.logs.length > 0) {
+                            const isAllDupes = result.logs.every(l => l.includes('Skip') || l.includes('Dup'));
+                            if (!isAllDupes) {
+                                console.log('Zero count returned 5 times, stopping.', result.logs);
+                                alert(`完了(または停止): 連続して新しい記事が見つかりませんでした。\n詳細ログ:\n${result.logs.slice(0, 5).join('\n')}`);
+                            } else {
+                                alert('完了: これ以上新しい記事はありません。');
+                            }
                         }
+                        break;
                     }
-                    break; // Stop if 0 articles added and not rate limited
+                    // Wait bits before retrying to avoid spamming if there's a persistent error
+                    await new Promise(r => setTimeout(r, 2000));
+                    continue;
                 }
+
+                // Reset retries if we found something
+                zeroCountRetries = 0;
 
                 totalProcessed += (result.count ?? 0);
                 setProgress(totalProcessed);
