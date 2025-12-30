@@ -25,7 +25,7 @@ export function UpdateNewsButton() {
                 const result = await triggerUpdateNews();
 
                 if (!result.success) {
-                    throw new Error('Update failed');
+                    throw new Error(result.error || 'Update failed');
                 }
 
                 if ((result.count ?? 0) === 0) {
@@ -45,9 +45,9 @@ export function UpdateNewsButton() {
             } else {
                 alert('新しい記事は見つかりませんでした（すべて最新です）。');
             }
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
-            alert('更新中にエラーが発生しました。時間を置いて再試行してください。');
+            alert(`更新エラー: ${e.message}`);
         } finally {
             setIsUpdating(false);
             setProgress(0);
