@@ -1,12 +1,72 @@
-import { updateNews } from '../src/lib/newsUpdater';
+
 import * as dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Load env specific to script execution
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
 async function run() {
-    await updateNews();
+    console.log('🚀 Starting Automated Weekly News Update...');
+
+    // Dynamic import
+    const { fetchAndSaveRawArticles, processPendingArticles } = await import('../src/lib/newsUpdater');
+    const { supabase } = await import('../src/lib/supabase');
+
+    try {
+        // Phase 1: Fetch
+        console.log('--- Phase 1: Fetching ---');
+        const fetchRes = await fetchAndSaveRawArticles(30);
+        console.log(`Fetched: ${fetchRes.count} new items.`);
+
+        // Phase 2: Loop Summarize (Max 10 minutes or until done)
+        console.log('--- Phase 2: Summarizing ---');
+        const startTime = Date.now();
+        const TIMEOUT_MS = 10 * 60 * 1000; // 10 mins
+
+        let loopCount = 0;
+        while (Date.now() - startTime < TIMEOUT_MS) {
+            loopCount++;
+
+            // Check pending count
+            const { count: pendingCount } = await supabase
+                .from('articles')
+                .select('*', { count: 'exact', head: true })
+                .eq('importance', 'PENDING_SUMMARY');
+
+            if (!pendingCount || pendingCount === 0) {
+                console.log('✅ All articles processed.');
+                break;
+            }
+
+            console.log(`Loop ${loopCount}: ${pendingCount} items pending...`);
+
+            // Process batch of 1 (to be safe/granular)
+            const result = await processPendingArticles(1);
+
+            // Check for Rate Limit in logs
+            const logsStr = result.logs.join(' ');
+            if (logsStr.includes('429') || logsStr.includes('Rate Limit')) {
+                console.log('⚠️ Rate Limit detected. Waiting 60s...');
+                await new Promise(r => setTimeout(r, 60000));
+            } else if (result.count === 0) {
+                // Zero count but items exist? Maybe error?
+                console.log('⚠️ No items processed in this batch. Waiting 5s...');
+                await new Promise(r => setTimeout(r, 5000));
+            } else {
+                // Success, wait small delay
+                await new Promise(r => setTimeout(r, 2000));
+            }
+        }
+
+    } catch (e) {
+        console.error('❌ Update Failed:', e);
+        process.exit(1);
+    }
+
+    console.log('🎉 Update Workflow Complete.');
+    process.exit(0);
 }
 
 run();
