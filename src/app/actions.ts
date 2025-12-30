@@ -43,3 +43,40 @@ export async function triggerSummarizeNews() {
         return { success: false, error: error.message };
     }
 }
+
+export async function triggerCloudUpdate() {
+    console.log('--- Triggering Cloud Update (GitHub Actions) ---');
+
+    const token = process.env.GITHUB_PAT;
+    if (!token) throw new Error('Configuration Error: GITHUB_PAT is missing.');
+
+    const repoOwner = 'NinjaArmstrong';
+    const repoName = 'Global-Medical-Insight';
+    const workflowId = 'weekly-news.yml';
+    const ref = 'main'; // Target branch
+
+    try {
+        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/actions/workflows/${workflowId}/dispatches`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ref: ref,
+            }),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`GitHub API Error: ${response.status} ${response.statusText} - ${errorText}`);
+        }
+
+        console.log('Cloud Update Triggered Successfully.');
+        return { success: true };
+    } catch (error: any) {
+        console.error('Cloud Update Action Failed:', error);
+        return { success: false, error: error.message };
+    }
+}

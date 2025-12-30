@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { triggerFetchNews, triggerSummarizeNews } from '@/app/actions';
-import { RefreshCcw, Database, Sparkles } from 'lucide-react';
+import { triggerFetchNews, triggerSummarizeNews, triggerCloudUpdate } from '@/app/actions';
+import { RefreshCcw, Database, Sparkles, CloudLightning } from 'lucide-react';
 
 export function UpdateNewsButton() {
     const router = useRouter();
@@ -11,11 +11,30 @@ export function UpdateNewsButton() {
     const [statusText, setStatusText] = useState('');
     const [progress, setProgress] = useState(0);
 
-    // Phase 1: Fetch Raw Data from NewsAPI
+    // Phase 3: Cloud Trigger (Fire and Forget)
+    const handleCloudUpdate = async () => {
+        if (!confirm('【推奨】クラウドサーバーで更新を開始しますか？\n\n・ブラウザを閉じてOKです\n・完了まで時間はかかります（裏で実行）\n・寝ている間に終わらせたい場合に最適です')) {
+            return;
+        }
+
+        try {
+            alert('クラウドサーバーに指令を送信中...');
+            const result = await triggerCloudUpdate();
+            if (result.success) {
+                alert('✅ 指令を出しました！\n\nあとはサーバーがやっておきます。\nブラウザを閉じても大丈夫です。\n（反映には数十分かかります）');
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (e: any) {
+            alert(`エラー: ${e.message}`);
+        }
+    };
+
+    // Phase 1: Fetch Raw Data from NewsAPI (Local/Client Manual)
     const handleFetch = async () => {
         if (isUpdating) return;
 
-        if (!confirm('最新ニュースの取得を開始しますか？\n（まずはNewsAPIから記事を取り込み、その後AI要約を行います）')) {
+        if (!confirm('【手動】画面を開いたまま更新しますか？\n（完了までブラウザを閉じられません）')) {
             return;
         }
 
@@ -96,6 +115,7 @@ export function UpdateNewsButton() {
                     // Or maybe it skipped due to error?
                     // We check if "No pending articles found" is in logs.
                     if (logsStr.includes('No pending articles')) {
+                        console.log('Done: No pending articles found.');
                         break; // Done!
                     }
 
@@ -125,23 +145,38 @@ export function UpdateNewsButton() {
     };
 
     return (
-        <button
-            onClick={handleFetch}
-            disabled={isUpdating}
-            className={`
-        flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors
-        ${isUpdating
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
-                }
-      `}
-        >
-            {isUpdating ? (
-                <Sparkles size={16} className="animate-spin" />
-            ) : (
-                <Database size={16} />
+        <div className="flex items-center gap-2">
+            {/* Live Update Button */}
+            <button
+                onClick={handleFetch}
+                disabled={isUpdating}
+                className={`
+            flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors border
+            ${isUpdating
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200'
+                        : 'bg-white text-slate-600 hover:bg-slate-50 border-slate-200'
+                    }
+        `}
+            >
+                {isUpdating ? (
+                    <Sparkles size={16} className="animate-spin" />
+                ) : (
+                    <Database size={16} />
+                )}
+                {isUpdating ? statusText : 'Live更新'}
+            </button>
+
+            {/* Cloud Update Button */}
+            {!isUpdating && (
+                <button
+                    onClick={handleCloudUpdate}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors bg-emerald-500 text-white hover:bg-emerald-600 shadow-sm"
+                    title="ブラウザを閉じて実行できます"
+                >
+                    <CloudLightning size={16} />
+                    クラウド実行 (推奨)
+                </button>
             )}
-            {isUpdating ? statusText : '最新ニュースを取得 (高速版)'}
-        </button>
+        </div>
     );
 }
