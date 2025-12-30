@@ -18,7 +18,7 @@ export async function summarizeArticleWithGemini(
         return null; // or throw
     }
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     const prompt = `
     You are a professional medical news analyst for the African, Middle Eastern, and South Asian markets.
