@@ -12,6 +12,7 @@ export async function updateNews(limit = 30) {
     // We iterate through all fetched articles but stop once we've successfully processed 'limit' NEW articles.
 
     let processedCount = 0;
+    const logs: string[] = [];
 
     for (const raw of allRawArticles) {
         // Stop if we have processed enough new articles
@@ -27,7 +28,7 @@ export async function updateNews(limit = 30) {
             .single();
 
         if (existing) {
-            console.log(`Skipping existing article: ${raw.title}`);
+            logs.push(`Skip (Dup): ${raw.title?.slice(0, 20)}...`);
             continue;
         }
 
@@ -62,15 +63,18 @@ export async function updateNews(limit = 30) {
             const { error } = await supabase.from('articles').insert(articlePayload);
             if (error) {
                 console.error('Failed to insert:', error);
+                logs.push(`Insert Error: ${error.message}`);
             } else {
                 console.log('Saved successfully.');
                 processedCount++;
+                logs.push(`Saved: ${summary.title.slice(0, 10)}...`);
             }
         } else {
             console.log('Skipping due to failed summary.');
+            logs.push(`Gemini Fail: ${raw.title?.slice(0, 10)}...`);
         }
     }
 
     console.log('Update complete.');
-    return { success: true, count: processedCount, totalFetched: allRawArticles.length };
+    return { success: true, count: processedCount, totalFetched: allRawArticles.length, logs };
 }

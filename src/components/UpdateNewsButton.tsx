@@ -36,6 +36,10 @@ export function UpdateNewsButton() {
 
                 // No NEW articles found (but raw articles exist) -> Duplicates
                 if ((result.count ?? 0) === 0) {
+                    // Show debug logs if available
+                    if (result.logs && result.logs.length > 0) {
+                        alert(`詳細ログ:\n${result.logs.slice(0, 5).join('\n')}\n(他 ${Math.max(0, result.logs.length - 5)} 件)`);
+                    }
                     break;
                 }
 

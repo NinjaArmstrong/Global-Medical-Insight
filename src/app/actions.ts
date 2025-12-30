@@ -19,7 +19,7 @@ export async function triggerUpdateNews() {
         revalidatePath('/'); // Refresh homepage
         revalidatePath('/archives'); // Refresh archives
 
-        return { success: true, count: result.count, totalFetched: result.totalFetched };
+        return { success: true, count: result.count, totalFetched: result.totalFetched, logs: result.logs };
     } catch (error: any) {
         console.error('Update Action Failed:', error);
         return { success: false, error: error.message || 'Unknown error' };
