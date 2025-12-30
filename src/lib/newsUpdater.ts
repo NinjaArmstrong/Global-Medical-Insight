@@ -44,7 +44,7 @@ export async function updateNews(limit = 30) {
             raw.source.name
         );
 
-        if (summary) {
+        if (summary && summary.title) {
             // 4. Save
             const articlePayload = {
                 title: summary.title, // translated
