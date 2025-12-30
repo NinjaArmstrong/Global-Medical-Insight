@@ -5,8 +5,8 @@ import { revalidatePath } from 'next/cache';
 
 export async function triggerUpdateNews() {
     try {
-        // Manual update: Limit to 2 articles to avoid Vercel Function Timeout (10s limit)
-        const result = await updateNews(2);
+        // Manual update: Limit to 1 article to avoid Vercel Function Timeout (10s limit)
+        const result = await updateNews(1);
         revalidatePath('/'); // Refresh homepage to show new articles
         return { success: true, count: result.count };
     } catch (error) {

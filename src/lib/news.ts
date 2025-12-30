@@ -79,7 +79,7 @@ async function fetchByConfig(config: { keywords: string[], countries: string[] }
         // Debug logging
         // console.log(`URL (masked): ${url.replace(apiKey, 'HIDDEN')}`);
 
-        const res = await fetch(url);
+        const res = await fetch(url, { next: { revalidate: 900 } });
         const data: NewsAPIResponse = await res.json();
 
         console.log(`[${lang}] Status: ${data.status}, Total: ${data.totalResults}`);
