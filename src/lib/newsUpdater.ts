@@ -57,7 +57,7 @@ export async function updateNews(limit = 30) {
                     summary_points: summary.summary_points, // Jsonb array
                     importance: summary.importance,
                     japan_impact: summary.japan_impact,
-                    region: summary.region?.join(','), // string for safety, though array supported if configured. Text[] works too.
+                    region: Array.isArray(summary.region) ? summary.region : [summary.region || 'World'], // Normalize to array for text[] column
                     category: summary.category,
                     image_url: raw.urlToImage
                 };

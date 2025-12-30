@@ -56,7 +56,14 @@ export async function summarizeArticleWithGemini(
         const response = await result.response;
         const text = response.text();
 
-        const cleanedText = cleanJsonString(text);
+        const firstBrace = text.indexOf('{');
+        const lastBrace = text.lastIndexOf('}');
+
+        if (firstBrace === -1 || lastBrace === -1) {
+            throw new Error("No JSON found in response");
+        }
+
+        const cleanedText = text.substring(firstBrace, lastBrace + 1);
         const data = JSON.parse(cleanedText);
 
         return {
