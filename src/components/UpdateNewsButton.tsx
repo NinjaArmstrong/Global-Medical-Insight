@@ -6,7 +6,7 @@ import { RefreshCcw } from 'lucide-react';
 
 export function UpdateNewsButton() {
     const [isUpdating, setIsUpdating] = useState(false);
-    const [progress, setProgress] = useState(0);
+    const [statusText, setStatusText] = useState('');
 
     const handleUpdate = async () => {
         if (isUpdating) return;
@@ -16,6 +16,7 @@ export function UpdateNewsButton() {
         }
 
         setIsUpdating(true);
+        setStatusText('更新中...');
         setProgress(0);
         let totalProcessed = 0;
         const TARGET_LIMIT = 30;
@@ -28,6 +29,21 @@ export function UpdateNewsButton() {
                     throw new Error(result.error || 'Update failed');
                 }
 
+                // Check for Rate Limits (Gemini 429) in logs
+                const logsStr = result.logs?.join(' ') || '';
+                const isRateLimited = logsStr.includes('429') || logsStr.includes('Quota') || logsStr.includes('Rate Limit');
+
+                if (isRateLimited) {
+                    // Start Cooldown
+                    const cooldown = 15;
+                    for (let i = cooldown; i > 0; i--) {
+                        setStatusText(`API制限待機中... ${i}秒`);
+                        await new Promise(r => setTimeout(r, 1000));
+                    }
+                    setStatusText(`更新再開... ${progress}件`);
+                    continue; // Retry loop
+                }
+
                 // API returned 0 raw articles -> Likely API Limit or Query Issue
                 if ((result.totalFetched ?? 0) === 0) {
                     alert('エラー: ニュースAPIから記事が1件も取得できませんでした。\nAPIキーの制限または設定を確認してください。');
@@ -36,18 +52,25 @@ export function UpdateNewsButton() {
 
                 // No NEW articles found (but raw articles exist) -> Duplicates
                 if ((result.count ?? 0) === 0) {
-                    // Show debug logs if available
+                    // Only show alert if we really are done (not just rate limited, which is handled above)
                     if (result.logs && result.logs.length > 0) {
-                        alert(`詳細ログ:\n${result.logs.slice(0, 5).join('\n')}\n(他 ${Math.max(0, result.logs.length - 5)} 件)`);
+                        // Check if it was purely duplicates
+                        const isAllDupes = result.logs.every(l => l.includes('Skip') || l.includes('Dup'));
+                        if (!isAllDupes) {
+                            // If errors occurred but weren't rate limits, maybe show them?
+                            // For now, if count is 0 and not rate limited, we assume we are done or stuck.
+                            console.log('Zero count returned, stopping.', result.logs);
+                        }
                     }
-                    break;
+                    break; // Stop if 0 articles added and not rate limited
                 }
 
                 totalProcessed += (result.count ?? 0);
                 setProgress(totalProcessed);
+                setStatusText(`更新中... ${totalProcessed}件`);
 
                 // Wait a bit to be nice to the server
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 2000));
             }
 
             if (totalProcessed > 0) {
@@ -77,7 +100,7 @@ export function UpdateNewsButton() {
       `}
         >
             <RefreshCcw size={16} className={isUpdating ? 'animate-spin' : ''} />
-            {isUpdating ? `更新中... ${progress}件` : '最新ニュースを取得'}
+            {isUpdating ? statusText : '最新ニュースを取得'}
         </button>
     );
 }
