@@ -136,7 +136,7 @@ export async function getArticleCounts() {
             batchTotal: batchTotal ?? 0,
             batchPending: batchPending ?? 0,
             valid: valid ?? 0,
-            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0)
+            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0, valid ?? 0)
         };
     } catch (e) {
         console.error(e);
@@ -144,12 +144,17 @@ export async function getArticleCounts() {
     }
 }
 
-function calculateEstimatedTime(pendingCount: number): string {
-    if (pendingCount <= 0) return '完了';
+function calculateEstimatedTime(pendingCount: number, validCount: number): string {
+    const target = 30;
+    const remainingNeeded = Math.max(0, target - validCount);
+
+    if (remainingNeeded <= 0) return '完了';
+    if (pendingCount <= 0) return '--:--'; // No pending items to process
 
     // Assume ~45 seconds per article (safe estimate including AI processing + throttling)
     const secondsPerArticle = 45;
-    const totalSeconds = pendingCount * secondsPerArticle;
+    // Calculate based on items needed to reach goal
+    const totalSeconds = remainingNeeded * secondsPerArticle;
 
     const now = new Date();
     const completionTime = new Date(now.getTime() + totalSeconds * 1000);
