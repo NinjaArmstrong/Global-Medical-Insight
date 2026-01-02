@@ -12,6 +12,7 @@ export function ProcessStatus() {
         processed: number,
         batchTotal?: number,
         batchPending?: number,
+        valid?: number,
         estimatedCompletionTime?: string
     } | null>(null);
 
@@ -53,11 +54,11 @@ export function ProcessStatus() {
             )}
 
             <div className="flex items-center gap-3 border-l border-slate-200 pl-3">
-                {/* 完了数 */}
+                {/* 有効数 (HP表示対象) */}
                 <div className="flex flex-col items-center leading-none">
-                    <span className="text-[10px] text-slate-400 mb-0.5">完了</span>
-                    <span className="font-bold text-slate-800 text-sm">
-                        {batchProcessed}
+                    <span className="text-[10px] text-emerald-600 mb-0.5 font-bold">有効</span>
+                    <span className="font-bold text-emerald-700 text-sm">
+                        {counts.valid}
                     </span>
                 </div>
 

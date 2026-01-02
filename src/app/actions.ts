@@ -11,7 +11,8 @@ export async function triggerFetchNews() {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL) throw new Error('Configuration Error: SUPABASE_URL is missing.');
 
     try {
-        const result = await fetchAndSaveRawArticles(30);
+        // Increase limit to 60 to Ensure 30 valid articles after filtering
+        const result = await fetchAndSaveRawArticles(60);
         console.log('Fetch Result:', result);
 
         revalidatePath('/');
@@ -110,7 +111,21 @@ export async function getArticleCounts() {
             .eq('importance', 'PENDING_SUMMARY')
             .gt('created_at', oneDayAgo);
 
-        if (err1 || err2 || err3 || err4) throw new Error('DB Error');
+        // 3. Valid (Displayable) Count
+        const { count: valid, error: err5 } = await supabase
+            .from('articles')
+            .select('*', { count: 'exact', head: true })
+            .neq('importance', 'PENDING_SUMMARY')
+            .neq('importance', 'PHASE2_PENDING')
+            .neq('importance', 'PHASE3_PENDING')
+            .neq('importance', 'SKIPPED_MANUAL_LIMIT')
+            .neq('importance', 'IRRELEVANT')
+            .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
+            .neq('importance', 'ERROR_GEMINI')
+            .neq('category', 'Unprocessed')
+            .not('importance', 'ilike', '%AI unavailable%');
+
+        if (err1 || err2 || err3 || err4 || err5) throw new Error('DB Error');
 
         return {
             total: total ?? 0,
@@ -120,6 +135,7 @@ export async function getArticleCounts() {
             // Batch Stats
             batchTotal: batchTotal ?? 0,
             batchPending: batchPending ?? 0,
+            valid: valid ?? 0,
             estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0)
         };
     } catch (e) {
