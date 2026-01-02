@@ -128,8 +128,8 @@ export function UpdateNewsButton() {
 
                 consecutiveZeroes = 0;
 
-                // Throttle (5s) to respect Gemini Rate Limit (15 RPM) without timing out Vercel
-                await new Promise(r => setTimeout(r, 5000));
+                // Throttle (6s) to respect Gemini Rate Limit (15 RPM) safely
+                await new Promise(r => setTimeout(r, 6000));
             }
 
             alert(`更新完了！\n${processed}件の記事を要約しました。\n（RAW保存: ${targetCount}件）`);

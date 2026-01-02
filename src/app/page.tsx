@@ -23,7 +23,10 @@ async function getArticles(isAdmin: boolean) {
       .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
       .neq('importance', 'ERROR_GEMINI')
       .neq('category', 'Unprocessed')
-      .not('importance', 'ilike', '%AI unavailable%');
+      .not('importance', 'ilike', '%AI unavailable%')
+      // Ensure the article is fully processed (japan_impact is populated in Phase 3)
+      .neq('japan_impact', '')
+      .not('japan_impact', 'is', null);
   }
 
   const { data, error } = await query
