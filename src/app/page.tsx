@@ -11,15 +11,9 @@ async function getArticles() {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
-    .neq('importance', 'PENDING_SUMMARY')
-    .neq('importance', 'PHASE2_PENDING')
-    .neq('importance', 'PHASE3_PENDING')
-    .neq('importance', 'SKIPPED_MANUAL_LIMIT')
-    .neq('importance', 'IRRELEVANT')
-    .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
-    .neq('importance', 'ERROR_GEMINI')
-    .neq('category', 'Unprocessed')
-    .not('importance', 'ilike', '%AI unavailable%')
+    // Relaxed filter as per user request (Show archives/all)
+    // .neq('importance', 'PENDING_SUMMARY') 
+    // .neq('importance', 'IRRELEVANT') ... removed strict checks to fill 30 items
     .order('published_at', { ascending: false })
     .limit(30);
 
