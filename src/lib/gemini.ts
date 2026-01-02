@@ -18,7 +18,7 @@ export async function summarizeArticleWithGemini(
         return null; // or throw
     }
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
 
     const prompt = `
     You are a professional medical news analyst for the African, Middle Eastern, and South Asian markets.
@@ -77,5 +77,83 @@ export async function summarizeArticleWithGemini(
     } catch (error: any) {
         console.error('Gemini processing failed:', error);
         throw new Error(error.message || JSON.stringify(error));
+    }
+}
+
+// --- Batch Functions for Phase 1 & 2 ---
+
+export async function filterRelevantArticlesBatch(
+    items: { id: string; title: string; source: string }[]
+): Promise<string[]> {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) throw new Error('Missing GEMINI_API_KEY');
+
+    // Config for faster/lighter model if available, otherwise Flash
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+        model: 'gemini-2.5-flash-lite',
+        generationConfig: { responseMimeType: "application/json" }
+    });
+
+    const itemListStr = items.map(i => `- [ID: ${i.id}] ${i.title} (Source: ${i.source})`).join('\n');
+
+    const prompt = `
+    You are an expert medical news editor for the "Global South Medical Update".
+    
+    Task: Select articles that are RELEVANT to:
+    1. Healthcare / Medicine / Pharma / Public Health.
+    2. Affecting Global South (Africa, Middle East, South Asia) OR having global significance.
+    3. SKIP: Sports, Politics (unless health policy), Celebrity gossip, General business (unless pharma).
+
+    Input List:
+    ${itemListStr}
+
+    Output: JSON array of strings (ONLY the IDs of relevant articles).
+    Example: ["id_1", "id_3"]
+    `;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const text = result.response.text();
+        return JSON.parse(text) as string[];
+    } catch (e: any) {
+        console.error('Batch Filter Failed:', e);
+        throw e; // Propagate error to trigger retry/abort logic
+    }
+}
+
+export async function translateTitlesBatch(
+    items: { id: string; title: string }[]
+): Promise<{ id: string; japanese_title: string }[]> {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) throw new Error('Missing GEMINI_API_KEY');
+
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+        model: 'gemini-2.5-flash-lite',
+        generationConfig: { responseMimeType: "application/json" }
+    });
+
+    const itemListStr = items.map(i => `- [ID: ${i.id}] ${i.title}`).join('\n');
+
+    const prompt = `
+    Task: Translate these medical news titles into professional Japanese.
+    Target Audience: Japanese healthcare professionals.
+    Style: Concise, accurate, "Yahoo News" style.
+
+    Input List:
+    ${itemListStr}
+
+    Output: JSON array of objects.
+    Example: [{"id": "...", "japanese_title": "..."}]
+    `;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const text = result.response.text();
+        return JSON.parse(text) as { id: string; japanese_title: string }[];
+    } catch (e: any) {
+        console.error('Batch Translate Failed:', e);
+        throw e;
     }
 }

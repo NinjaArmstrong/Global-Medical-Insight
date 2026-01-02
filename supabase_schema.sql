@@ -29,3 +29,7 @@ create policy "Public read access"
 create policy "Anon insert access"
   on articles for insert
   with check ( true );
+
+-- [Optimization] Indices for faster filtering and sorting
+create index if not exists articles_importance_idx on articles (importance);
+create index if not exists articles_published_at_idx on articles (published_at desc);

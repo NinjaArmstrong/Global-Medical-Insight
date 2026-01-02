@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabase';
 import { NewsCard } from '@/components/NewsCard';
 import { Article } from '@/lib/types';
 import { UpdateNewsButton } from '@/components/UpdateNewsButton';
+import { ProcessStatus } from '@/components/ProcessStatus';
 
 // Revalidate every hour
 export const revalidate = 3600;
@@ -11,6 +12,7 @@ async function getArticles() {
     .from('articles')
     .select('*')
     .neq('importance', 'PENDING_SUMMARY') // Only show processed articles
+    .not('importance', 'ilike', '%AI unavailable%') // Hide failed AI updates
     .order('published_at', { ascending: false });
 
   if (error) {
@@ -49,8 +51,14 @@ export default async function Home({
               <a href="#" className="hover:text-blue-600 transition-colors">Middle East</a>
               <a href="#" className="hover:text-blue-600 transition-colors">South Asia</a>
             </nav>
-            <div className="pl-0 md:pl-4 md:border-l md:border-slate-200">
-              {isAdmin && <UpdateNewsButton />}
+            <div className="pl-0 md:pl-4 md:border-l md:border-slate-200 flex items-center">
+              {isAdmin && (
+                <>
+                  {/* Admin Status Monitor */}
+                  <ProcessStatus />
+                  <UpdateNewsButton />
+                </>
+              )}
             </div>
           </div>
         </div>

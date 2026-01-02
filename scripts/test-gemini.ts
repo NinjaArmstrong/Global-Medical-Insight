@@ -16,10 +16,10 @@ async function testGemini() {
     console.log(`✅ Found API Key: ${apiKey.slice(0, 5)}...`);
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
 
     try {
-        console.log('📡 Sending test request to Gemini (2.0-flash)...');
+        console.log('📡 Sending test request to Gemini (2.5-flash-lite)...');
         const result = await model.generateContent('Explain "Hello World" in 1 sentence.');
         const response = await result.response;
         const text = response.text();

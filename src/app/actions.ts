@@ -80,3 +80,49 @@ export async function triggerCloudUpdate() {
         return { success: false, error: error.message };
     }
 }
+
+export async function getArticleCounts() {
+    // Dynamic import to ensure basic compatibility if needed, though 'use server' usually handles this.
+    const { supabase } = await import('@/lib/supabase');
+
+    try {
+        // 1. Total DB Counts (Existing)
+        const { count: total, error: err1 } = await supabase
+            .from('articles')
+            .select('*', { count: 'exact', head: true });
+
+        const { count: pending, error: err2 } = await supabase
+            .from('articles')
+            .select('*', { count: 'exact', head: true })
+            .eq('importance', 'PENDING_SUMMARY');
+
+        // 2. "Batch" Progress (Last 24 hours) - For Progress Bar
+        const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
+        const { count: batchTotal, error: err3 } = await supabase
+            .from('articles')
+            .select('*', { count: 'exact', head: true })
+            .gt('created_at', oneDayAgo);
+
+        const { count: batchPending, error: err4 } = await supabase
+            .from('articles')
+            .select('*', { count: 'exact', head: true })
+            .eq('importance', 'PENDING_SUMMARY')
+            .gt('created_at', oneDayAgo);
+
+        if (err1 || err2 || err3 || err4) throw new Error('DB Error');
+
+        return {
+            total: total ?? 0,
+            pending: pending ?? 0,
+            processed: (total ?? 0) - (pending ?? 0),
+
+            // Batch Stats
+            batchTotal: batchTotal ?? 0,
+            batchPending: batchPending ?? 0
+        };
+    } catch (e) {
+        console.error(e);
+        return { total: 0, pending: 0, processed: 0, batchTotal: 0, batchPending: 0 };
+    }
+}

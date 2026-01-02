@@ -1,7 +1,8 @@
 // Shared logic for updating news
 import { fetchRawNews } from './news';
-import { summarizeArticleWithGemini } from './gemini';
+import { summarizeArticleWithGemini, filterRelevantArticlesBatch, translateTitlesBatch } from './gemini';
 import { supabase } from './supabase';
+import { isLocallyIrrelevant } from './localFilter';
 
 export async function fetchAndSaveRawArticles(limit: number): Promise<{ count: number; totalFetched: number, logs: string[] }> {
     console.log(`Fetching raw news, limit: ${limit}`);
@@ -38,8 +39,8 @@ export async function fetchAndSaveRawArticles(limit: number): Promise<{ count: n
                 url: article.url,
                 source_domain: new URL(article.url).hostname,
                 published_at: article.publishedAt,
-                summary_points: [article.description || ''], // Store raw description for later processing
-                importance: 'PENDING_SUMMARY', // Marker for queue
+                summary_points: [article.description || ''], // Store raw description
+                importance: 'PENDING_SUMMARY', // Phase 1 Queue
                 japan_impact: '',
                 region: ['World'],
                 category: 'Unprocessed',
@@ -70,66 +71,148 @@ export async function processPendingArticles(limit: number): Promise<{ success: 
     const logs: string[] = [];
     let processedCount = 0;
 
-    console.log('Checking for pending articles...');
-
-    // Fetch pending articles
-    const { data: pendingArticles, error } = await supabase
+    // --- PHASE 0: LOCAL FILTER (PENDING_SUMMARY -> IRRELEVANT_AUTO_LOCAL) ---
+    // Fetch a larger batch for local filtering to keep the pipeline moving
+    const { data: rawItems } = await supabase
         .from('articles')
-        .select('*')
+        .select('id, title, source_domain')
         .eq('importance', 'PENDING_SUMMARY')
-        .limit(limit);
+        .limit(10); // Check 10 at a time locally
 
-    if (error || !pendingArticles || pendingArticles.length === 0) {
-        if (error) logs.push(`DB Error: ${error?.message}`);
-        else logs.push('No pending articles found.');
-        return { success: true, count: 0, logs };
+    if (rawItems && rawItems.length > 0) {
+        const locallyIrrelevantIds: string[] = [];
+        const locallyRelevant: typeof rawItems = [];
+
+        for (const item of rawItems) {
+            if (isLocallyIrrelevant(item.title, item.source_domain || '')) {
+                locallyIrrelevantIds.push(item.id!);
+            } else {
+                locallyRelevant.push(item);
+            }
+        }
+
+        if (locallyIrrelevantIds.length > 0) {
+            console.log(`PHASE 0 (Local): Auto-discarding ${locallyIrrelevantIds.length} items.`);
+            await supabase
+                .from('articles')
+                .update({ importance: 'IRRELEVANT_AUTO_LOCAL' })
+                .in('id', locallyIrrelevantIds);
+            processedCount += locallyIrrelevantIds.length;
+        }
+
+        // Use ONLY the survivors for Phase 1 API check, limited to 1 (Safe Mode)
+        const p1Items = locallyRelevant.slice(0, 1);
+
+        if (p1Items.length > 0) {
+            console.log(`PHASE 1 (Filter): Processing ${p1Items.length} items (survivors)...`);
+            try {
+                const relevantIds = await filterRelevantArticlesBatch(
+                    p1Items.map(i => ({ id: i.id!, title: i.title, source: i.source_domain }))
+                );
+
+                // Mark RELEVANT items for Phase 2
+                if (relevantIds.length > 0) {
+                    const { error: upErr } = await supabase
+                        .from('articles')
+                        .update({ importance: 'PHASE2_PENDING' })
+                        .in('id', relevantIds);
+                    if (upErr) logs.push(`P1 Update Err: ${upErr.message}`);
+                    else logs.push(`PHASE 1: Promoted ${relevantIds.length} items.`);
+                }
+
+                // Mark IRRELEVANT items
+                const irrelevantIds = p1Items.map(i => i.id).filter(id => !relevantIds.includes(id!));
+                if (irrelevantIds.length > 0) {
+                    await supabase
+                        .from('articles')
+                        .update({ importance: 'IRRELEVANT' })
+                        .in('id', irrelevantIds);
+                    logs.push(`PHASE 1: Discarded ${irrelevantIds.length} items.`);
+                }
+
+                processedCount += p1Items.length;
+
+            } catch (e: any) {
+                logs.push(`PHASE 1 Error: ${e.message}`);
+                if (e.message.includes('429')) logs.push('Rate Limit');
+            }
+        }
     }
 
-    logs.push(`Found ${pendingArticles.length} pending items.`);
+    // --- PHASE 2: BATCH TRANSLATE (PHASE2_PENDING -> PHASE3_PENDING) ---
+    // Only run if we have budget/time? For now, run sequentially.
+    const { data: p2Items } = await supabase
+        .from('articles')
+        .select('id, title')
+        .eq('importance', 'PHASE2_PENDING')
+        .limit(1); // Batch size 1 (Ultra Safe Mode)
 
-    for (const article of pendingArticles) {
-        // Rate limit throttle moved to Client-side to prevent Vercel Timeout
-        // await new Promise(r => setTimeout(r, 5000));
+    if (p2Items && p2Items.length > 0) {
+        logs.push(`PHASE 2 (Translate): Processing ${p2Items.length} items...`);
+        try {
+            const translations = await translateTitlesBatch(
+                p2Items.map(i => ({ id: i.id!, title: i.title }))
+            );
+
+            for (const t of translations) {
+                const { error: tErr } = await supabase
+                    .from('articles')
+                    .update({
+                        title: t.japanese_title,
+                        importance: 'PHASE3_PENDING' // Ready for VIP Summary
+                    })
+                    .eq('id', t.id);
+                if (!tErr) processedCount++;
+            }
+            logs.push(`PHASE 2: Translated ${translations.length} titles.`);
+
+        } catch (e: any) {
+            logs.push(`PHASE 2 Error: ${e.message}`);
+            if (e.message.includes('429')) logs.push('Rate Limit');
+        }
+    }
+
+    // --- PHASE 3: DEEP SUMMARY (PHASE3_PENDING -> DONE) ---
+    // VIP treatment, 1 at a time (passed via limit arg, usually 1)
+    const { data: p3Items } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('importance', 'PHASE3_PENDING')
+        .limit(1); // Strict limit 1 for safety
+
+    if (p3Items && p3Items.length > 0) {
+        const article = p3Items[0];
+        logs.push(`PHASE 3 (Summary): ${article.title.slice(0, 20)}...`);
 
         try {
-            console.log(`Summarizing: ${article.title}`);
             const summary = await summarizeArticleWithGemini(
-                article.original_title || article.title,
-                // Extract description from the temporary storage in summary_points
+                article.original_title || article.title, // Use original English title for context
                 Array.isArray(article.summary_points) ? (article.summary_points[0] as string) : '',
                 article.url,
                 article.source_domain || ''
             );
 
             if (summary) {
-                // Update the article
-                const { error: updateErr } = await supabase
-                    .from('articles')
-                    .update({
-                        title: summary.title,
-                        summary_points: summary.summary_points,
-                        importance: summary.importance,
-                        japan_impact: summary.japan_impact,
-                        region: Array.isArray(summary.region) ? summary.region : [summary.region || 'World'],
-                        category: summary.category
-                    })
-                    .eq('id', article.id);
-
-                if (updateErr) {
-                    logs.push(`Update Err: ${updateErr.message}`);
-                } else {
-                    processedCount++;
-                    logs.push(`Summarized: ${article.title.slice(0, 10)}...`);
-                }
-            } else {
-                logs.push(`Gemini failed for ${article.id}`);
+                await supabase.from('articles').update({
+                    title: summary.title, // Update title again if summary improves it
+                    summary_points: summary.summary_points,
+                    importance: summary.importance, // Final importance text
+                    japan_impact: summary.japan_impact,
+                    region: Array.isArray(summary.region) ? summary.region : [summary.region || 'World'],
+                    category: summary.category
+                }).eq('id', article.id);
+                processedCount++;
+                logs.push('PHASE 3: Success.');
             }
         } catch (e: any) {
             const msg = e.message || '';
-            logs.push(`Gemini Err: ${msg.slice(0, 50)}`);
+            logs.push(`PHASE 3 Err: ${msg.slice(0, 50)}`);
             if (msg.includes('429')) {
-                logs.push('ABORT: Rate Limit');
-                break;
+                logs.push('Rate Limit');
+            } else {
+                // Skip if error
+                await supabase.from('articles').update({ importance: 'ERROR_GEMINI' }).eq('id', article.id);
+                logs.push('Marked as ERROR_GEMINI.');
             }
         }
     }
