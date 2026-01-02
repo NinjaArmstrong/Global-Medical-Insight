@@ -131,8 +131,8 @@ export async function getArticleCounts() {
 function calculateEstimatedTime(pendingCount: number): string {
     if (pendingCount <= 0) return '完了';
 
-    // Assume ~12 seconds per article (processing + throttling)
-    const secondsPerArticle = 12;
+    // Assume ~45 seconds per article (safe estimate including AI processing + throttling)
+    const secondsPerArticle = 45;
     const totalSeconds = pendingCount * secondsPerArticle;
 
     const now = new Date();
