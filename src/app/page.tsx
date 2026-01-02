@@ -7,13 +7,26 @@ import { ProcessStatus } from '@/components/ProcessStatus';
 // Revalidate every hour
 export const revalidate = 0;
 
-async function getArticles() {
-  const { data, error } = await supabase
+async function getArticles(isAdmin: boolean) {
+  let query = supabase
     .from('articles')
-    .select('*')
-    // Relaxed filter as per user request (Show archives/all)
-    // .neq('importance', 'PENDING_SUMMARY') 
-    // .neq('importance', 'IRRELEVANT') ... removed strict checks to fill 30 items
+    .select('*');
+
+  if (!isAdmin) {
+    // strict filters for public view
+    query = query
+      .neq('importance', 'PENDING_SUMMARY')
+      .neq('importance', 'PHASE2_PENDING')
+      .neq('importance', 'PHASE3_PENDING')
+      .neq('importance', 'SKIPPED_MANUAL_LIMIT')
+      .neq('importance', 'IRRELEVANT')
+      .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
+      .neq('importance', 'ERROR_GEMINI')
+      .neq('category', 'Unprocessed')
+      .not('importance', 'ilike', '%AI unavailable%');
+  }
+
+  const { data, error } = await query
     .order('published_at', { ascending: false })
     .limit(30);
 
@@ -29,9 +42,9 @@ export default async function Home({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const articles = await getArticles();
   const sp = await searchParams;
-  const isAdmin = process.env.NODE_ENV === 'development' || sp.admin === 'true';
+  const isAdmin = sp.admin === 'true';
+  const articles = await getArticles(isAdmin);
 
   return (
     <div className="min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900">
