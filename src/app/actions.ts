@@ -115,10 +115,15 @@ export async function getArticleCounts() {
         const { count: valid, error: err5 } = await supabase
             .from('articles')
             .select('*', { count: 'exact', head: true })
-            // Relaxed to match Homepage (Archive Mode)
-            // .neq('importance', 'PENDING_SUMMARY')
-            // .neq('importance', 'IRRELEVANT') ... removed to match page.tsx
-            .not('importance', 'ilike', '%AI unavailable%'); // Keep basic error check if needed, or remove all for pure archive count
+            .neq('importance', 'PENDING_SUMMARY')
+            .neq('importance', 'PHASE2_PENDING')
+            .neq('importance', 'PHASE3_PENDING')
+            .neq('importance', 'SKIPPED_MANUAL_LIMIT')
+            .neq('importance', 'IRRELEVANT')
+            .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
+            .neq('importance', 'ERROR_GEMINI')
+            .neq('category', 'Unprocessed')
+            .not('importance', 'ilike', '%AI unavailable%');
 
         // 4. Check "Pending within Top 30" (User Request)
         const { data: top30 } = await supabase
