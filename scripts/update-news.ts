@@ -7,20 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
 
-import fetch from 'node-fetch';
-// Patch global fetch
-if (!global.fetch) {
-    (global as any).fetch = fetch;
-    (global as any).Headers = (fetch as any).Headers;
-    (global as any).Request = (fetch as any).Request;
-    (global as any).Response = (fetch as any).Response;
-} else {
-    console.log('Overwriting native fetch with node-fetch...');
-    (global as any).fetch = fetch;
-    (global as any).Headers = (fetch as any).Headers;
-    (global as any).Request = (fetch as any).Request;
-    (global as any).Response = (fetch as any).Response;
-}
+// Native fetch is available in Node 16+
+// import fetch from 'node-fetch'; 
+
 
 async function run() {
     console.log('🚀 Starting Automated Weekly News Update...');
