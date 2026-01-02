@@ -1,24 +1,10 @@
 
 import * as dotenv from 'dotenv';
 import path from 'path';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
-// 1. Configure Env FIRST
-dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+// Native fetch is available. Patch removed.
 
-// 2. Patch Fetch
-if (!global.fetch) {
-    (global as any).fetch = fetch;
-    (global as any).Headers = (fetch as any).Headers;
-    (global as any).Request = (fetch as any).Request;
-    (global as any).Response = (fetch as any).Response;
-} else {
-    // Force overwrite for stability
-    (global as any).fetch = fetch;
-    (global as any).Headers = (fetch as any).Headers;
-    (global as any).Request = (fetch as any).Request;
-    (global as any).Response = (fetch as any).Response;
-}
 
 // 3. Dynamic Import Supabase (after Env is loaded)
 async function run() {

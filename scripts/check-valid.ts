@@ -1,11 +1,10 @@
 
 import * as dotenv from 'dotenv';
 import path from 'path';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
-dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+// Patch removed.
 
-if (!global.fetch) { (global as any).fetch = fetch; (global as any).Headers = (fetch as any).Headers; (global as any).Request = (fetch as any).Request; (global as any).Response = (fetch as any).Response; } else { (global as any).fetch = fetch; (global as any).Headers = (fetch as any).Headers; (global as any).Request = (fetch as any).Request; (global as any).Response = (fetch as any).Response; }
 
 async function run() {
     console.log('🔍 Checking for VALID Japanese Articles...');

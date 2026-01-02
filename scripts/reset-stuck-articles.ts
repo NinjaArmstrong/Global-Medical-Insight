@@ -38,7 +38,7 @@ async function reset() {
             .from('articles')
             .update({ importance: 'PENDING_SUMMARY' }) // Removed invalid 'count' column
             .in('id', idsToReset)
-            .select('id', { count: 'exact' });
+            .select(); // Simple select to return modified rows
 
         if (error) {
             console.error('Error:', error);

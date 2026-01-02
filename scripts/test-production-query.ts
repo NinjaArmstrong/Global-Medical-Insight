@@ -1,23 +1,8 @@
 
 import * as dotenv from 'dotenv';
 import path from 'path';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
-// 1. Configure Env FIRST
-dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
-
-// 2. Patch Fetch
-if (!global.fetch) {
-    (global as any).fetch = fetch;
-    (global as any).Headers = (fetch as any).Headers;
-    (global as any).Request = (fetch as any).Request;
-    (global as any).Response = (fetch as any).Response;
-} else {
-    (global as any).fetch = fetch;
-    (global as any).Headers = (fetch as any).Headers;
-    (global as any).Request = (fetch as any).Request;
-    (global as any).Response = (fetch as any).Response;
-}
 
 async function run() {
     console.log('🧪 Testing Production Query Filter...');
