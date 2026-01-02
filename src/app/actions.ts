@@ -136,7 +136,7 @@ export async function getArticleCounts() {
             batchTotal: batchTotal ?? 0,
             batchPending: batchPending ?? 0,
             valid: valid ?? 0,
-            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0, valid ?? 0)
+            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0, valid ?? 0, batchProcessed)
         };
     } catch (e) {
         console.error(e);
@@ -144,17 +144,34 @@ export async function getArticleCounts() {
     }
 }
 
-function calculateEstimatedTime(pendingCount: number, validCount: number): string {
+function calculateEstimatedTime(pendingCount: number, validCount: number, batchProcessed: number): string {
     const target = 30;
     const remainingNeeded = Math.max(0, target - validCount);
 
     if (remainingNeeded <= 0) return '完了';
-    if (pendingCount <= 0) return '--:--'; // No pending items to process
+    if (pendingCount <= 0 && remainingNeeded > 0) return '一時停止中'; // Pending is 0 but goal not reached
 
-    // Assume ~45 seconds per article (safe estimate including AI processing + throttling)
+    // Dynamic Yield Rate Calculation
+    // If we have processed some articles, calculate the yield rate (valid / processed).
+    // Default to 50% yield if not enough data (conservative start).
+    const currentYield = batchProcessed > 5 ? (validCount / batchProcessed) : 0.5;
+
+    // Clamp yield to sensible values (e.g. 10% to 100%) to avoid divide by zero or unrealistic expectations
+    const safeYield = Math.max(0.1, Math.min(1.0, currentYield));
+
+    // Calculate how many raw articles we probably need to process to get the remaining valid items
+    const estimatedRawNeeded = remainingNeeded / safeYield;
+
+    // Check if we even have enough pending items to reach the goal
+    // If pending is less than needed, we can only estimate for the pending items (and likely wont finish)
+    // But for the time display, we rely on the processing speed.
+    const itemsToProcess = Math.min(estimatedRawNeeded, pendingCount);
+
+    // Speed: 45s per article is a safe constant for "process one article".
+    // If `pendingCount` is large, parallel processing might speed it up, but throttling limits it.
+    // Let's stick to 45s as "time per serial execution slot".
     const secondsPerArticle = 45;
-    // Calculate based on items needed to reach goal
-    const totalSeconds = remainingNeeded * secondsPerArticle;
+    const totalSeconds = itemsToProcess * secondsPerArticle;
 
     const now = new Date();
     const completionTime = new Date(now.getTime() + totalSeconds * 1000);
