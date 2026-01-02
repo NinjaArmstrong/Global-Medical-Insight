@@ -153,10 +153,10 @@ function calculateEstimatedTime(pendingCount: number, validCount: number, batchP
 
     // Dynamic Yield Rate Calculation
     // If we have processed some articles, calculate the yield rate (valid / processed).
-    // Default to 50% yield if not enough data (conservative start).
-    const currentYield = batchProcessed > 5 ? (validCount / batchProcessed) : 0.5;
+    // Default to 30% yield (Conservative start) to prevent time from extending later.
+    const currentYield = batchProcessed > 5 ? (validCount / batchProcessed) : 0.3;
 
-    // Clamp yield to sensible values (e.g. 10% to 100%) to avoid divide by zero or unrealistic expectations
+    // Clamp yield to sensible values (e.g. 10% to 100%)
     const safeYield = Math.max(0.1, Math.min(1.0, currentYield));
 
     // Calculate how many raw articles we probably need to process to get the remaining valid items
@@ -167,10 +167,9 @@ function calculateEstimatedTime(pendingCount: number, validCount: number, batchP
     // But for the time display, we rely on the processing speed.
     const itemsToProcess = Math.min(estimatedRawNeeded, pendingCount);
 
-    // Speed: 45s per article is a safe constant for "process one article".
-    // If `pendingCount` is large, parallel processing might speed it up, but throttling limits it.
-    // Let's stick to 45s as "time per serial execution slot".
-    const secondsPerArticle = 45;
+    // Speed: 60s per article (Conservative serial processing speed)
+    // Slower than 45s but includes potential small overheads and ensures we beat the clock.
+    const secondsPerArticle = 60;
     const totalSeconds = itemsToProcess * secondsPerArticle;
 
     const now = new Date();
