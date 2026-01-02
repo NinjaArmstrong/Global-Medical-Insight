@@ -145,7 +145,7 @@ export async function processPendingArticles(limit: number): Promise<{ success: 
         .from('articles')
         .select('id, title')
         .eq('importance', 'PHASE2_PENDING')
-        .limit(1); // Batch size 1 (Ultra Safe Mode)
+        .limit(3); // Batch size 3 (Speed up)
 
     if (p2Items && p2Items.length > 0) {
         logs.push(`PHASE 2 (Translate): Processing ${p2Items.length} items...`);
@@ -178,43 +178,41 @@ export async function processPendingArticles(limit: number): Promise<{ success: 
         .from('articles')
         .select('*')
         .eq('importance', 'PHASE3_PENDING')
-        .limit(1); // Strict limit 1 for safety
+        .limit(3); // Increase to 3 for parallelism
 
     if (p3Items && p3Items.length > 0) {
-        const article = p3Items[0];
-        logs.push(`PHASE 3 (Summary): ${article.title.slice(0, 20)}...`);
+        logs.push(`PHASE 3: Processing ${p3Items.length} summaries...`);
 
-        try {
-            const summary = await summarizeArticleWithGemini(
-                article.original_title || article.title, // Use original English title for context
-                Array.isArray(article.summary_points) ? (article.summary_points[0] as string) : '',
-                article.url,
-                article.source_domain || ''
-            );
+        await Promise.all(p3Items.map(async (article) => {
+            try {
+                const summary = await summarizeArticleWithGemini(
+                    article.original_title || article.title,
+                    Array.isArray(article.summary_points) ? (article.summary_points[0] as string) : '',
+                    article.url,
+                    article.source_domain || ''
+                );
 
-            if (summary) {
-                await supabase.from('articles').update({
-                    title: summary.title, // Update title again if summary improves it
-                    summary_points: summary.summary_points,
-                    importance: summary.importance, // Final importance text
-                    japan_impact: summary.japan_impact,
-                    region: Array.isArray(summary.region) ? summary.region : [summary.region || 'World'],
-                    category: summary.category
-                }).eq('id', article.id);
-                processedCount++;
-                logs.push('PHASE 3: Success.');
+                if (summary) {
+                    await supabase.from('articles').update({
+                        title: summary.title,
+                        summary_points: summary.summary_points,
+                        importance: summary.importance,
+                        japan_impact: summary.japan_impact,
+                        region: Array.isArray(summary.region) ? summary.region : [summary.region || 'World'],
+                        category: summary.category
+                    }).eq('id', article.id);
+                    processedCount++;
+                }
+            } catch (e: any) {
+                const msg = e.message || '';
+                if (msg.includes('429')) logs.push(`Rate Limit (Title: ${article.title.slice(0, 10)})`);
+                else {
+                    await supabase.from('articles').update({ importance: 'ERROR_GEMINI' }).eq('id', article.id);
+                }
             }
-        } catch (e: any) {
-            const msg = e.message || '';
-            logs.push(`PHASE 3 Err: ${msg.slice(0, 50)}`);
-            if (msg.includes('429')) {
-                logs.push('Rate Limit');
-            } else {
-                // Skip if error
-                await supabase.from('articles').update({ importance: 'ERROR_GEMINI' }).eq('id', article.id);
-                logs.push('Marked as ERROR_GEMINI.');
-            }
-        }
+        }));
+
+        logs.push(`PHASE 3: Batch complete.`);
     }
 
     return { success: true, count: processedCount, logs };
