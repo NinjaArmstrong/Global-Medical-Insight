@@ -136,7 +136,7 @@ export async function getArticleCounts() {
             batchTotal: batchTotal ?? 0,
             batchPending: batchPending ?? 0,
             valid: valid ?? 0,
-            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0, valid ?? 0, batchProcessed)
+            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0, valid ?? 0, (batchTotal ?? 0) - (batchPending ?? 0))
         };
     } catch (e) {
         console.error(e);
