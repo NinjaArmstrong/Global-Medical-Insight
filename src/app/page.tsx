@@ -26,7 +26,8 @@ async function getArticles(isAdmin: boolean) {
       .not('importance', 'ilike', '%AI unavailable%')
       // Ensure the article is fully processed (japan_impact is populated in Phase 3)
       .neq('japan_impact', '')
-      .not('japan_impact', 'is', null);
+      .not('japan_impact', 'is', null)
+      .not('japan_impact', 'ilike', '%AI処理スキップ%');
   }
 
   const { data, error } = await query
