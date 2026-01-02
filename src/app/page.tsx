@@ -12,6 +12,7 @@ async function getArticles() {
     .from('articles')
     .select('*')
     .neq('importance', 'PENDING_SUMMARY') // Only show processed articles
+    .neq('category', 'Unprocessed') // Hide intermediate processing states
     .not('importance', 'ilike', '%AI unavailable%') // Hide failed AI updates
     .order('published_at', { ascending: false })
     .limit(30);
