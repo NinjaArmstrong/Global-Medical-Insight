@@ -13,7 +13,8 @@ async function getArticles() {
     .select('*')
     .neq('importance', 'PENDING_SUMMARY') // Only show processed articles
     .not('importance', 'ilike', '%AI unavailable%') // Hide failed AI updates
-    .order('published_at', { ascending: false });
+    .order('published_at', { ascending: false })
+    .limit(30);
 
   if (error) {
     console.error('Error fetching articles:', error);
