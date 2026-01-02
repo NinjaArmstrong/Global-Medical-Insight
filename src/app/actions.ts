@@ -119,10 +119,28 @@ export async function getArticleCounts() {
 
             // Batch Stats
             batchTotal: batchTotal ?? 0,
-            batchPending: batchPending ?? 0
+            batchPending: batchPending ?? 0,
+            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0)
         };
     } catch (e) {
         console.error(e);
-        return { total: 0, pending: 0, processed: 0, batchTotal: 0, batchPending: 0 };
+        return { total: 0, pending: 0, processed: 0, batchTotal: 0, batchPending: 0, estimatedCompletionTime: '--:--' };
     }
+}
+
+function calculateEstimatedTime(pendingCount: number): string {
+    if (pendingCount <= 0) return '完了';
+
+    // Assume ~12 seconds per article (processing + throttling)
+    const secondsPerArticle = 12;
+    const totalSeconds = pendingCount * secondsPerArticle;
+
+    const now = new Date();
+    const completionTime = new Date(now.getTime() + totalSeconds * 1000);
+
+    // Format to HH:MM
+    return completionTime.toLocaleTimeString('ja-JP', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
 }
