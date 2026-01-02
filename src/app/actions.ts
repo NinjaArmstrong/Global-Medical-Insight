@@ -197,3 +197,22 @@ function calculateEstimatedTime(pendingCount: number, validCount: number, batchP
         timeZone: 'Asia/Tokyo'
     });
 }
+
+function calculateEstimatedTimeForTop30(pendingCount: number): string {
+    if (pendingCount <= 0) return '完了';
+
+    // Conservative Estimate: 60 seconds per pending article in the top 30
+    // This accounts for strict rate limiting (Plan A) and ensures we don't under-estimate.
+    const secondsPerArticle = 60;
+    const totalSeconds = pendingCount * secondsPerArticle;
+
+    const now = new Date();
+    const completionTime = new Date(now.getTime() + totalSeconds * 1000);
+
+    // Format to HH:MM in JST
+    return completionTime.toLocaleTimeString('ja-JP', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Tokyo'
+    });
+}
