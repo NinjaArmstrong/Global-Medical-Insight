@@ -120,6 +120,24 @@ export async function getArticleCounts() {
             // .neq('importance', 'IRRELEVANT') ... removed to match page.tsx
             .not('importance', 'ilike', '%AI unavailable%'); // Keep basic error check if needed, or remove all for pure archive count
 
+        // 4. Check "Pending within Top 30" (User Request)
+        const { data: top30 } = await supabase
+            .from('articles')
+            .select('importance')
+            .order('published_at', { ascending: false })
+            .limit(30);
+
+        let pendingInTop30 = 0;
+        if (top30) {
+            const pendingStatuses = [
+                'PENDING_SUMMARY', 'PHASE2_PENDING', 'PHASE3_PENDING',
+                'SKIPPED_MANUAL_LIMIT', 'IRRELEVANT_AUTO_LOCAL', 'Unprocessed'
+            ];
+            pendingInTop30 = top30.filter(a =>
+                pendingStatuses.some(s => a.importance === s || a.importance?.includes(s))
+            ).length;
+        }
+
         if (err1 || err2 || err3 || err4 || err5) throw new Error('DB Error');
 
         return {
@@ -131,7 +149,9 @@ export async function getArticleCounts() {
             batchTotal: batchTotal ?? 0,
             batchPending: batchPending ?? 0,
             valid: valid ?? 0,
-            estimatedCompletionTime: calculateEstimatedTime(batchPending ?? 0, valid ?? 0, (batchTotal ?? 0) - (batchPending ?? 0))
+            // Return specific metric for UI
+            pendingInTop30,
+            estimatedCompletionTime: calculateEstimatedTimeForTop30(pendingInTop30)
         };
     } catch (e) {
         console.error(e);

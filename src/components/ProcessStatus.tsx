@@ -13,6 +13,7 @@ export function ProcessStatus() {
         batchTotal?: number,
         batchPending?: number,
         valid?: number,
+        pendingInTop30?: number,
         estimatedCompletionTime?: string
     } | null>(null);
 
@@ -39,26 +40,26 @@ export function ProcessStatus() {
             <div className="flex flex-col items-center leading-none">
                 <span className="text-[10px] text-emerald-600 mb-0.5 font-bold">有効記事</span>
                 <span className="font-bold text-emerald-700 text-base">
-                    {counts.valid} <span className="text-slate-400 font-normal text-xs">/ 30</span>
+                    {counts.valid} <span className="text-slate-400 font-normal text-xs">件</span>
                 </span>
             </div>
 
             <span className="text-slate-200 text-lg font-thin">|</span>
 
-            {/* 処理中（残り） */}
+            {/* 30件中の処理待ち */}
             <div className="flex flex-col items-center leading-none">
-                <span className="text-[10px] text-slate-400 mb-0.5">処理待ち</span>
-                <span className={`font-bold text-base ${counts.batchPending! > 0 ? 'text-amber-600' : 'text-slate-300'}`}>
-                    {counts.batchPending}
+                <span className="text-[10px] text-amber-600 mb-0.5 font-bold">HP解析待ち</span>
+                <span className={`font-bold text-base ${counts.pendingInTop30! > 0 ? 'text-amber-600' : 'text-slate-300'}`}>
+                    {counts.pendingInTop30} <span className="text-slate-400 font-normal text-xs">/ 30</span>
                 </span>
             </div>
 
             {/* 完了予想 */}
-            {(counts.estimatedCompletionTime && counts.estimatedCompletionTime !== '完了') && (
+            {(counts.estimatedCompletionTime) && (
                 <>
                     <span className="text-slate-200 text-lg font-thin">|</span>
                     <div className="flex flex-col items-end leading-none min-w-[50px]">
-                        <span className="text-[10px] text-slate-400 mb-0.5">予想時刻</span>
+                        <span className="text-[10px] text-slate-400 mb-0.5">完了予想</span>
                         <span className="font-bold text-slate-700 text-base">
                             {counts.estimatedCompletionTime}
                         </span>
