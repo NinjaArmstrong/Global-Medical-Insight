@@ -5,7 +5,7 @@ import { UpdateNewsButton } from '@/components/UpdateNewsButton';
 import { ProcessStatus } from '@/components/ProcessStatus';
 
 // Revalidate every hour
-export const revalidate = 3600;
+export const revalidate = 0;
 
 async function getArticles() {
   const { data, error } = await supabase
@@ -113,7 +113,7 @@ export default async function Home({
             <a href="#" className="hover:text-blue-600 transition-colors">Contact</a>
             <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
           </div>
-          <p className="text-xs text-slate-400">© 2025 All rights reserved. v1.1</p>
+          <p className="text-xs text-slate-400">© 2025 All rights reserved. v1.2</p>
         </div>
       </footer>
     </div>
