@@ -138,9 +138,10 @@ function calculateEstimatedTime(pendingCount: number): string {
     const now = new Date();
     const completionTime = new Date(now.getTime() + totalSeconds * 1000);
 
-    // Format to HH:MM
+    // Format to HH:MM in JST
     return completionTime.toLocaleTimeString('ja-JP', {
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        timeZone: 'Asia/Tokyo'
     });
 }
