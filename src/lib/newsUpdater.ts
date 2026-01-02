@@ -100,8 +100,8 @@ export async function processPendingArticles(limit: number): Promise<{ success: 
             processedCount += locallyIrrelevantIds.length;
         }
 
-        // Use ONLY the survivors for Phase 1 API check, limited to 1 (Safe Mode)
-        const p1Items = locallyRelevant.slice(0, 1);
+        // Use survivors for Phase 1 API check, limited to 5 to speed up processing
+        const p1Items = locallyRelevant.slice(0, 5);
 
         if (p1Items.length > 0) {
             console.log(`PHASE 1 (Filter): Processing ${p1Items.length} items (survivors)...`);
