@@ -113,7 +113,7 @@ export default async function Home({
             <a href="#" className="hover:text-blue-600 transition-colors">Contact</a>
             <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
           </div>
-          <p className="text-xs text-slate-400">© 2025 All rights reserved.</p>
+          <p className="text-xs text-slate-400">© 2025 All rights reserved. v1.1</p>
         </div>
       </footer>
     </div>
