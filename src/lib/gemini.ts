@@ -18,7 +18,7 @@ export async function summarizeArticleWithGemini(
         return null; // or throw
     }
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
 
     const prompt = `
     You are a professional medical news analyst for the African, Middle Eastern, and South Asian markets.
@@ -91,7 +91,7 @@ export async function filterRelevantArticlesBatch(
     // Config for faster/lighter model if available, otherwise Flash
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-        model: 'gemini-2.5-flash-lite',
+        model: 'gemini-flash-latest',
         generationConfig: { responseMimeType: "application/json" }
     });
 
@@ -130,7 +130,7 @@ export async function translateTitlesBatch(
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-        model: 'gemini-2.5-flash-lite',
+        model: 'gemini-flash-latest',
         generationConfig: { responseMimeType: "application/json" }
     });
 

@@ -11,9 +11,15 @@ async function getArticles() {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
-    .neq('importance', 'PENDING_SUMMARY') // Only show processed articles
-    .neq('category', 'Unprocessed') // Hide intermediate processing states
-    .not('importance', 'ilike', '%AI unavailable%') // Hide failed AI updates
+    .neq('importance', 'PENDING_SUMMARY')
+    .neq('importance', 'PHASE2_PENDING')
+    .neq('importance', 'PHASE3_PENDING')
+    .neq('importance', 'SKIPPED_MANUAL_LIMIT')
+    .neq('importance', 'IRRELEVANT')
+    .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
+    .neq('importance', 'ERROR_GEMINI')
+    .neq('category', 'Unprocessed')
+    .not('importance', 'ilike', '%AI unavailable%')
     .order('published_at', { ascending: false })
     .limit(30);
 
