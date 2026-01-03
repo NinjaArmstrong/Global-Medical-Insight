@@ -11,6 +11,19 @@ async function getArticles() {
     const { data, error } = await supabase
         .from('articles')
         .select('*')
+        // Strict filters for valid/displayed articles (same as public Home)
+        .neq('importance', 'PENDING_SUMMARY')
+        .neq('importance', 'PHASE2_PENDING')
+        .neq('importance', 'PHASE3_PENDING')
+        .neq('importance', 'SKIPPED_MANUAL_LIMIT')
+        .neq('importance', 'IRRELEVANT')
+        .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
+        .neq('importance', 'ERROR_GEMINI')
+        .neq('category', 'Unprocessed')
+        .not('importance', 'ilike', '%AI unavailable%')
+        .neq('japan_impact', '')
+        .not('japan_impact', 'is', null)
+        .not('japan_impact', 'ilike', '%AI処理スキップ%')
         .order('published_at', { ascending: false });
 
     if (error) {
