@@ -27,7 +27,9 @@ async function getArticles(isAdmin: boolean) {
       // Ensure the article is fully processed (japan_impact is populated in Phase 3)
       .neq('japan_impact', '')
       .not('japan_impact', 'is', null)
-      .not('japan_impact', 'ilike', '%AI処理スキップ%');
+      .not('japan_impact', 'ilike', '%AI処理スキップ%')
+      // [Antigravity Filter] Only show articles with the new 'Next Action' format
+      .ilike('japan_impact', '%Next Action%');
   }
 
   const { data, error } = await query
