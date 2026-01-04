@@ -206,9 +206,9 @@ function calculateEstimatedTime(pendingCount: number, validCount: number, batchP
 function calculateEstimatedTimeForTop30(pendingCount: number): string {
     if (pendingCount <= 0) return '完了';
 
-    // Conservative Estimate: 60 seconds per pending article in the top 30
-    // This accounts for strict rate limiting (Plan A) and ensures we don't under-estimate.
-    const secondsPerArticle = 60;
+    // Conservative Estimate: 300 seconds (5 mins) per pending article
+    // This accounts for the frequent 5-minute rate limit backoffs to prevent bans.
+    const secondsPerArticle = 300;
     const totalSeconds = pendingCount * secondsPerArticle;
 
     const now = new Date();
