@@ -67,19 +67,19 @@ async function run() {
     try {
         // Phase 1: Fetch
         console.log('--- Phase 1: Fetching ---');
-        const fetchRes = await fetchAndSaveRawArticles(30);
+        const fetchRes = await fetchAndSaveRawArticles(150);
         console.log(`Fetched: ${fetchRes.count} new items.`);
 
         // Phase 2: Loop Summarize (Max 10 minutes or until done)
         console.log('--- Phase 2: Summarizing ---');
         // const startTime = Date.now(); // REMOVED (Hoisted)
         const TIMEOUT_MS = 60 * 60 * 1000;
-        const MAX_CONSECUTIVE_RATE_LIMITS = 3;
+        const MAX_CONSECUTIVE_RATE_LIMITS = 50;
 
         let loopCount = 0;
         // let totalProcessed = 0; // REMOVED (Hoisted)
         // let totalRateLimits = 0; // REMOVED (Hoisted)
-        while (Date.now() - startTime < TIMEOUT_MS) {
+        while (Date.now() - startTime < TIMEOUT_MS * 24) { // Run for up to 24 hours
             loopCount++;
 
             // Update Lock Touch
@@ -89,7 +89,7 @@ async function run() {
             const { count: pendingCount } = await supabase
                 .from('articles')
                 .select('*', { count: 'exact', head: true })
-                .eq('importance', 'PENDING_SUMMARY');
+                .in('importance', ['PENDING_SUMMARY', 'PHASE2_PENDING', 'PHASE3_PENDING']);
 
             if (!pendingCount || pendingCount === 0) {
                 console.log('✅ All articles processed.');
@@ -109,14 +109,10 @@ async function run() {
                 totalRateLimits++;
                 console.log(`⚠️ Rate Limit detected (${consecutiveRateLimits}/${MAX_CONSECUTIVE_RATE_LIMITS}).`);
 
-                if (consecutiveRateLimits >= MAX_CONSECUTIVE_RATE_LIMITS) {
-                    console.error('🛑 CIRCUIT BREAKER TRIGGERED: Too many consecutive rate limits.');
-                    console.error('   Aborting to protect account standing.');
-                    process.exit(1);
-                }
-
-                console.log('   Waiting 120s...');
-                await new Promise(r => setTimeout(r, 120000));
+                // Exponential backoff logic or just long wait
+                const waitMs = 300000; // 5 minutes
+                console.log(`   Waiting ${waitMs / 1000}s to cool down...`);
+                await new Promise(r => setTimeout(r, waitMs));
             } else if (result.count === 0) {
                 // Zero count but items exist? Maybe error?
                 console.log('⚠️ No items processed in this batch. Logs:', result.logs);
