@@ -11,108 +11,75 @@ export interface Article {
 }
 
 export const articles: Article[] = [
-  // --- Competitors (Jan 2025 / late 2024) ---
+  // --- Market & Competitors (Fresh: Oct 2025 - Jan 2026) ---
   {
-    id: "2025-01-comp-stryker",
-    title: "【北米】Stryker：Inari Medical買収合意を発表（2025/1/6）",
+    id: "2026-01-market-af-symposium",
+    title: "【北米】Boston Scientific：2月のAF Symposium 2026にてFARAPULSE新データを発表へ",
     region: "北米",
-    date: "2025/01/06",
-    riskLevel: "High",
-    scenario: "Strykerは静脈血栓除去デバイス大手Inari Medicalを49億ドルで買収することに正式合意。",
-    impact: "血管内治療領域の競合であるテルモ、朝日インテックにとって、北米市場での強力なライバルが出現。",
-    action: "米国市場におけるVTE製品の販売戦略見直しと、自社製品の医療経済性データの拡充。",
-    url: "https://www.stryker.com/us/en/about/news/2025/stryker-to-acquire-inari-medical.html"
-  },
-  {
-    id: "2025-01-comp-bsc",
-    title: "【北米】Boston Scientific：Bolt Medical買収完了（IVL参入）",
-    region: "北米",
-    date: "2025/01/07",
+    date: "2026/01/05",
     riskLevel: "Medium",
-    scenario: "Boston ScientificはBolt Medicalの買収を完了し、J&J（Shockwave）が先行するIVL市場へ本格参入。",
-    impact: "カテーテル治療（PCI）製品を持つ日本企業（テルモ、カネカ）にとって、IVL併用療法への対応が急務。",
-    action: "IVL互換性データの取得や、石灰化病変向けデバイスの差別化訴求。",
-    url: "https://news.bostonscientific.com"
+    scenario: "ボストンで開催されるAF Symposium 2026（2/5-7）にて、FARAPULSE PFAシステムの長期予後データおよび適応拡大試験の結果発表が予定されている。",
+    impact: "PFA（パルスフィールドアブレーション）市場での優位性が再確認され、追従する日本光電やオリンパスの開発ロードマップへの圧力が増大。",
+    action: "学会発表内容の速報収集と、自社PFA開発スケジュールへのベンチマーク反映。",
+    url: "https://www.afsymposium.com"
   },
   {
-    id: "2024-12-comp-jj",
-    title: "【北米】J&J：Shockwave Medical買収統合プロセスの進展",
-    region: "北米",
-    date: "2024/12/15",
-    riskLevel: "High",
-    scenario: "J&JはShockwave Medicalの統合を加速し、Abiomed（ポンプ）と組み合わせた一括提案を開始。",
-    impact: "循環器領域の「ワンストップ化」が進み、単体デバイスメーカーの商談機会が減少するリスク。",
-    action: "ニッチトップ製品を持つ他社とのアライアンスによる、パッケージ提案力の強化。",
-    url: "https://www.jnj.com"
+    id: "2025-12-market-trials",
+    title: "【グローバル】2025年臨床試験市場：腫瘍学・神経学領域が牽引し成長継続",
+    region: "グローバル",
+    date: "2025/12/20",
+    riskLevel: "Low",
+    scenario: "2025年の医療機器臨床試験市場レポートによると、市場規模は前年比6%増の180億ドル規模に到達。特にAI診断とウェアラブルの試験数が増加。",
+    impact: "CRO（開発業務受託機関）のリソース逼迫により、日本企業の海外治験スケジュールが遅延するリスク。",
+    action: "優先度の高い主要治験におけるCRO枠の早期確保と、分散型治験（DCT）の導入検討。",
+    url: "https://www.grandviewresearch.com/industry-analysis/medical-device-clinical-trials-market"
   },
 
-  // --- Supply Chain (Dec 2024 - Jan 2025) ---
+  // --- Supply Chain (Fresh: Oct 2025 - Jan 2026) ---
   {
-    id: "2025-01-supply-chips",
-    title: "【グローバル】半導体：レガシーチップ不足は2025年も継続の見通し",
+    id: "2026-01-supply-outlook",
+    title: "【グローバル】2026年サプライチェーン見通し：プロバイダーの80%が「不足継続」を予測",
     region: "グローバル",
-    date: "2025/01/05",
+    date: "2026/01/04",
     riskLevel: "High",
-    scenario: "先端品への投資集中により、医療機器に使用されるレガシーチップ（成熟プロセス）の供給不足が2025年も続くと予測される。",
-    impact: "患者モニタリング機器を生産する日本メーカー（日本光電、フクダ電子）の部材調達遅延リスク。",
-    action: "半導体商社との長期枠組み契約の見直しと、代替チップへの設計変更（BOM変更）。",
+    scenario: "最新のQ4 2025調査において、医療機関の8割が「2026年も供給不足は解消しない」と回答。特に外科用消耗品と救急領域でのリスクが高い。",
+    impact: "米国市場に依存する日本メーカー（ニプロ、テルモ等）に対し、安定供給証明（BCP）の提出要求がさらに強まる。",
+    action: "顧客（GPO/IDN）に対する在庫可視化システムの提供提案と、北米物流拠点の分散化。",
+    url: "https://www.beckershospitalreview.com/supply-chain/80-of-providers-expect-supply-chain-shortages-to-persist-in-2025.html"
+  },
+  {
+    id: "2025-11-supply-semi",
+    title: "【グローバル】半導体：医療機器向けレガシーチップ供給、2025年後半も改善見られず",
+    region: "グローバル",
+    date: "2025/11/15",
+    riskLevel: "High",
+    scenario: "2025年を通じて、先端チップへの投資集中が続き、医療機器に必須のレガシープロセスの生産能力は低迷したまま推移。",
+    impact: "患者モニタリング機器（日本光電、フクダ電子）の生産リードタイムが短縮されず、年度末納品への影響懸念。",
+    action: "2026年度分の部材確保に向けたスポット買い増しと、代替品認証の加速。",
     url: "https://www.gocarelectronic.com/news/semiconductor-shortage-forecast-2025"
   },
-  {
-    id: "2024-12-supply-cyber",
-    title: "【北米】サイバー攻撃による心臓手術用デバイス供給への影響",
-    region: "北米",
-    date: "2024/12/20",
-    riskLevel: "Medium",
-    scenario: "主要な医療機器メーカーへのランサムウェア攻撃により、心臓手術用製品の一時的な出荷停止が発生。",
-    impact: "同種製品を扱う日本企業の米国子会社に対し、代替供給の要請（特需）が発生する可能性。",
-    action: "米国在庫の緊急確認と、代替供給可能な製品リストの顧客提示。",
-    url: "https://www.chiefhealthcareexecutive.com"
-  },
-  {
-    id: "2024-11-supply-moly",
-    title: "【欧州】ラジオアイソトープ（Mo-99）：欧州製造施設のトラブルによる供給不足",
-    region: "欧州",
-    date: "2024/11/15",
-    riskLevel: "High",
-    scenario: "欧州の主要製造所でのトラブルにより、核医学診断に不可欠なモリブデン99が一時的に不足。",
-    impact: "RI検査薬を扱う日本企業（日本メジフィジックス等）の原料調達難。",
-    action: "南アフリカやオーストラリアなど、欧州以外の調達ルート確保。",
-    url: "https://www.medline.com"
-  },
 
-  // --- Regulatory (Dec 2024 - Jan 2025) ---
+  // --- Regulatory (Fresh: Oct 2025 - Jan 2026) ---
   {
-    id: "2024-12-reg-fda-pccp",
-    title: "【北米】FDA：AI搭載機器の「変更管理計画（PCCP）」最終ガイダンス発行",
-    region: "北米",
-    date: "2024/12/05",
-    riskLevel: "Medium",
-    scenario: "FDAはAI/ML搭載機器の市販後変更管理（PCCP）に関する最終ガイダンスを発行。事前の計画承認により、一部の変更審査を省略可能に。",
-    impact: "AI画像診断機器を開発する日本企業（富士フイルム、キヤノン）の米国展開において、PCCP活用が必須要件化。",
-    action: "開発ロードマップへのPCCP策定工程の追加と、FDA相談（Q-Submission）の実施。",
-    url: "https://www.fda.gov/medical-devices/content-premarket-submissions-management-cybersecurity-medical-devices"
-  },
-  {
-    id: "2024-12-reg-eu-mdr",
-    title: "【欧州】EU MDR：供給不足通知に関するガイダンス文書の公表",
+    id: "2026-01-reg-eu-mdr",
+    title: "【欧州】EU MDR：Class IIIカスタムデバイス期限（2026年5月）まで残り4ヶ月",
     region: "欧州",
-    date: "2024/12/10",
+    date: "2026/01/07",
     riskLevel: "High",
-    scenario: "2025年1月からの通知義務化に先立ち、具体的な報告フォーマットと手順を定めたガイダンスが公表された。",
-    impact: "欧州輸出を行う全日本メーカーは、SOP（標準作業手順書）の改訂と報告責任者の任命が必要。",
-    action: "欧州代理人（EAR）との連絡体制確認と、社内報告フローのシミュレーション。",
-    url: "https://www.dmp.no"
+    scenario: "インプラント可能なカスタムデバイスのMDR移行期限（2026年5月26日）が迫る中、Notified Bodyの審査枠は極めて逼迫している。",
+    impact: "欧州でカスタムインプラント（整形外科等）を展開する日本企業にとって、期限内認証取得のラストチャンス。",
+    action: "Notified Bodyとの緊急進捗確認会（Monthly Meeting）の設置と、技術文書の即時修正体制構築。",
+    url: "https://www.tga.gov.au/how-we-regulate/manufacturing/medical-devices/eu-mdr-transition"
   },
   {
-    id: "2024-12-reg-uk-pms",
-    title: "【欧州】英国MHRA：市販後監視（PMS）に関する新規制を公表",
-    region: "欧州",
-    date: "2024/12/15",
+    id: "2025-12-reg-fda-ldt",
+    title: "【北米】FDA：LDT（臨床検査室開発検査）規制強化の初年度総括",
+    region: "北米",
+    date: "2025/12/10",
     riskLevel: "Medium",
-    scenario: "英国MHRAは、2025年6月施行予定の厳格化されたPMS要件に関する詳細規則を公表。",
-    impact: "英国市場で製品を販売する日本企業は、EU MDRとは異なる英国独自のPMS報告体制が必要に。",
-    action: "英国責任者（UKRP）との契約内容見直しと、PMS計画書の英国対応版作成。",
-    url: "https://www.emergobyul.com"
+    scenario: "2025年に開始されたFDAによるLDTの医療機器としての段階的規制について、初年度の影響と2026年以降のフェーズ2（登録・報告）への準備状況が報告された。",
+    impact: "米国でLDTサービスを提供する日本系検査会社（シスメックス、H.U.グループ等）の薬事コンプライアンスコスト増大。",
+    action: "フェーズ2要件（有害事象報告等）に対応するためのPMS体制の米国拠点への導入。",
+    url: "https://www.greenlight.guru/blog/fda-ldt-final-rule"
   }
 ];
