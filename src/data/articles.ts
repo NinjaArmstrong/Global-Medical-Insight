@@ -11,6 +11,41 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  // --- 【最新重要インテリジェンス】キープレイヤーの動向（2026/01/07） ---
+  {
+    id: "2026-01-competitor-medtronic",
+    title: "【北米】Medtronic：糖尿病事業のスピンオフ準備とAI企業買収戦略",
+    region: "北米",
+    date: "2026/01/07",
+    riskLevel: "Medium",
+    scenario: "糖尿病部門の分社化（IPO）プロセスが進行中。確保した資金で、手術支援ロボット「Hugo」強化のためのAI・画像解析ベンチャーの買収を加速。",
+    impact: "糖尿病ケア市場の競争環境変化と、ロボット手術分野での技術覇権争い激化。",
+    action: "競合他社は、特化型AIベンダーとの提携または買収防衛策の検討が必要。",
+    url: "https://www.medtronic.com/us-en/our-company/news-and-stories.html"
+  },
+  {
+    id: "2026-01-competitor-siemens",
+    title: "【欧州】Siemens Healthineers：新戦略「Elevating Health Globally」とAI画像診断の全社展開",
+    region: "欧州",
+    date: "2026/01/07",
+    riskLevel: "Medium",
+    scenario: "2025年11月発表の新戦略に基づき、放射線科だけでなく循環器・がん領域のクリニカルパス全体にAIを統合するサービスを開始。",
+    impact: "画像診断機器の選定基準が「ハードウェアスペック」から「AI解析エコシステム」へシフト。",
+    action: "病院への提案において、単体機器ではなく「診断支援AI込み」のソリューションパッケージを強化。",
+    url: "https://www.siemens-healthineers.com/news"
+  },
+  {
+    id: "2026-01-competitor-takeda",
+    title: "【東アジア】武田薬品：R&D構造改革と「4つのコア領域」への集中投資",
+    region: "東アジア",
+    date: "2026/01/07",
+    riskLevel: "High",
+    scenario: "2025年度よりR&Dを低分子・バイオ・ADC・細胞療法の4領域に集約。早期パイプラインの整理（中止）と、データ/デジタル（DD&T）への50億ドル規模の投資を実行。",
+    impact: "創薬パートナーシップの機会選別と、非コア領域のアセット売却によるライセンスインのチャンス。",
+    action: "武田薬品が手放す非コア資産（パイプライン）の導入評価と、デジタル創薬での協業模索。",
+    url: "https://www.takeda.com/newsroom/"
+  },
+
   // --- 【最新重要インテリジェンス】サプライチェーン・原材料（2026/01/07） ---
   {
     id: "2026-01-supply-api",
