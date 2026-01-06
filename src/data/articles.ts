@@ -69,7 +69,7 @@ export const articles: Article[] = [
     scenario: "インプラント可能なカスタムデバイスのMDR移行期限（2026年5月26日）が迫る中、Notified Bodyの審査枠は極めて逼迫している。",
     impact: "欧州でカスタムインプラント（整形外科等）を展開する日本企業にとって、期限内認証取得のラストチャンス。",
     action: "Notified Bodyとの緊急進捗確認会（Monthly Meeting）の設置と、技術文書の即時修正体制構築。",
-    url: "https://www.tga.gov.au/how-we-regulate/manufacturing/medical-devices/eu-mdr-transition"
+    url: "https://health.ec.europa.eu/medical-devices-sector/new-regulations_en"
   },
   {
     id: "2025-12-reg-fda-ldt",
