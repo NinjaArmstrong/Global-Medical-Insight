@@ -11,14 +11,14 @@ export interface Article {
 }
 
 export const articles: Article[] = [
-  // --- 【現在】2026年1月 (Latest Signals) ---
+  // --- CURRENT: Jan 2026 ---
   {
     id: "2026-01-redsea",
     title: "【グローバル】紅海・スエズ運河：フーシ派攻撃長期化と喜望峰ルートの常態化",
     region: "Global",
     date: "2026/01/06",
     riskLevel: "High",
-    scenario: "フーシ派による商船攻撃が継続。主要海運会社はスエズ運河回避を維持し、リードタイムが14日以上増加。運賃水準は高止まりが定着。",
+    scenario: "フーシ派による商船攻撃が継続。主要海運会社はスエズ運河回避を維持し、リードタイムが14日以上増加。",
     impact: "欧州製医療機器の輸入遅延が常態化。コンテナ不足によるスポット運賃の突発的急騰リスク。",
     action: "航空便枠の確保と、リードタイム延長を見込んだ発注サイクルの完全移行。",
     url: "https://www.reuters.com/world/middle-east/"
@@ -57,7 +57,7 @@ export const articles: Article[] = [
     url: "https://vpna.vn/"
   },
 
-  // --- 【アーカイブ】2025年 第4四半期 (History Q4) ---
+  // --- ARCHIVE: Late 2025 ---
   {
     id: "2025-11-india-logistics",
     title: "【南アジア】インド：主要港湾インフラの近代化投資と物流効率改善",
@@ -80,8 +80,6 @@ export const articles: Article[] = [
     action: "北米向け物流ルートの分散化維持。",
     url: "https://www.cnbc.com/transportation/"
   },
-
-  // --- 【アーカイブ】2025年 第3四半期 (History Q3) ---
   {
     id: "2025-08-mpox",
     title: "【アフリカ】WHO：Mpox（サル痘）感染拡大の鎮静化傾向",
@@ -104,8 +102,6 @@ export const articles: Article[] = [
     action: "物流ベンダーのセキュリティ体制評価基準の厳格化。",
     url: "https://www.cisa.gov/topics/cyber-threats-and-advisories"
   },
-
-  // --- 【アーカイブ】2025年 上半期 (History H1) ---
   {
     id: "2025-05-eu-policy",
     title: "【欧州】EU：新たな環境規制（エコデザイン規則）の施行準備",
@@ -138,16 +134,5 @@ export const articles: Article[] = [
     impact: "リードタイムの延長（翌日配送→翌々日配送）が標準化。",
     action: "国内配送リードタイム設定の恒久的な見直し。",
     url: "https://www.mlit.go.jp/logistics/"
-  },
-  {
-    id: "2025-01-start",
-    title: "【グローバル】2025年のサプライチェーンリスク展望",
-    region: "Global",
-    date: "2025/01/10",
-    riskLevel: "Low",
-    scenario: "地政学リスクと気候変動が引き続き主要な不安定要因となると予測。",
-    impact: "不確実性の高い事業環境の継続。",
-    action: "サプライチェーン・マッピングの完了とリスク検知体制の強化。",
-    url: "https://www.weforum.org/topics/supply-chain-and-transport"
   }
 ];
