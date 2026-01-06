@@ -58,17 +58,6 @@ export const articles: Article[] = [
     action: "サプライヤーの稼働状況確認。",
     url: "https://focustaiwan.tw/society/202404030001"
   },
-  {
-    id: "2025-01-eastasia-noto",
-    title: "【東アジア】日本：能登半島地震による電子部品工場への影響",
-    region: "東アジア",
-    date: "2025/01/01",
-    riskLevel: "High",
-    scenario: "最大震度7の地震により、北陸地方の工場（村田製作所、東芝等）が一時稼働停止。",
-    impact: "特定部材の供給懸念と物流網の寸断。",
-    action: "代替品の確認と被災サプライヤー支援。",
-    url: "https://www.reuters.com/world/japan/earthquake-magnitude-74-strikes-north-central-japan-2024-01-01/"
-  },
 
   // --- 3. 東南アジア (Southeast Asia) ---
   {
@@ -140,17 +129,6 @@ export const articles: Article[] = [
     impact: "滞留貨物の解消に数週間を要した。",
     action: "物流バックログの影響確認。",
     url: "https://www.cnbc.com/2024/10/03/dockworkers-strike-suspended-sources-say.html"
-  },
-  {
-    id: "2025-03-na-baltimore",
-    title: "【北米】米国：ボルチモア橋崩落による港湾閉鎖",
-    region: "北米",
-    date: "2025/03/26",
-    riskLevel: "High",
-    scenario: "フランシス・スコット・キー橋への船舶衝突事故により航路が遮断。",
-    impact: "自動車・石炭等の輸出入ルート変更。",
-    action: "近隣港への迂回手配。",
-    url: "https://www.cnn.com/us/live-news/baltimore-bridge-collapse-03-26-24/index.html"
   },
 
   // --- 6. 欧州 (Europe) ---
