@@ -1,140 +1,159 @@
-import { supabase } from '@/lib/supabase';
-import { NewsCard } from '@/components/NewsCard';
-import { Article } from '@/lib/types';
-import { UpdateNewsButton } from '@/components/UpdateNewsButton';
-import { ProcessStatus } from '@/components/ProcessStatus';
 
-// Revalidate every hour
-export const revalidate = 0;
+'use client';
 
-async function getArticles(isAdmin: boolean) {
-  let query = supabase
-    .from('articles')
-    .select('*');
+import React, { useState, useMemo } from 'react';
+import { articles } from '@/data/articles';
+import { RiskScenarioCard } from '@/components/RiskScenarioCard';
+import { Search, Filter, Globe, ShieldAlert, Building2, LayoutGrid } from 'lucide-react';
 
-  if (!isAdmin) {
-    // strict filters for public view
-    query = query
-      .neq('importance', 'PENDING_SUMMARY')
-      .neq('importance', 'PHASE2_PENDING')
-      .neq('importance', 'PHASE3_PENDING')
-      .neq('importance', 'SKIPPED_MANUAL_LIMIT')
-      .neq('importance', 'IRRELEVANT')
-      .neq('importance', 'IRRELEVANT_AUTO_LOCAL')
-      .neq('importance', 'ERROR_GEMINI')
-      .neq('category', 'Unprocessed')
-      .not('importance', 'ilike', '%AI unavailable%')
-      // Ensure the article is fully processed (japan_impact is populated in Phase 3)
-      .neq('japan_impact', '')
-      .not('japan_impact', 'is', null)
-      .not('japan_impact', 'ilike', '%AI処理スキップ%')
-      // [Antigravity Filter] Only show articles with the new 'Next Action' format
-      .ilike('japan_impact', '%Next Action%');
-  }
+export default function Dashboard() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('All');
+  const [selectedRisk, setSelectedRisk] = useState<number | 'All'>('All');
+  const [selectedCompany, setSelectedCompany] = useState('All');
 
-  const { data, error } = await query
-    .order('published_at', { ascending: false })
-    .limit(30);
+  // unique values for filters
+  const regions = ['All', ...Array.from(new Set(articles.map(a => a.region).filter(Boolean)))];
+  const companies = ['All', ...Array.from(new Set(articles.map(a => a.company).filter(c => c !== 'General Market')))];
 
-  if (error) {
-    console.error('Error fetching articles:', error);
-    return [];
-  }
-  return data as Article[];
-}
+  const filteredArticles = useMemo(() => {
+    return articles.filter(article => {
+      const matchSearch =
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.scenario.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.impact.toLowerCase().includes(searchQuery.toLowerCase());
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}) {
-  const sp = await searchParams;
-  const isAdmin = sp.admin === 'true';
-  const articles = await getArticles(isAdmin);
+      const matchRegion = selectedRegion === 'All' || article.region === selectedRegion;
+      const matchRisk = selectedRisk === 'All' || article.risk_level === selectedRisk;
+      const matchCompany = selectedCompany === 'All' ||
+        (selectedCompany === 'Others' ? article.company === 'General Market' : article.company === selectedCompany);
+
+      return matchSearch && matchRegion && matchRisk && matchCompany;
+    });
+  }, [searchQuery, selectedRegion, selectedRisk, selectedCompany]);
 
   return (
-    <div className="min-h-screen font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
 
-      {/* Sticky Glass Header */}
-      <header className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm transition-all">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shrink-0">G</span>
-            <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent truncate">
-              Global Medical Insight
-            </h1>
+      {/* Sidebar Filter Panel */}
+      <aside className="w-full md:w-64 bg-slate-900 text-slate-300 flex-shrink-0 md:h-screen md:sticky md:top-0 overflow-y-auto">
+        <div className="p-6">
+          <div className="flex items-center gap-2 mb-8 text-white">
+            <div className="w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-lg">G</div>
+            <h1 className="font-serif font-bold text-lg tracking-tight">Global Medical<br /><span className="text-slate-400 text-sm font-sans font-normal">Intelligence</span></h1>
           </div>
 
-          <div className="flex items-center gap-4">
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-              <a href="/archives" className="hover:text-blue-600 transition-colors">Archives</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Africa</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Middle East</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">South Asia</a>
-            </nav>
-            <div className="pl-0 md:pl-4 md:border-l md:border-slate-200 flex items-center">
-              {isAdmin && (
-                <>
-                  {/* Admin Status Monitor */}
-                  <ProcessStatus />
-                  <UpdateNewsButton />
-                </>
-              )}
+          <div className="space-y-6">
+            {/* Search */}
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block">Keywords</label>
+              <div className="relative">
+                <Search className="absolute left-2.5 top-2.5 text-slate-500 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Search intelligence..."
+                  className="w-full bg-slate-800 border border-slate-700 rounded p-2 pl-9 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors placeholder:text-slate-600"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
             </div>
+
+            {/* Region Filter */}
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
+                <Globe size={12} /> Region
+              </label>
+              <div className="space-y-1">
+                {regions.map(r => (
+                  <button
+                    key={r}
+                    onClick={() => setSelectedRegion(r)}
+                    className={`w-full text-left px-3 py-1.5 rounded text-sm transition-colors ${selectedRegion === r ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30' : 'hover:bg-slate-800'}`}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Risk Level Filter */}
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
+                <ShieldAlert size={12} /> Risk Level
+              </label>
+              <div className="flex bg-slate-800 rounded p-1">
+                <button onClick={() => setSelectedRisk('All')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'All' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white'}`}>All</button>
+                <button onClick={() => setSelectedRisk(5)} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 5 ? 'bg-red-900/50 text-red-200' : 'text-slate-400 hover:text-white'}`}>High</button>
+                <button onClick={() => setSelectedRisk(3)} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 3 ? 'bg-amber-900/50 text-amber-200' : 'text-slate-400 hover:text-white'}`}>Med</button>
+                <button onClick={() => setSelectedRisk(1)} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 1 ? 'bg-emerald-900/50 text-emerald-200' : 'text-slate-400 hover:text-white'}`}>Low</button>
+              </div>
+            </div>
+
+            {/* Company Filter */}
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
+                <Building2 size={12} /> Target Company
+              </label>
+              <select
+                className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-sm text-slate-300 focus:outline-none"
+                value={selectedCompany}
+                onChange={(e) => setSelectedCompany(e.target.value)}
+              >
+                {companies.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
+
           </div>
         </div>
-      </header>
 
-      {/* Hero Section (Compact) */}
-      <section className="pt-24 pb-6 px-4 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+        <div className="p-6 border-t border-slate-800 mt-auto">
+          <div className="text-xs text-slate-600">
+            Data Source: Local Cache<br />
+            Updated: {new Date().toLocaleDateString()}
+          </div>
+        </div>
+      </aside>
+
+      {/* Main Content Area */}
+      <main className="flex-1 p-4 md:p-8 overflow-y-auto h-screen">
+        <header className="flex justify-between items-end mb-8 pb-4 border-b border-slate-200">
           <div>
-            <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
-              Latest Medical Intelligence
-            </h2>
-            <p className="text-slate-500 mt-1">
-              アフリカ・中東・南アジアのヘルスケアビジネス最新動向
+            <h2 className="text-2xl font-serif font-bold text-slate-800">Intelligence Dashboard</h2>
+            <p className="text-slate-500 mt-1 flex items-center gap-2">
+              Monitoring {articles.length} active signals
+              <span className="w-1 h-1 rounded-full bg-slate-400"></span>
+              Displaying {filteredArticles.length} results
             </p>
           </div>
-          {/* Legend / Status (Optional) */}
-          <div className="text-xs text-slate-400 font-mono">
-            Updated: {new Date().toLocaleDateString('ja-JP')}
+          <div className="hidden md:flex gap-3">
+            <button className="px-4 py-2 bg-white border border-slate-300 text-slate-600 text-sm font-medium rounded hover:bg-slate-50 flex items-center gap-2">
+              <LayoutGrid size={16} /> Grid View
+            </button>
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 pb-24">
-        {articles.length === 0 ? (
-          <div className="text-center py-32 bg-white/50 backdrop-blur rounded-3xl border border-dashed border-slate-300">
-            <div className="text-4xl mb-4">📭</div>
-            <p className="text-slate-500 font-medium">記事はまだありません</p>
-            <p className="text-sm text-slate-400 mt-2">右上のボタンから最新ニュースを取得してください</p>
+        {filteredArticles.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-lg border border-dashed border-slate-300">
+            <Filter className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+            <h3 className="text-lg font-medium text-slate-500">No signals found</h3>
+            <p className="text-slate-400 text-sm">Adjust your filters to broaden the search.</p>
+            <button
+              onClick={() => { setSearchQuery(''); setSelectedRegion('All'); setSelectedRisk('All'); setSelectedCompany('All'); }}
+              className="mt-4 text-blue-600 text-sm font-medium hover:underline"
+            >
+              Clear all filters
+            </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <NewsCard key={article.id || article.url} article={article} />
+          <div className={`grid grid-cols-1 xl:grid-cols-2 gap-6`}>
+            {filteredArticles.map(article => (
+              <RiskScenarioCard key={article.id} article={article} />
             ))}
           </div>
         )}
       </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-white font-bold text-xs">G</span>
-            <span className="font-bold text-slate-800">Global Medical Insight</span>
-          </div>
-          <div className="flex items-center justify-center gap-6 mb-6 text-sm font-medium text-slate-500">
-            <a href="/about" className="hover:text-blue-600 transition-colors">About</a>
-            <a href="#" className="hover:text-blue-600 transition-colors">Contact</a>
-            <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
-          </div>
-          <p className="text-xs text-slate-400">© 2025 All rights reserved. v1.2</p>
-        </div>
-      </footer>
     </div>
   );
 }
+
