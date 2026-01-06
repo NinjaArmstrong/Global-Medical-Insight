@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Data Reset: Regulatory Clean Slate)
+// Updated: 2026-01-07 (Data Reset: Balanced 3-Domain Clean Slate)
