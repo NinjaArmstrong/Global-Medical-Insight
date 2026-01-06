@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Competitor Moves Intel Fix)
+// Updated: 2026-01-07 (Data Reset: Regulatory Clean Slate)
