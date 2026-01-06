@@ -11,6 +11,41 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  // --- 【最新重要インテリジェンス】サプライチェーン・原材料（2026/01/07） ---
+  {
+    id: "2026-01-supply-api",
+    title: "【南アジア】インド・中国：API（原薬）供給網の脆弱性と価格競争",
+    region: "南アジア",
+    date: "2026/01/07",
+    riskLevel: "High",
+    scenario: "インドはAPIの70%を中国に依存。中国の攻撃的な価格引き下げにより、インド国内のPLI（生産連動型優遇策）工場の稼働率が低下。",
+    impact: "抗生物質などの必須医薬品における、特定の中国サプライヤーへの依存度再上昇と供給途絶リスク。",
+    action: "インド以外の第3国（欧州・米国）サプライヤーのバックアップ確保と、在庫戦略の見直し。",
+    url: "https://www.actizaindustry.com/active-pharmaceutical-ingredients-manufacturers-in-india"
+  },
+  {
+    id: "2026-01-supply-eto",
+    title: "【北米】滅菌能力不足：EPA新規則（EtO排出削減）によるキャパシティ縮小懸念",
+    region: "北米",
+    date: "2026/01/07",
+    riskLevel: "High",
+    scenario: "EPAによるEtO（酸化エチレン）排出規制強化に伴い、一部滅菌施設の閉鎖や稼働制限が現実化。代替手段（電子線等）への移行は遅れている。",
+    impact: "カテーテルや手袋など、EtO滅菌に依存する医療機器の出荷遅延とバックログ。",
+    action: "滅菌委託先の分散化と、電子線（E-beam）滅菌等へのバリデーション早期着手。",
+    url: "https://www.mddionline.com/sterilization/epa-finalizes-eto-rule"
+  },
+  {
+    id: "2026-01-supply-resin",
+    title: "【グローバル】医療用グレード樹脂：2025年の価格トレンドと規制対応",
+    region: "グローバル",
+    date: "2026/01/07",
+    riskLevel: "Medium",
+    scenario: "2025年の医療用樹脂価格は、ポリプロピレン（PP）などが変動。PFAS規制などのサステナビリティ要求が、代替材料への切り替えコストを押し上げている。",
+    impact: "医療用包装材の調達コスト増と、リサイクル材採用に向けた品質検証工数の発生。",
+    action: "材料サプライヤーとの長期価格契約の見直しと、代替樹脂の承認申請準備。",
+    url: "https://www.nexeoplastics.com/market-updates/2025/impact-of-tariffs-on-market-dynamics/"
+  },
+
   // --- 【最新重要インテリジェンス】規制・コンプライアンス（2026/01/07） ---
   {
     id: "2026-01-fda-warning",
@@ -276,7 +311,7 @@ export const articles: Article[] = [
     id: "2025-11-latam-panama",
     title: "【中南米】パナマ運河：渇水による通航制限と予約枠オークション高騰",
     region: "中南米",
-    date: "2025/11/15",
+    date: "2026/11/15",
     riskLevel: "High",
     scenario: "干ばつにより通航隻数を削減。待機時間が拡大。",
     impact: "北米東岸向け貨物の遅延。",
