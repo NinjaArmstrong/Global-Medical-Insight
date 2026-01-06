@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Data Reset: Source Geofencing Correction)
+// Updated: 2026-01-07 (Data Reset: Force EU MDR Source Fix)
