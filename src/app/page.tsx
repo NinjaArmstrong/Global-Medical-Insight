@@ -9,8 +9,8 @@ import { Search, Filter, Globe, ShieldAlert, Building2, LayoutGrid } from 'lucid
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('All');
-  const [selectedRisk, setSelectedRisk] = useState<number | 'All'>('All');
-  const [selectedCompany, setSelectedCompany] = useState('All');
+  const [selectedRisk, setSelectedRisk] = useState<'All' | 'High' | 'Medium' | 'Low'>('All');
+  // const [selectedCompany, setSelectedCompany] = useState('All'); // Disabled as data no longer has company
 
   // Fixed region order
   const REGION_ORDER = ['Global', 'East Asia', 'Southeast Asia', 'South Asia', 'Middle East', 'Africa', 'Europe', 'North America', 'Latin America'];
@@ -18,7 +18,7 @@ export default function Dashboard() {
   // Calculate available regions but sort them by the fixed order
   const regions = ['All', ...REGION_ORDER];
 
-  const companies = ['All', ...Array.from(new Set(articles.map(a => a.company).filter(c => c !== 'General Market')))];
+  // const companies = ['All', ...Array.from(new Set(articles.map(a => a.company).filter(c => c !== 'General Market')))];
 
   const regionNameMap: Record<string, string> = {
     'All': 'すべて',
@@ -41,13 +41,13 @@ export default function Dashboard() {
         article.impact.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchRegion = selectedRegion === 'All' || article.region === selectedRegion;
-      const matchRisk = selectedRisk === 'All' || article.risk_level === selectedRisk;
-      const matchCompany = selectedCompany === 'All' ||
-        (selectedCompany === 'Others' ? article.company === 'General Market' : article.company === selectedCompany);
+      const matchRisk = selectedRisk === 'All' || article.riskLevel === selectedRisk;
+      // const matchCompany = selectedCompany === 'All' ||
+      //   (selectedCompany === 'Others' ? article.company === 'General Market' : article.company === selectedCompany);
 
-      return matchSearch && matchRegion && matchRisk && matchCompany;
+      return matchSearch && matchRegion && matchRisk;
     });
-  }, [searchQuery, selectedRegion, selectedRisk, selectedCompany]);
+  }, [searchQuery, selectedRegion, selectedRisk]);
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-900">
@@ -102,25 +102,24 @@ export default function Dashboard() {
               </label>
               <div className="flex bg-slate-800 rounded p-1">
                 <button onClick={() => setSelectedRisk('All')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'All' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white'}`}>すべて</button>
-                <button onClick={() => setSelectedRisk(5)} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 5 ? 'bg-red-900/50 text-red-200' : 'text-slate-400 hover:text-white'}`}>高</button>
-                <button onClick={() => setSelectedRisk(3)} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 3 ? 'bg-amber-900/50 text-amber-200' : 'text-slate-400 hover:text-white'}`}>中</button>
-                <button onClick={() => setSelectedRisk(1)} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 1 ? 'bg-emerald-900/50 text-emerald-200' : 'text-slate-400 hover:text-white'}`}>低</button>
+                <button onClick={() => setSelectedRisk('High')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'High' ? 'bg-red-900/50 text-red-200' : 'text-slate-400 hover:text-white'}`}>高</button>
+                <button onClick={() => setSelectedRisk('Medium')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'Medium' ? 'bg-amber-900/50 text-amber-200' : 'text-slate-400 hover:text-white'}`}>中</button>
+                <button onClick={() => setSelectedRisk('Low')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'Low' ? 'bg-emerald-900/50 text-emerald-200' : 'text-slate-400 hover:text-white'}`}>低</button>
               </div>
             </div>
 
-            {/* Company Filter */}
-            <div>
+            {/* Company Filter - REMOVED but code structure kept minimal for safety */}
+            {/* <div>
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
                 <Building2 size={12} /> 関連企業
               </label>
               <select
                 className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-sm text-slate-300 focus:outline-none"
-                value={selectedCompany}
-                onChange={(e) => setSelectedCompany(e.target.value)}
+                disabled
               >
-                {companies.map(c => <option key={c} value={c}>{c === 'All' ? 'すべて' : c}</option>)}
+                <option>All</option>
               </select>
-            </div>
+            </div> */}
 
           </div>
         </div>
@@ -157,7 +156,7 @@ export default function Dashboard() {
             <h3 className="text-lg font-medium text-slate-500">該当するシグナルが見つかりません</h3>
             <p className="text-slate-400 text-sm">検索条件を変更してください。</p>
             <button
-              onClick={() => { setSearchQuery(''); setSelectedRegion('All'); setSelectedRisk('All'); setSelectedCompany('All'); }}
+              onClick={() => { setSearchQuery(''); setSelectedRegion('All'); setSelectedRisk('All'); /* setSelectedCompany('All'); */ }}
               className="mt-4 text-blue-600 text-sm font-medium hover:underline"
             >
               フィルターをクリア

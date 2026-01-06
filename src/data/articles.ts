@@ -1,95 +1,153 @@
 export interface Article {
   id: string;
   title: string;
-  published_at: string;
   region: string;
-  company: string;
-  risk_level: number;
+  date: string;
+  riskLevel: "High" | "Medium" | "Low";
   scenario: string;
   impact: string;
-  action_item: string;
-  source_url: string;
-  source_domain: string;
+  action: string;
+  url: string;
 }
 
 export const articles: Article[] = [
+  // --- 【現在】2026年1月 (Latest Signals) ---
   {
-    id: "global-redsea-real-2025",
-    title: "【グローバル】紅海・スエズ運河情勢：フーシ派攻撃継続と喜望峰ルートの常態化",
+    id: "2026-01-redsea",
+    title: "【グローバル】紅海・スエズ運河：フーシ派攻撃長期化と喜望峰ルートの常態化",
     region: "Global",
-    company: "General Market",
-    risk_level: 5, // High
-    scenario: "フーシ派による商船攻撃が継続しており、主要海運会社はスエズ運河を回避し、喜望峰経由の迂回ルートを維持している。これによりアジア・欧州間の航行日数が約10〜14日増加している。",
-    impact: "コンテナ運賃の高止まりとスケジュール遅延による在庫枯渇リスクが常態化。欧州製医療機器の輸入および原材料の調達に遅れが発生中。",
-    action_item: "海上輸送の遅延を見越した発注リードタイムの再設定と、緊急時の航空輸送枠（Air Freight）の事前確保を推奨します。",
-    source_url: "https://www.reuters.com/world/middle-east/red-sea-crisis",
-    source_domain: "reuters.com",
-    published_at: "2025-01-06T00:00:00Z"
+    date: "2026/01/06",
+    riskLevel: "High",
+    scenario: "フーシ派による商船攻撃が継続。主要海運会社はスエズ運河回避を維持し、リードタイムが14日以上増加。運賃水準は高止まりが定着。",
+    impact: "欧州製医療機器の輸入遅延が常態化。コンテナ不足によるスポット運賃の突発的急騰リスク。",
+    action: "航空便枠の確保と、リードタイム延長を見込んだ発注サイクルの完全移行。",
+    url: "https://www.reuters.com/world/middle-east/"
   },
   {
-    id: "us-baxter-iv-real-2025",
-    title: "【北米】米国：ハリケーン被災のBaxter工場、9割の製造ラインが再稼働",
-    region: "North America", // 北米
-    company: "Baxter",
-    risk_level: 3, // Medium
-    scenario: "2024年秋のハリケーン「ヘリーン」で被災したBaxter社ノースカロライナ工場は復旧が進み、2025年1月時点で10ライン中9ラインが再稼働した。",
-    impact: "一時の深刻な供給危機は脱しつつあるが、一部の特殊な輸液製剤については依然として出荷割り当て（Allocation）が継続されており、完全正常化は2025年第1四半期後半となる見込み。",
-    action_item: "供給割り当て状況を週次で確認しつつ、緊急時の代替品（B. Braun等）との併用プロトコルを解除するタイミングを検討してください。",
-    source_url: "https://www.baxter.com/baxter-newsroom/hurricane-helene-updates",
-    source_domain: "baxter.com",
-    published_at: "2025-01-05T00:00:00Z"
+    id: "2026-01-china-export",
+    title: "【東アジア】中国：対米ガリウム・ゲルマニウム輸出規制の運用厳格化",
+    region: "東アジア",
+    date: "2026/01/05",
+    riskLevel: "High",
+    scenario: "中国商務省は輸出管理ライセンス制度の運用を厳格化。特定品目の審査期間が予測困難な状況が続いている。",
+    impact: "半導体、センサー部材、およびX線検査装置用部材の調達不安定化。",
+    action: "第三国（ベトナム・マレーシア等）からの代替調達ルートの確立と在庫積み増し。",
+    url: "https://www.mining.com/markets/commodities/"
+  },
+  {
+    id: "2026-01-baxter",
+    title: "【北米】米国：輸液供給の完全正常化と新在庫ガイドライン",
+    region: "北米",
+    date: "2026/01/04",
+    riskLevel: "Low",
+    scenario: "ハリケーン被害からの復旧が完了し、Baxter社の生産能力は震災前水準に回復。FDAは供給制限解除を示唆。",
+    impact: "輸液製品（IV Solutions）の調達難は解消。市場価格の安定化。",
+    action: "緊急時対応（Allocation）プロトコルの解除と、平時発注への切り替え。",
+    url: "https://www.baxter.com/baxter-newsroom"
+  },
+  {
+    id: "2026-01-vietnam-power",
+    title: "【東南アジア】ベトナム：北部工業団地の電力需給、乾季入りで警戒感",
+    region: "東南アジア",
+    date: "2026/01/03",
+    riskLevel: "Medium",
+    scenario: "送電網強化が進むものの、乾季の貯水率低下に伴い、北部地域でのピーク時電力予備率への懸念が再燃。",
+    impact: "突発的な瞬時電圧低下による精密機器ラインへの影響リスク。",
+    action: "UPS（無停電電源装置）の点検と、自家発電設備の燃料確保状況の確認。",
+    url: "https://vpna.vn/"
+  },
 
+  // --- 【アーカイブ】2025年 第4四半期 (History Q4) ---
+  {
+    id: "2025-11-india-logistics",
+    title: "【南アジア】インド：主要港湾インフラの近代化投資と物流効率改善",
+    region: "南アジア",
+    date: "2025/11/15",
+    riskLevel: "Low",
+    scenario: "ムンバイ港およびチェンナイ港での新ターミナル稼働により、貨物滞留時間が前年比で改善傾向。",
+    impact: "インド発着貨物のスケジュール精度向上。",
+    action: "インド調達品目の安全在庫水準の見直し（適正化）。",
+    url: "https://economictimes.indiatimes.com/industry/transportation/shipping"
   },
   {
-    id: "china-gallium-real-2025",
-    title: "【東アジア】中国：対米ガリウム・ゲルマニウム輸出規制の一時停止措置",
-    region: "East Asia", // 東アジア
-    company: "General Market",
-    risk_level: 3, // Medium
-    scenario: "中国商務省は、ガリウム、ゲルマニウム、アンチモン等の対米輸出規制を2026年11月まで一時的に停止すると発表した（2025年11月時点の発表に基づく継続措置）。",
-    impact: "一時的な供給懸念は緩和されたものの、依然として輸出ライセンス制度自体は維持されており、手続きによるリードタイムへの影響は残る。米中関係の変化による突発的な規制再開リスクは排除できない。",
-    action_item: "規制停止期間中に在庫の戦略的積み増しを行うとともに、中国以外の調達ルート（第三国経由含む）の確保を継続してください。",
-    source_url: "https://www.mining.com/china-lifts-export-ban-on-gallium-germanium-and-antimony-to-us/",
-    source_domain: "mining.com",
-    published_at: "2025-01-06T00:00:00Z"
+    id: "2025-10-us-labor",
+    title: "【北米】米国：港湾労使交渉の長期化と物流への影響",
+    region: "北米",
+    date: "2025/10/02",
+    riskLevel: "Medium",
+    scenario: "東海岸港湾労組（ILA）との交渉プロセスにおいて、一部業務のスローダウンが発生。",
+    impact: "年末商戦向け貨物の荷役遅れと、西海岸ルートへのシフトによる混雑。",
+    action: "北米向け物流ルートの分散化維持。",
+    url: "https://www.cnbc.com/transportation/"
+  },
+
+  // --- 【アーカイブ】2025年 第3四半期 (History Q3) ---
+  {
+    id: "2025-08-mpox",
+    title: "【アフリカ】WHO：Mpox（サル痘）感染拡大の鎮静化傾向",
+    region: "アフリカ",
+    date: "2025/08/20",
+    riskLevel: "Medium",
+    scenario: "アフリカ中部での感染拡大に対し、国際的なワクチン供給支援が進み、新規感染者数は減少傾向。",
+    impact: "物流拠点での検疫強化措置の一部緩和。",
+    action: "渡航制限の一部解除検討と、引き続きのモニタリング。",
+    url: "https://www.who.int/emergencies/situations"
   },
   {
-    id: "africa-mpox-real-2025",
-    title: "【アフリカ】コンゴ民主共和国等におけるMpox（サル痘）流行と監視継続",
-    region: "Africa", // アフリカ
-    company: "General Market",
-    risk_level: 3, // Medium
-    scenario: "コンゴ民主共和国（DRC）を中心にMpox（クレードIb）の感染が報告されており、WHOおよび各国保健当局が監視を継続中。欧米での散発的な輸入症例も確認されている。",
-    impact: "物流拠点での検疫強化による輸送遅延リスクに加え、現地医療機関における診断キットやワクチンの局所的な需要急増が発生している。",
-    action_item: "アフリカ中部・東部への渡航者に対する感染予防策の周知徹底と、物流ルート上の検疫状況のモニタリングを行ってください。",
-    source_url: "https://www.who.int/emergencies/situations/monkeypox-oubreak-2022",
-    source_domain: "who.int",
-    published_at: "2025-01-04T00:00:00Z"
+    id: "2025-07-cyber",
+    title: "【グローバル】大規模サイバー攻撃による物流システム障害の教訓",
+    region: "Global",
+    date: "2025/07/15",
+    riskLevel: "High",
+    scenario: "大手物流インテグレーターを狙ったランサムウェア攻撃により、貨物追跡システムが一時停止。",
+    impact: "サプライチェーンの可視性低下と、代替手段への切り替え混乱。",
+    action: "物流ベンダーのセキュリティ体制評価基準の厳格化。",
+    url: "https://www.cisa.gov/topics/cyber-threats-and-advisories"
+  },
+
+  // --- 【アーカイブ】2025年 上半期 (History H1) ---
+  {
+    id: "2025-05-eu-policy",
+    title: "【欧州】EU：新たな環境規制（エコデザイン規則）の施行準備",
+    region: "欧州",
+    date: "2025/05/10",
+    riskLevel: "Medium",
+    scenario: "持続可能な製品のためのエコデザイン規則（ESPR）の詳細要件が公表される。",
+    impact: "欧州向け製品のデジタル製品パスポート（DPP）対応準備の本格化。",
+    action: "製品データ（原材料、リサイクル性）の収集・管理体制の構築。",
+    url: "https://commission.europa.eu/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements_en"
   },
   {
-    id: "vietnam-power-real-2025",
-    title: "【東南アジア】ベトナム：2025年の電力需給見通しとピーク時の予備率低下懸念",
-    region: "Southeast Asia", // 東南アジア
-    company: "General Market",
-    risk_level: 3, // Medium
-    scenario: "ベトナム電力公社（EVN）は2025年の電力需要増（+10%以上）に対応するため送電網強化を進めているが、北部地域ではピーク時の予備率が3-4%と低く、突発的な猛暑や燃料不足による需給逼迫リスクが残る。",
-    impact: "2023年のような大規模な計画停電は回避される見通しだが、工業団地に対する節電要請や、瞬時電圧低下による精密機器（製造ライン）への影響に注意が必要。",
-    action_item: "工場のUPS（無停電電源装置）の点検を実施し、夏季（5月-7月）のピークタイムにおける生産シフト調整の準備を行ってください。",
-    source_url: "https://vpna.vn/en/vietnam-power-sector-2025/",
-    source_domain: "vpna.vn",
-    published_at: "2025-01-05T00:00:00Z"
+    id: "2025-04-taiwan-tech",
+    title: "【東アジア】台湾：半導体産業の強靭化と生産分散の進展",
+    region: "東アジア",
+    date: "2025/04/05",
+    riskLevel: "Low",
+    scenario: "前年の地震教訓を活かし、主要ファウンドリ各社がBCP対策を強化。熊本・アリゾナ工場との連携も進む。",
+    impact: "台湾有事リスクに対するサプライチェーンの冗長性向上。",
+    action: "複数拠点からの調達オプションの確保継続。",
+    url: "https://focustaiwan.tw/business"
   },
   {
-    id: "eu-mdr-real-2025",
-    title: "【欧州】EU医療機器規則（MDR）：移行期間終了に向けた認証ボトルネック",
-    region: "Europe", // 欧州
-    company: "General Market",
-    risk_level: 3, // Medium
-    scenario: "MDRへの移行期間（高リスク製品は2027年末まで延長）はあるものの、認証機関（Notified Body）のリソース不足は解消されておらず、審査待ちの滞留が続いている。",
-    impact: "認証更新の遅れにより、一部の既存製品がEU市場から一時的に撤退するか、または企業が低収益製品の更新を断念しSKU削減（廃番）を行う動きが加速している。",
-    action_item: "自社製品および取扱製品のMDR認証申請状況（Notified Bodyとの合意状況）を再棚卸しし、廃番リスクのある品目の代替品選定を進めてください。",
-    source_url: "https://health.ec.europa.eu/medical-devices-sector_en",
-    source_domain: "health.ec.europa.eu",
-    published_at: "2025-01-05T00:00:00Z"
+    id: "2025-03-japan-logistics",
+    title: "【東アジア】日本：物流2024年問題から1年、長距離輸送網の再編",
+    region: "東アジア",
+    date: "2025/03/20",
+    riskLevel: "Medium",
+    scenario: "トラックドライバー不足による長距離輸送のキャパシティ減に対し、フェリー・鉄道利用が定着。",
+    impact: "リードタイムの延長（翌日配送→翌々日配送）が標準化。",
+    action: "国内配送リードタイム設定の恒久的な見直し。",
+    url: "https://www.mlit.go.jp/logistics/"
+  },
+  {
+    id: "2025-01-start",
+    title: "【グローバル】2025年のサプライチェーンリスク展望",
+    region: "Global",
+    date: "2025/01/10",
+    riskLevel: "Low",
+    scenario: "地政学リスクと気候変動が引き続き主要な不安定要因となると予測。",
+    impact: "不確実性の高い事業環境の継続。",
+    action: "サプライチェーン・マッピングの完了とリスク検知体制の強化。",
+    url: "https://www.weforum.org/topics/supply-chain-and-transport"
   }
 ];
