@@ -21,7 +21,7 @@ export const articles: Article[] = [
     scenario: "フーシ派の活動継続に伴い、喜望峰経由が標準ルートとして定着。欧州・アジア間の輸送日数は平均14日増で固定化。",
     impact: "コンテナ運賃のベースライン上昇と、スポット運賃の変動リスク。",
     action: "発注リードタイムの恒久的な見直し（+2週間）と、在庫回転率の再設定。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-07-global-crowdstrike",
@@ -45,7 +45,7 @@ export const articles: Article[] = [
     scenario: "ガリウム・ゲルマニウム等の輸出許可審査において、書類不備による差し戻しや審査期間の延長が常態化。",
     impact: "部材調達の予見可能性低下。特定サプライヤーからの納入遅延。",
     action: "中国外サプライヤー（第三国）の認定加速と、安全在庫の積み増し。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-04-eastasia-taiwan",
@@ -58,6 +58,17 @@ export const articles: Article[] = [
     action: "サプライヤーの稼働状況確認。",
     url: "https://focustaiwan.tw/society/202404030001"
   },
+  {
+    id: "2025-01-eastasia-noto",
+    title: "【東アジア】日本：能登半島地震による電子部品工場への影響",
+    region: "東アジア",
+    date: "2025/01/01",
+    riskLevel: "High",
+    scenario: "最大震度7の地震により、北陸地方の工場（村田製作所、東芝等）が一時稼働停止。",
+    impact: "特定部材の供給懸念と物流網の寸断。",
+    action: "代替品の確認と被災サプライヤー支援。",
+    url: "https://www.reuters.com/world/japan/earthquake-magnitude-74-strikes-north-central-japan-2024-01-01/"
+  },
 
   // --- 3. 東南アジア (Southeast Asia) ---
   {
@@ -69,7 +80,7 @@ export const articles: Article[] = [
     scenario: "乾季入りに伴い水力発電の稼働率が低下。北部工業団地エリアでの電力予備率を注視。",
     impact: "瞬時電圧低下（瞬低）による精密機器ラインの一時停止リスク。",
     action: "工場UPSのバッテリー点検とバックアップ体制確認。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-09-sea-yagi",
@@ -93,7 +104,7 @@ export const articles: Article[] = [
     scenario: "インド商工省は必須医薬品の国内安定供給のため、一部APIの輸出モニタリング強化を示唆。",
     impact: "ジェネリック医薬品メーカーの調達リードタイム延長リスク。",
     action: "インド依存度の高いAPIの在庫積み増し検討。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-12-southasia-floods",
@@ -117,7 +128,7 @@ export const articles: Article[] = [
     scenario: "ノースカロライナ工場の復旧進展により、市場への供給量は震災前の水準に回復。",
     impact: "緊急時対応（Allocation）から通常発注への切り替え。",
     action: "過剰在庫の適正化。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-10-na-portstrike",
@@ -130,6 +141,17 @@ export const articles: Article[] = [
     action: "物流バックログの影響確認。",
     url: "https://www.cnbc.com/2024/10/03/dockworkers-strike-suspended-sources-say.html"
   },
+  {
+    id: "2025-03-na-baltimore",
+    title: "【北米】米国：ボルチモア橋崩落による港湾閉鎖",
+    region: "北米",
+    date: "2025/03/26",
+    riskLevel: "High",
+    scenario: "フランシス・スコット・キー橋への船舶衝突事故により航路が遮断。",
+    impact: "自動車・石炭等の輸出入ルート変更。",
+    action: "近隣港への迂回手配。",
+    url: "https://www.cnn.com/us/live-news/baltimore-bridge-collapse-03-26-24/index.html"
+  },
 
   // --- 6. 欧州 (Europe) ---
   {
@@ -141,7 +163,7 @@ export const articles: Article[] = [
     scenario: "認証機関（Notified Body）の審査キャパシティ不足は解消されず、新規申請の承認待ちが長期化。",
     impact: "新製品のEU市場投入スケジュールの遅れ。",
     action: "認証取得リードタイムを従来の1.5倍で見積もることを推奨。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-06-eu-election",
@@ -165,7 +187,7 @@ export const articles: Article[] = [
     scenario: "2026年より政府入札におけるRHQ要件が完全適用開始。未対応企業の入札資格停止事例が発生。",
     impact: "公的案件からの締め出しリスク。",
     action: "リヤド拠点登記の完了確認。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-10-me-conflict",
@@ -189,7 +211,7 @@ export const articles: Article[] = [
     scenario: "外貨準備不足により、輸入代金の送金遅延（バックログ）が解消されていない。",
     impact: "代金回収リスクの増大。",
     action: "L/C確認なしの船積み停止と前払い条件の徹底。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-08-africa-mpox",
@@ -213,7 +235,7 @@ export const articles: Article[] = [
     scenario: "ニアショアリングによる工場進出増に対し、インフラ供給が追いついていない。",
     impact: "新規工場の稼働開始遅延リスク。",
     action: "自社水源確保と電力契約の見直し。",
-    url: "" // Internal Analysis
+    url: ""
   },
   {
     id: "2025-11-latam-panama",
