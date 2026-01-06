@@ -23,7 +23,8 @@ The dashboard UI has been localized to Japanese to provide a professional user e
 
 ## 2. Data Consistency (`src/data/articles.ts`)
 - Removed all English dummy articles.
-- Updated the local data cache with **28 high-quality Japanese sample articles**.
+- Updated the local data cache with **37 high-quality Japanese sample articles**.
+- Added **9 Daily Simulation Articles** dated 2026/01/06 to verify real-time updates.
 - Expanded regions to include: **East Asia, Southeast Asia, Europe, North America, Latin America**.
 - All `scenario`, `impact`, and `action_item` fields are now in Japanese.
 

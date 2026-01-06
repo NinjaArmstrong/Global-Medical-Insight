@@ -82,6 +82,7 @@ export default function Dashboard() {
                 <Globe size={12} /> 対象地域
               </label>
               <div className="space-y-1">
+                {/* Explicitly mapping the hardcoded 'regions' array to ensure order */}
                 {regions.map(r => (
                   <button
                     key={r}
