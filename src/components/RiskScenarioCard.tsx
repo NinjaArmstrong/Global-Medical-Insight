@@ -15,16 +15,24 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
     };
 
     const getRiskBadge = (level: number) => {
-        if (level >= 4) return <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-100 text-red-700 border border-red-200">HIGH RISK</span>;
-        if (level === 3) return <span className="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200">MEDIUM</span>;
-        return <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">LOW</span>;
+        if (level >= 4) return <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-100 text-red-700 border border-red-200">高リスク</span>;
+        if (level === 3) return <span className="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200">中リスク</span>;
+        return <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">低リスク</span>;
+    };
+
+    const regionMap: Record<string, string> = {
+        'Africa': 'アフリカ',
+        'Middle East': '中東',
+        'South Asia': '南アジア',
+        'World': 'グローバル',
+        'Global': 'グローバル'
     };
 
     return (
         <div className="group relative bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-300">
             <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{article.region}</span>
+                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{regionMap[article.region] || article.region}</span>
                     {article.company !== 'General Market' && (
                         <span className="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded border border-slate-200 flex items-center gap-1">
                             <Briefcase size={10} />
@@ -34,7 +42,7 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 </div>
                 <div className="flex items-center gap-1">
                     {getRiskBadge(article.risk_level)}
-                    <span className="text-xs text-slate-400 ml-2 font-mono">{new Date(article.published_at).toLocaleDateString()}</span>
+                    <span className="text-xs text-slate-400 ml-2 font-mono">{new Date(article.published_at).toLocaleDateString('ja-JP')}</span>
                 </div>
             </div>
 
@@ -49,7 +57,7 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 <div className="relative pl-4 border-l-2 border-slate-300">
                     <div className="absolute -left-[5px] top-0.5 w-2 h-2 rounded-full bg-slate-300"></div>
                     <p className="text-sm text-slate-700 leading-relaxed">
-                        <span className="font-semibold text-slate-900 block text-xs uppercase mb-0.5 text-slate-500">Scenario</span>
+                        <span className="font-semibold text-slate-900 block text-xs uppercase mb-0.5 text-slate-500">【リスクシナリオ】</span>
                         {article.scenario}
                     </p>
                 </div>
@@ -59,7 +67,7 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                     <div className={`absolute -left-[5px] top-2.5 w-2 h-2 rounded-full ${article.risk_level >= 4 ? 'bg-red-400' : 'bg-blue-400'}`}></div>
                     <p className="text-sm text-slate-800 leading-relaxed">
                         <span className={`font-semibold block text-xs uppercase mb-0.5 flex items-center gap-1 ${article.risk_level >= 4 ? 'text-red-700' : 'text-blue-700'}`}>
-                            <TrendingUp size={12} /> Impact Analysis
+                            <TrendingUp size={12} /> 【企業への影響 / インパクト】
                         </span>
                         {article.impact}
                     </p>
@@ -69,7 +77,7 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 <div className="mt-3 flex items-start gap-2 bg-slate-50 p-2 rounded border border-slate-200">
                     <AlertCircle className="w-4 h-4 text-slate-500 mt-0.5 shrink-0" />
                     <p className="text-xs font-medium text-slate-600">
-                        <span className="font-bold text-slate-700">Action:</span> {article.action_item}
+                        <span className="font-bold text-slate-700">推奨アクション:</span> {article.action_item}
                     </p>
                 </div>
             </div>
@@ -77,7 +85,7 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
             <div className="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
                 <span className="text-xs text-slate-400 truncate max-w-[200px]">{article.source_domain}</span>
                 <a href={article.source_url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group/link">
-                    Original Source <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
+                    オリジナル記事 <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
                 </a>
             </div>
         </div>
