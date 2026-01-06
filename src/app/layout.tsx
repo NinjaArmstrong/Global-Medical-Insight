@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-06 (Sidebar Region Keys Fix)
+// Updated: 2026-01-06 (Data Reload: Japanese Regions Fix)

@@ -11,7 +11,7 @@ export interface Article {
 }
 
 export const articles: Article[] = [
-  // --- 1. グローバル (Global) ---
+  // --- 1. グローバル ---
   {
     id: "2026-01-global-redsea",
     title: "【グローバル】紅海・スエズ運河：喜望峰ルート定着によるリードタイム再計算",
@@ -35,7 +35,7 @@ export const articles: Article[] = [
     url: "https://www.bbc.com/news/articles/c51y1111111"
   },
 
-  // --- 2. 東アジア (East Asia) ---
+  // --- 2. 東アジア ---
   {
     id: "2026-01-eastasia-china",
     title: "【東アジア】中国：重要鉱物輸出管理ライセンスの審査長期化",
@@ -70,7 +70,7 @@ export const articles: Article[] = [
     url: "https://www.reuters.com/world/japan/earthquake-magnitude-74-strikes-north-central-japan-2024-01-01/"
   },
 
-  // --- 3. 東南アジア (Southeast Asia) ---
+  // --- 3. 東南アジア ---
   {
     id: "2026-01-sea-vietnam",
     title: "【東南アジア】ベトナム：北部乾季における電力需給モニタリング",
@@ -94,7 +94,7 @@ export const articles: Article[] = [
     url: "https://apnews.com/article/vietnam-typhoon-yagi-damage-floods-landslides-0f0f0f"
   },
 
-  // --- 4. 南アジア (South Asia) ---
+  // --- 4. 南アジア ---
   {
     id: "2026-01-southasia-india",
     title: "【南アジア】インド：医薬品原料（API）輸出管理の厳格化観測",
@@ -118,7 +118,7 @@ export const articles: Article[] = [
     url: "https://www.reuters.com/world/india/cyclone-michaung-hits-indias-south-coast-bringing-heavy-rain-2023-12-05/"
   },
 
-  // --- 5. 北米 (North America) ---
+  // --- 5. 北米 ---
   {
     id: "2026-01-na-baxter",
     title: "【北米】米国：輸液供給の正常化トレンドと在庫ガイドライン",
@@ -153,7 +153,7 @@ export const articles: Article[] = [
     url: "https://www.cnn.com/us/live-news/baltimore-bridge-collapse-03-26-24/index.html"
   },
 
-  // --- 6. 欧州 (Europe) ---
+  // --- 6. 欧州 ---
   {
     id: "2026-01-eu-mdr",
     title: "【欧州】EU：MDR（医療機器規則）認証機関の審査遅延状況",
@@ -177,7 +177,7 @@ export const articles: Article[] = [
     url: "https://www.politico.eu/europe-poll-of-polls/european-parliament-election/"
   },
 
-  // --- 7. 中東 (Middle East) ---
+  // --- 7. 中東 ---
   {
     id: "2026-01-me-saudi",
     title: "【中東】サウジアラビア：地域統括拠点（RHQ）規制の適用厳格化",
@@ -201,7 +201,7 @@ export const articles: Article[] = [
     url: "https://www.aljazeera.com"
   },
 
-  // --- 8. アフリカ (Africa) ---
+  // --- 8. アフリカ ---
   {
     id: "2026-01-africa-nigeria",
     title: "【アフリカ】ナイジェリア：通貨ナイラの下落と輸入決済遅延",
@@ -225,7 +225,7 @@ export const articles: Article[] = [
     url: "https://www.who.int/news/item/14-08-2024-who-director-general-declares-mpox-outbreak-a-public-health-emergency-of-international-concern"
   },
 
-  // --- 9. 中南米 (Latin America) ---
+  // --- 9. 中南米 ---
   {
     id: "2026-01-latam-mexico",
     title: "【中南米】メキシコ：北部地域における工業用水不足の深刻化",
