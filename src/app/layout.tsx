@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-06
+// Updated: 2026-01-06 (Integrity Fix)

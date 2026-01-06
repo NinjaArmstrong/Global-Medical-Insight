@@ -54,9 +54,13 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
             </div>
 
             <h3 className="text-lg font-serif font-bold text-slate-900 leading-snug mb-4 group-hover:text-blue-800 transition-colors">
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="hover:underline decoration-blue-300 decoration-2 underline-offset-2">
-                    {article.title}
-                </a>
+                {article.url ? (
+                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="hover:underline decoration-blue-300 decoration-2 underline-offset-2">
+                        {article.title}
+                    </a>
+                ) : (
+                    <span>{article.title}</span>
+                )}
             </h3>
 
             <div className="space-y-3">
@@ -90,10 +94,18 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
             </div>
 
             <div className="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center">
-                <span className="text-xs text-slate-400 truncate max-w-[200px]">{getDomain(article.url)}</span>
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group/link">
-                    オリジナル記事 <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
-                </a>
+                <span className="text-xs text-slate-400 truncate max-w-[200px]">
+                    {article.url ? getDomain(article.url) : 'Internal Intelligence'}
+                </span>
+                {article.url ? (
+                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group/link">
+                        オリジナル記事 <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
+                    </a>
+                ) : (
+                    <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
+                        <Info size={12} /> 独自分析
+                    </span>
+                )}
             </div>
         </div>
     );
