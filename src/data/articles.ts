@@ -11,6 +11,41 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  // --- 【最新重要インテリジェンス】規制・コンプライアンス（2026/01/07） ---
+  {
+    id: "2026-01-fda-warning",
+    title: "【北米】FDA：医療機器QSR査察の厳格化と警告書（Warning Letter）の急増",
+    region: "北米",
+    date: "2026/01/07",
+    riskLevel: "High",
+    scenario: "2025年度の査察において、CAPA（是正予防措置）および設計管理の不備を指摘する警告書が前年比で急増。",
+    impact: "日本企業の米国子会社および輸出製品に対する査察リスク増大。出荷停止処分の可能性。",
+    action: "模擬査察（Mock Inspection）の実施と、CAPAプロセスの完全性再点検。",
+    url: ""
+  },
+  {
+    id: "2026-01-eu-disruption",
+    title: "【欧州】EU MDR：供給途絶リスクの事前通知義務化と当局への報告要件",
+    region: "欧州",
+    date: "2026/01/07",
+    riskLevel: "Medium",
+    scenario: "2025年1月より、医療機器の供給中断が見込まれる場合、6ヶ月前までの当局・医療機関への通知が義務化された。",
+    impact: "生産の予期せぬトラブルが即座にコンプライアンス違反（報告義務違反）に直結するリスク。",
+    action: "SCM（サプライチェーン管理）部門と薬事部門の連携強化、および早期報告フローの確立。",
+    url: ""
+  },
+  {
+    id: "2026-01-china-gmp",
+    title: "【東アジア】中国NMPA：新GMP（医療機器生産管理規範）の施行準備と海外査察",
+    region: "東アジア",
+    date: "2026/01/07",
+    riskLevel: "High",
+    scenario: "2026年11月の新GMP完全施行に向け、海外製造所に対する模擬査察やデータインテグリティの確認が強化されている。",
+    impact: "中国向け輸出製品の承認維持コスト増と、現地代理人の管理責任厳格化。",
+    action: "中国現地代理人との契約見直しと、最新GMP要件へのギャップ分析（Gap Analysis）。",
+    url: ""
+  },
+
   // --- 1. グローバル ---
   {
     id: "2026-01-global-redsea",
