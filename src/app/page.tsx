@@ -12,9 +12,26 @@ export default function Dashboard() {
   const [selectedRisk, setSelectedRisk] = useState<number | 'All'>('All');
   const [selectedCompany, setSelectedCompany] = useState('All');
 
-  // unique values for filters
-  const regions = ['All', ...Array.from(new Set(articles.map(a => a.region).filter(Boolean)))];
+  // Fixed region order
+  const REGION_ORDER = ['Global', 'East Asia', 'Southeast Asia', 'South Asia', 'Middle East', 'Africa', 'Europe', 'North America', 'Latin America'];
+
+  // Calculate available regions but sort them by the fixed order
+  const regions = ['All', ...REGION_ORDER];
+
   const companies = ['All', ...Array.from(new Set(articles.map(a => a.company).filter(c => c !== 'General Market')))];
+
+  const regionNameMap: Record<string, string> = {
+    'All': 'すべて',
+    'Global': 'グローバル',
+    'East Asia': '東アジア',
+    'Southeast Asia': '東南アジア',
+    'South Asia': '南アジア',
+    'Middle East': '中東',
+    'Africa': 'アフリカ',
+    'Europe': '欧州',
+    'North America': '北米',
+    'Latin America': '中南米'
+  };
 
   const filteredArticles = useMemo(() => {
     return articles.filter(article => {
@@ -71,7 +88,7 @@ export default function Dashboard() {
                     onClick={() => setSelectedRegion(r)}
                     className={`w-full text-left px-3 py-1.5 rounded text-sm transition-colors ${selectedRegion === r ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30' : 'hover:bg-slate-800'}`}
                   >
-                    {r === 'All' ? 'すべて' : r === 'Africa' ? 'アフリカ' : r === 'Middle East' ? '中東' : r === 'South Asia' ? '南アジア' : r}
+                    {regionNameMap[r] || r}
                   </button>
                 ))}
               </div>

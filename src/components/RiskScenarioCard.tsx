@@ -21,11 +21,15 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
     };
 
     const regionMap: Record<string, string> = {
-        'Africa': 'アフリカ',
-        'Middle East': '中東',
+        'Global': 'グローバル',
+        'East Asia': '東アジア',
+        'Southeast Asia': '東南アジア',
         'South Asia': '南アジア',
-        'World': 'グローバル',
-        'Global': 'グローバル'
+        'Middle East': '中東',
+        'Africa': 'アフリカ',
+        'Europe': '欧州',
+        'North America': '北米',
+        'Latin America': '中南米'
     };
 
     return (

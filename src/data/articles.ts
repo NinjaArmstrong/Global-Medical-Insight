@@ -255,5 +255,144 @@ export const articles: Article[] = [
     "action_item": "現地ディストリビューターの在庫状況を確認し、即納可能な「復興支援パッケージ」を提案。メンテナンス体制の充実を差別化要因としてアピールしてください。",
     "source_url": "https://example.com/morocco-reconstruction",
     "source_domain": "map.ma"
+  },
+  // --- New Articles (East Asia) ---
+  {
+    "id": "new-eastasia-01",
+    "title": "中国：半導体材料輸出規制の強化によるサプライチェーン混乱への懸念",
+    "published_at": "2026-01-05T10:00:00+00:00",
+    "region": "East Asia",
+    "company": "General Market",
+    "risk_level": 5,
+    "scenario": "中国政府がガリウム・ゲルマニウムに続き、新たな希少金属の輸出許可制導入を発表。ハイテク医療機器の製造に不可欠な部材の調達難が予測される。",
+    "impact": "部材納入遅延による生産ライン停止リスクが極めて高い状況です。代替サプライヤーの確保には数ヶ月を要するため、短期的な出荷調整が不可避となります。",
+    "action_item": "重要部材の戦略的在庫積み増しを行うと同時に、非中国産材料への切り替えに向けたR&D投資を加速してください。",
+    "source_url": "https://example.com/china-export-control",
+    "source_domain": "scmp.com"
+  },
+  {
+    "id": "new-eastasia-02",
+    "title": "韓国：研修医ストライキ長期化に伴う大学病院の経営悪化と機器購入凍結",
+    "published_at": "2026-01-04T09:30:00+00:00",
+    "region": "East Asia",
+    "company": "General Market",
+    "risk_level": 3,
+    "scenario": "医学部定員増に反対する研修医のストライキが半年以上に及び、主要大学病院の赤字が拡大。新規設備投資の無期限凍結が相次いで発表されている。",
+    "impact": "韓国市場における大型画像診断機器（MRI/CT）の商談が軒並み延期されています。メンテナンス契約の更新もコスト削減対象となり、サービス収益への影響が懸念されます。",
+    "action_item": "公立病院や中規模病院など、ストライキの影響が軽微な顧客セグメントへ営業リソースをシフトし、サービス契約の価値（稼働率保証など）を再提案してください。",
+    "source_url": "https://example.com/korea-doctors-strike",
+    "source_domain": "yonhapnews.co.kr"
+  },
+
+  // --- New Articles (Southeast Asia) ---
+  {
+    "id": "new-sea-01",
+    "title": "ベトナム：北部工業団地における電力不足再燃、夏場の計画停電リスク",
+    "published_at": "2026-01-03T14:00:00+00:00",
+    "region": "Southeast Asia",
+    "company": "General Market",
+    "risk_level": 4,
+    "scenario": "猛暑による電力需要増と水力発電の出力低下により、ハノイ近郊の工業団地で予告なしの停電が発生。日系企業の操業に支障が出ている。",
+    "impact": "現地工場の稼働率低下による納期遅延リスクがあります。また、電圧変動による精密検査機器の故障やキャリブレーションずれが報告されています。",
+    "action_item": "現地工場の自家発電設備の燃料確保状況を確認してください。顧客に対しては、電圧安定化装置（AVR）の併用を強く推奨してください。",
+    "source_url": "https://example.com/vietnam-power-shortage",
+    "source_domain": "vnexpress.net"
+  },
+  {
+    "id": "new-sea-02",
+    "title": "インドネシア：ハラル認証義務化の適用範囲拡大、医療機器も対象へ",
+    "published_at": "2026-01-02T11:45:00+00:00",
+    "region": "Southeast Asia",
+    "company": "General Market",
+    "risk_level": 2,
+    "scenario": "インドネシア宗教省は、2026年10月より施行されるハラル製品保証法の対象に、一部の侵襲的医療機器や生物由来製品を含めるガイドライン案を提示。",
+    "impact": "認証取得コストの増加と、未認証製品の販売停止リスクがあります。特に動物由来成分を含む製品（縫合糸、人工骨など）は代替品の開発が必要になる可能性があります。",
+    "action_item": "現地法規制コンサルタントを起用し、対象品目の詳細なリストアップと認証取得ロードマップを策定してください。",
+    "source_url": "https://example.com/indonesia-halal-law",
+    "source_domain": "jakartapost.com"
+  },
+
+  // --- New Articles (Europe) ---
+  {
+    "id": "new-eu-01",
+    "title": "EU：AI規制法（AI Act）完全施行、医療AIへのコンプライアンス要件厳格化",
+    "published_at": "2026-01-05T16:00:00+00:00",
+    "region": "Europe",
+    "company": "General Market",
+    "risk_level": 3,
+    "scenario": "EUの包括的AI規制法の完全施行に伴い、診断支援AIシステムは「高リスクAI」に分類され、第三者認証やデータガバナンスの要件が大幅に引き上げられた。",
+    "impact": "欧州市場での新製品上市が遅れる可能性があります。既存製品についても、再認証のための追加データの提出やアルゴリズムの透明性確保が求められます。",
+    "action_item": "欧州の規制担当チームを増員し、技術文書（Technical File）の修正作業を急いでください。AIモデルの学習データセットの公平性を証明する準備を整えてください。",
+    "source_url": "https://example.com/eu-ai-act-medical",
+    "source_domain": "euractiv.com"
+  },
+  {
+    "id": "new-eu-02",
+    "title": "ドイツ：主要港湾労働者ストライキによる欧州域内物流の停滞",
+    "published_at": "2026-01-03T09:15:00+00:00",
+    "region": "Europe",
+    "company": "General Market",
+    "risk_level": 4,
+    "scenario": "ハンブルク港およびブレーメン港の港湾労働者組合が賃上げを求めて無期限ストライキに突入。コンテナの荷役作業が完全にストップしている。",
+    "impact": "欧州ハブ倉庫への製品補充が滞り、域内全域および東欧・ロシア向けの出荷に遅れが生じています。緊急空輸への切り替えコストが発生します。",
+    "action_item": "ロッテルダム港やアントワープ港へのルート変更（ダイバート）を船会社と調整し、緊急度に応じてスペインやイタリアの港を経由する陸送ルートを確保してください。",
+    "source_url": "https://example.com/germany-port-strike",
+    "source_domain": "dw.com"
+  },
+
+  // --- New Articles (North America) ---
+  {
+    "id": "new-na-01",
+    "title": "米国：FDAがサイバーセキュリティ指針を改定、レガシーOS搭載機器の排除加速",
+    "published_at": "2026-01-04T13:00:00+00:00",
+    "region": "North America",
+    "company": "General Market",
+    "risk_level": 2,
+    "scenario": "FDAは、サポート切れOS（Windows 10等）を搭載した医療機器の市販前審査（510k）承認を拒否する新方針を明確化。既存機器へのパッチ適用も義務化へ。",
+    "impact": "旧世代プラットフォームを採用している製品の販売が停止するリスクがあります。サイバーセキュリティ対応のための開発リソースの再配分が必要です。",
+    "action_item": "製品ポートフォリオのOSバージョンを総点検し、EOL（End of Life）計画を見直してください。顧客に対しては、セキュリティ強化を理由とした新機種への買い替えキャンペーンを展開してください。",
+    "source_url": "https://example.com/fda-cybersecurity",
+    "source_domain": "statnews.com"
+  },
+  {
+    "id": "new-na-02",
+    "title": "米国：東海岸港湾労使交渉が決裂、再度の物流混乱の懸念",
+    "published_at": "2026-01-02T08:00:00+00:00",
+    "region": "North America",
+    "company": "General Market",
+    "risk_level": 4,
+    "scenario": "ILA（国際港湾労働者協会）とUSMX（米国海事同盟）の労使交渉が自動化導入を巡り決裂。2週間後のストライキ突入が警告されている。",
+    "impact": "米国市場向けの主力物流ルートである東海岸航路が遮断される恐れがあります。西海岸経由への振替による混雑や内陸輸送コストの上昇が予想されます。",
+    "action_item": "在庫の前倒し出荷（フロントローディング）を行い、米国内倉庫の在庫レベルを最大化してください。西海岸ルートおよびカナダ経由の代替ルートを確保してください。",
+    "source_url": "https://example.com/us-port-strike",
+    "source_domain": "wsj.com"
+  },
+
+  // --- New Articles (Latin America) ---
+  {
+    "id": "new-sa-latam-01",
+    "title": "ブラジル：新たな医療機器輸入税制の導入検討、現地生産優遇へ",
+    "published_at": "2026-01-05T07:00:00+00:00",
+    "region": "Latin America",
+    "company": "General Market",
+    "risk_level": 3,
+    "scenario": "ブラジル政府は、国内産業保護を目的として、輸入品に対する関税引き上げと、現地付加価値税（IPI）の減免措置見直しを検討中。",
+    "impact": "ブラジル向け輸出製品の価格競争力が低下します。特に競合他社が現地工場を持っている場合、シェアを奪われるリスクがあります。",
+    "action_item": "現地生産パートナー（OEM）の開拓を急ぐとともに、メルコスール（南米南部共同市場）域内の他国拠点を活用した関税回避スキームを検討してください。",
+    "source_url": "https://example.com/brazil-import-tax",
+    "source_domain": "folha.uol.com.br"
+  },
+  {
+    "id": "new-sa-latam-02",
+    "title": "メキシコ：ニアショアリング加速による工場用地不足と水資源枯渇",
+    "published_at": "2026-01-03T12:00:00+00:00",
+    "region": "Latin America",
+    "company": "General Market",
+    "risk_level": 2,
+    "scenario": "北米市場へのアクセスを狙った企業の進出ラッシュにより、メキシコ北部で工業団地の賃料が高騰。深刻な水不足により新規工場の稼働許可が下りない事例も。",
+    "impact": "メキシコへの製造拠点移管プロジェクト（ニアショアリング）のスケジュール遅延やコスト超過リスクが高まっています。",
+    "action_item": "進出予定地のインフラ（水・電力）供給能力を再調査し、場合によっては南部や内陸部への立地変更を検討してください。排水リサイクル設備の導入コストを予算化してください。",
+    "source_url": "https://example.com/mexico-nearshoring",
+    "source_domain": "eleconomista.com.mx"
   }
 ];
