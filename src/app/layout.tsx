@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-06 (Emergency 18-item Fix)
+// Updated: 2026-01-06 (Sidebar Region Keys Fix)

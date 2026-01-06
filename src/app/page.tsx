@@ -8,15 +8,11 @@ import { Search, Filter, Globe, ShieldAlert, Building2, LayoutGrid } from 'lucid
 
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState('All');
+  const [selectedRegion, setSelectedRegion] = useState('すべて');
   const [selectedRisk, setSelectedRisk] = useState<'All' | 'High' | 'Medium' | 'Low'>('All');
   // const [selectedCompany, setSelectedCompany] = useState('All'); // Disabled as data no longer has company
 
-  // Fixed region order
-  const REGION_ORDER = ['Global', 'East Asia', 'Southeast Asia', 'South Asia', 'Middle East', 'Africa', 'Europe', 'North America', 'Latin America'];
-
-  // Calculate available regions but sort them by the fixed order
-  const regions = ['All', ...REGION_ORDER];
+  const regions = ["すべて", "グローバル", "東アジア", "東南アジア", "南アジア", "中東", "アフリカ", "欧州", "北米", "中南米"];
 
   // const companies = ['All', ...Array.from(new Set(articles.map(a => a.company).filter(c => c !== 'General Market')))];
 
@@ -40,7 +36,7 @@ export default function Dashboard() {
         article.scenario.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.impact.toLowerCase().includes(searchQuery.toLowerCase());
 
-      const matchRegion = selectedRegion === 'All' || article.region === selectedRegion;
+      const matchRegion = selectedRegion === 'すべて' || article.region === selectedRegion;
       const matchRisk = selectedRisk === 'All' || article.riskLevel === selectedRisk;
       // const matchCompany = selectedCompany === 'All' ||
       //   (selectedCompany === 'Others' ? article.company === 'General Market' : article.company === selectedCompany);
