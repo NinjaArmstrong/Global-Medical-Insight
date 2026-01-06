@@ -21,7 +21,7 @@ export const articles: Article[] = [
     scenario: "2025年度の査察において、CAPA（是正予防措置）および設計管理の不備を指摘する警告書が前年比で急増。",
     impact: "日本企業の米国子会社および輸出製品に対する査察リスク増大。出荷停止処分の可能性。",
     action: "模擬査察（Mock Inspection）の実施と、CAPAプロセスの完全性再点検。",
-    url: ""
+    url: "https://www.thefdagroup.com/blog/2024-fda-warning-letter-trends"
   },
   {
     id: "2026-01-eu-disruption",
@@ -32,7 +32,7 @@ export const articles: Article[] = [
     scenario: "2025年1月より、医療機器の供給中断が見込まれる場合、6ヶ月前までの当局・医療機関への通知が義務化された。",
     impact: "生産の予期せぬトラブルが即座にコンプライアンス違反（報告義務違反）に直結するリスク。",
     action: "SCM（サプライチェーン管理）部門と薬事部門の連携強化、および早期報告フローの確立。",
-    url: ""
+    url: "https://www.ventura-solutions.com/eu-mdr-article-10a-interruption-of-supply/"
   },
   {
     id: "2026-01-china-gmp",
@@ -43,7 +43,7 @@ export const articles: Article[] = [
     scenario: "2026年11月の新GMP完全施行に向け、海外製造所に対する模擬査察やデータインテグリティの確認が強化されている。",
     impact: "中国向け輸出製品の承認維持コスト増と、現地代理人の管理責任厳格化。",
     action: "中国現地代理人との契約見直しと、最新GMP要件へのギャップ分析（Gap Analysis）。",
-    url: ""
+    url: "https://www.cisema.com/en/news/new-good-manufacturing-practice-gmp-for-medical-devices"
   },
 
   // --- 1. グローバル ---
