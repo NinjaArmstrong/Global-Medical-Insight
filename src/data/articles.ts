@@ -903,5 +903,82 @@ export const articles: Article[] = [
     impact: "ASEAN共通技術文書（CSDT）を整備済みのメーカーには承認短縮の好機。",
     action: "シンガポールやマレーシアで承認取得済みの製品について、簡易審査ルートの適用可否を確認し、フィリピン市場への早期投入をご検討ください。",
     url: "https://www.fda.gov.ph/"
+  },
+  // --- Essential Gap-Fill Markets (Batch 9) ---
+  {
+    id: "901",
+    title: "【ブラジル】ANVISA 2026：デジタル変革と予算拡充",
+    region: "Latin America",
+    date: "2026-01-05",
+    riskLevel: "Medium",
+    scenario: "ANVISAは「規制アジェンダ2026-2027」を始動し、電子処方箋の完全統合と薬事申請のフルデジタル化を推進。国家医療予算も2026年に向け420億レアル規模の投資が継続。",
+    impact: "ブラジル市場への申請プロセスが効率化される一方、サイバーセキュリティ要件が厳格化。",
+    action: "現地代理人と協力し、新たなデジタル申請プラットフォームへの対応準備を進めることの検討が望まれます。",
+    url: "https://www.gov.br/anvisa/"
+  },
+  {
+    id: "902",
+    title: "【メキシコ】COFEPRIS：リライアンス経路の本格運用",
+    region: "Latin America",
+    date: "2025-12-28",
+    riskLevel: "Low",
+    scenario: "COFEPRISはFDAやHealth Canadaの承認を活用する「リライアンス経路」を正式運用。2026年には「DigiReg」プラットフォームによる審査期間の60%短縮を目指す。",
+    impact: "FDA承認済みの日本製品（テルモ、朝日インテック等）のメキシコ登録が大幅に迅速化。",
+    action: "簡易審査ルートの適用条件を確認し、北米承認製品のメキシコ展開加速を検討されてはいかがでしょうか。",
+    url: "https://www.gob.mx/cofepris"
+  },
+  {
+    id: "903",
+    title: "【インドネシア】ハラール認証：クラスA機器 2026年期限",
+    region: "Southeast Asia",
+    date: "2025-11-15",
+    riskLevel: "High",
+    scenario: "2026年10月17日より、クラスA医療機器および消耗品に対するハラール認証取得が完全義務化される。",
+    impact: "認証未取得のまま期限を迎えると、インドネシア国内での流通・販売が停止する重大なリスク。",
+    action: "対象製品のリストアップを行い、BPJPH認定機関への申請手続きを直ちに開始することの検討が強く望まれます。",
+    url: "https://halalmui.org/"
+  },
+  {
+    id: "904",
+    title: "【ベトナム】通達57号：2026年 公共入札の新区分",
+    region: "Southeast Asia",
+    date: "2026-01-02",
+    riskLevel: "Medium",
+    scenario: "保健省通達（Circular No. 57/2025/TT-BYT）が2026年2月に発効。公共入札における技術要件と品質グレード分類が厳格化される。",
+    impact: "安価な製品との差別化が可能になる一方、技術資料の不備が入札失格に直結。",
+    action: "新通達の技術要件に基づき、入札提出用の技術ドキュメントを再整備することをお勧めいたします。",
+    url: "https://moh.gov.vn/"
+  },
+  {
+    id: "905",
+    title: "【タイ】BCG経済：2026年 ウェルネスハブ予算",
+    region: "Southeast Asia",
+    date: "2026-01-06",
+    riskLevel: "Low",
+    scenario: "2026年度予算にて国境地域のウェルネスハブ整備に5億バーツ超を配分。BCG（Bio-Circular-Green）モデルに基づく医療投資が加速。",
+    impact: "高度医療機器やリハビリテーション機器の需要増。医療ツーリズム回復による民間病院の投資意欲向上。",
+    action: "BOI（投資委員会）のインセンティブ活用を含め、タイをASEANのハブ拠点と位置付けた戦略再考が望まれます。",
+    url: "https://www.boi.go.th/"
+  },
+  {
+    id: "906",
+    title: "【オランダ】MDR物流：2026年 サステナビリティ要件",
+    region: "Europe",
+    date: "2025-12-10",
+    riskLevel: "Medium",
+    scenario: "「グリーンディール3.0」に基づき、2026年までに医療機器の20%を再利用可能（Reusable）にする目標を設定。物流ハブとしての環境規制も強化。",
+    impact: "欧州物流拠点としてオランダを利用する企業は、梱包材の削減やリサイクル対応が必須に。",
+    action: "欧州向け製品のパッケージング仕様を見直し、環境配慮型素材への切り替え検討が望まれます。",
+    url: "https://www.government.nl/"
+  },
+  {
+    id: "907",
+    title: "【スイス】Swissdamed：2026年7月 登録義務化",
+    region: "Europe",
+    date: "2026-01-04",
+    riskLevel: "High",
+    scenario: "スイス独自の医療機器データベース「swissdamed」への製品登録が、2026年7月1日より完全義務化される。EU EUDAMEDとは連携しない。",
+    impact: "スイス代理人（CH-REP）を通じた登録作業が必須となり、未登録製品は市場から排除される。",
+    action: "2026年7月の期限に向け、全輸出製品のswissdamed登録スケジュールを代理人と確実に共有することをお勧めします。",
+    url: "https://www.swissmedic.ch/"
   }
-];
