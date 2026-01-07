@@ -5,9 +5,12 @@ import { AlertTriangle, TrendingUp, AlertCircle, Info, ChevronRight, Briefcase }
 
 interface RiskScenarioCardProps {
     article: Article;
+    language: 'ja' | 'en';
 }
 
-export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
+export function RiskScenarioCard({ article, language }: RiskScenarioCardProps) {
+    const isEn = language === 'en';
+
     const getRiskColor = (level: string) => {
         if (level === 'High') return 'bg-red-50 border-red-200 text-red-900';
         if (level === 'Medium') return 'bg-amber-50 border-amber-200 text-amber-900';
@@ -15,9 +18,16 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
     };
 
     const getRiskBadge = (level: string) => {
-        if (level === 'High') return <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-100 text-red-700 border border-red-200">高リスク</span>;
-        if (level === 'Medium') return <span className="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200">中リスク</span>;
-        return <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">低リスク</span>;
+        const labels = {
+            High: { ja: '高リスク', en: 'High Risk' },
+            Medium: { ja: '中リスク', en: 'Med Risk' },
+            Low: { ja: '低リスク', en: 'Low Risk' }
+        };
+        const label = labels[level as keyof typeof labels]?.[language] || level;
+
+        if (level === 'High') return <span className="px-2 py-0.5 rounded text-xs font-bold bg-red-100 text-red-700 border border-red-200">{label}</span>;
+        if (level === 'Medium') return <span className="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200">{label}</span>;
+        return <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">{label}</span>;
     };
 
     const regionMap: Record<string, string> = {
@@ -32,6 +42,8 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
         'Latin America': '中南米'
     };
 
+    const displayRegion = isEn ? article.region : (regionMap[article.region] || article.region);
+
     // Extract domain from URL
     const getDomain = (url: string) => {
         try {
@@ -45,7 +57,7 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
         <div className="group relative bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-300">
             <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{regionMap[article.region] || article.region}</span>
+                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{displayRegion}</span>
                 </div>
                 <div className="flex items-center gap-1">
                     {getRiskBadge(article.riskLevel)}
@@ -56,10 +68,10 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
             <h3 className="text-lg font-serif font-bold text-slate-900 leading-snug mb-4 group-hover:text-blue-800 transition-colors">
                 {article.url ? (
                     <a href={article.url} target="_blank" rel="noopener noreferrer" className="hover:underline decoration-blue-300 decoration-2 underline-offset-2">
-                        {article.title}
+                        {article.title[language]}
                     </a>
                 ) : (
-                    <span>{article.title}</span>
+                    <span>{article.title[language]}</span>
                 )}
             </h3>
 
@@ -68,8 +80,10 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 <div className="relative pl-4 border-l-2 border-slate-300">
                     <div className="absolute -left-[5px] top-0.5 w-2 h-2 rounded-full bg-slate-300"></div>
                     <p className="text-sm text-slate-700 leading-relaxed">
-                        <span className="font-semibold text-slate-900 block text-xs uppercase mb-0.5 text-slate-500">【リスクシナリオ】</span>
-                        {article.scenario}
+                        <span className="font-semibold text-slate-900 block text-xs uppercase mb-0.5 text-slate-500">
+                            {isEn ? '[Risk Scenario]' : '【リスクシナリオ】'}
+                        </span>
+                        {article.scenario[language]}
                     </p>
                 </div>
 
@@ -78,9 +92,10 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                     <div className={`absolute -left-[5px] top-2.5 w-2 h-2 rounded-full ${article.riskLevel === 'High' ? 'bg-red-400' : 'bg-blue-400'}`}></div>
                     <p className="text-sm text-slate-800 leading-relaxed">
                         <span className={`font-semibold block text-xs uppercase mb-0.5 flex items-center gap-1 ${article.riskLevel === 'High' ? 'text-red-700' : 'text-blue-700'}`}>
-                            <TrendingUp size={12} /> 【企業への影響 / インパクト】
+                            <TrendingUp size={12} />
+                            {isEn ? ' [Business Impact]' : ' 【企業への影響 / インパクト】'}
                         </span>
-                        {article.impact}
+                        {article.impact[language]}
                     </p>
                 </div>
 
@@ -88,7 +103,10 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 <div className="mt-3 flex items-start gap-2 bg-slate-50 p-2 rounded border border-slate-200">
                     <AlertCircle className="w-4 h-4 text-slate-500 mt-0.5 shrink-0" />
                     <p className="text-xs font-medium text-slate-600">
-                        <span className="font-bold text-slate-700">推奨アクション:</span> {article.action}
+                        <span className="font-bold text-slate-700">
+                            {isEn ? 'Recommended Action: ' : '推奨アクション: '}
+                        </span>
+                        {article.action[language]}
                     </p>
                 </div>
             </div>
@@ -99,11 +117,11 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 </span>
                 {article.url ? (
                     <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group/link">
-                        情報ソース <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
+                        {isEn ? 'Source' : '情報ソース'} <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
                     </a>
                 ) : (
                     <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                        <Info size={12} /> 独自分析
+                        <Info size={12} /> {isEn ? 'Analysis' : '独自分析'}
                     </span>
                 )}
             </div>
