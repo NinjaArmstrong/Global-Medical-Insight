@@ -97,13 +97,14 @@ export function RiskScenarioCard({ article }: RiskScenarioCardProps) {
                 <span className="text-xs text-slate-400 truncate max-w-[200px]">
                     {article.url ? getDomain(article.url) : 'Internal Intelligence'}
                 </span>
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group/link">
-                    情報ソース <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
-                </a>
+                {article.url ? (
+                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 group/link">
+                        情報ソース <ChevronRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
+                    </a>
                 ) : (
-                <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                    <Info size={12} /> 独自分析
-                </span>
+                    <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
+                        <Info size={12} /> 独自分析
+                    </span>
                 )}
             </div>
         </div>
