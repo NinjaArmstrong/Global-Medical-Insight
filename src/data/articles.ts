@@ -1015,6 +1015,106 @@ export const articles: Article[] = [
     impact: { ja: "開発サイクルの高速化が可能になる一方、市販後データ収集（RWD）の質が承認継続の鍵となる。", en: "Faster dev cycles, but RWD quality becomes key to maintaining approval." },
     action: { ja: "PMDAの最新相談枠を活用し、市販後学習プラン（IDATEN）の適用可能性について早期に規制当局と協議されることを推奨します。", en: "Consult PMDA early on IDATEN applicability for post-market learning plans." },
     url: "https://www.pmda.go.jp/review-services/reexamine-revaluate/samd/0001.html"
+  },
+  // --- Daily Simulation Batch (Jan 7, 2026) ---
+  {
+    id: "1101",
+    title: { ja: "【米国】FDA QMSR：2月2日施行直前の最終点検", en: "[US] FDA QMSR: Final Check Before Feb 2 Enforcement" },
+    region: "North America",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: { ja: "2026年2月2日のQMSR（品質マネジメントシステム規則）施行まで残り1ヶ月を切る。ISO 13485:2016への完全調和が求められ、FDA査察基準（QSIT）も刷新される。", en: "Less than 1 month to Feb 2, 2026 QMSR enforcement. Full alignment with ISO 13485:2016 demanded." },
+    impact: { ja: "米国向け輸出を行う全ての医療機器メーカーにおいて、QMS文書（特にリスクマネジメント規定）の不整合が査察指摘の対象となるリスク。", en: "Risk of inspection findings for exporters if QMS docs (esp. Risk Mgmt) are misaligned." },
+    action: { ja: "品質保証部門と連携し、ISO 13485対応ギャップ分析の最終確認と、模擬査察（Mock Inspection）による現場対応力の再点検が強く推奨されます。", en: "Strongly recommend final gap analysis with QA and Mock Inspections." },
+    url: "https://www.fda.gov/medical-devices/quality-system-qs-regulationmedical-device-current-good-manufacturing-practices-cgmp/quality-management-system-regulation-final-rule-questions-and-answers"
+  },
+  {
+    id: "1102",
+    title: { ja: "【欧州】AI法：高リスクAI医療機器の2026年8月要件", en: "[Europe] AI Act: High-Risk Device Requirements Aug 2026" },
+    region: "Europe",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: { ja: "EU AI法に基づく高リスクAIシステムの適合期限（2026年8月2日）が迫る。医療機器規則（MDR）との重複要件に関するガイドラインが発出。", en: "Aug 2, 2026 deadline for High-Risk AI systems approaches. Guidelines on MDR overlap issued." },
+    impact: { ja: "AI搭載画像診断支援システムやトリアージSWを展開する企業は、技術文書（Technical File）へのAI法要件（人間による監視、データガバナンス）の追記が必須。", en: "Technical Files for AI CAD/triage SW must include AI Act reqs (Transparency, Oversight)." },
+    action: { ja: "開発部門に対し、自社製品AIアルゴリズムの「透明性」および「人間による監視（Human Oversight）」要件への適合状況を、技術文書レベルで検証するよう指示することが望まれます。", en: "Instruct R&D to verify algorithm transparency and human oversight compliance in Tech Files." },
+    url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+  },
+  {
+    id: "1103",
+    title: { ja: "【日本】医療DX：2026年度予算執行とサイバーセキュリティ", en: "[Japan] Medical DX: 2026 Budget & Cybersecurity" },
+    region: "East Asia",
+    date: "2026-01-07",
+    riskLevel: "Medium",
+    scenario: { ja: "厚労省は2026年度の医療DX推進予算の執行を開始。電子カルテ情報共有サービスの普及に向け、サイバーセキュリティ対策助成が重点化される。", en: "MHLW starts 2026 DX budget execution. Focus on Cybersec subsidies for EHR sharing service." },
+    impact: { ja: "医療機関向けシステムベンダーおよび接続機器メーカーには、SBOM（ソフトウェア部品表）の提供と脆弱性対応プロセスが調達要件として課される。", en: "SBOM and vulnerability handling become procurement requirements for vendors/connected devices." },
+    action: { ja: "製品セキュリティ対応チーム（PSIRT）を主導し、厚労省の最新ガイドラインに準拠したSBOM提供体制が整っているか、営業部門と共有確認を行うことをお勧めします。", en: "Confirm with PSIRT if SBOM provision meets latest MHLW guidelines to support sales." },
+    url: "https://www.mhlw.go.jp/stf/2026budget_dx.html"
+  },
+  {
+    id: "1104",
+    title: { ja: "【インドネシア】ハラール認証：2026年10月義務化へのカウントダウン", en: "[Indonesia] Halal: Countdown to Oct 2026 Mandate" },
+    region: "Southeast Asia",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: { ja: "医療機器・医薬品のハラール認証義務化期限（2026年10月）まで残り9ヶ月。BPJPH（ハラール製品保証実施機関）への申請が急増中。", en: "9 months to Oct 2026 Halal mandate for devices/pharma. Flood of apps to BPJPH." },
+    impact: { ja: "動物由来原料（ゼラチン等）を使用する製品において、代替原料への切り替え、またはハラール非該当証明の取得が遅れると、販売停止リスクが生じる。", en: "Risk of sales stop for animal-derived products if replacement or non-Halal proof is delayed." },
+    action: { ja: "サプライチェーン部門において、インドネシア向け製品のBOM（部品表）詳細スクリーニングを完了させ、現地代理店を通じてBPJPHへの事前相談枠を確保することが賢明です。", en: "Supply Chain should screen BOMs and secure BPJPH consultation slots via agents." },
+    url: "https://bpjph.halal.go.id/"
+  },
+  {
+    id: "1105",
+    title: { ja: "【インド】CDSCO：クラスC/D機器の未登録品摘発強化", en: "[India] CDSCO: Crackdown on Unregistered Class C/D" },
+    region: "South Asia",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: { ja: "2025年末の登録期限経過を受け、CDSCO（中央医薬品標準管理機構）は主要港湾でのクラスC/D機器（高リスク）の通関検査を厳格化。", en: "CDSCO tightens port checks for Class C/D following end-2025 deadline." },
+    impact: { ja: "登録証（Form MD-15）未取得のインプラント製品等が税関で滞留し、現地の病院在庫が枯渇する恐れがある。", en: "Customs stoppages for unregistered implants risk depleting local hospital stock." },
+    action: { ja: "物流部門に対し、インド向け出荷製品全ロットについて登録証コピーの同梱を徹底させるとともに、現地代理店の在庫状況を緊急確認することが推奨されます。", en: "Logistics must include Form MD-15 copies with all lots; urgently check agent inventory." },
+    url: "https://cdsco.gov.in/"
+  },
+  {
+    id: "1106",
+    title: { ja: "【サウジ】NUPCO：2026年調達におけ現地化要件", en: "[Saudi] NUPCO: 2026 Localization Requirements" },
+    region: "Middle East",
+    date: "2026-01-07",
+    riskLevel: "Medium",
+    scenario: { ja: "統一調達会社NUPCOは、2026年度の医療機器入札において「現地製造比率」の加点評価を大幅に引き上げると発表。", en: "NUPCO hikes 'Local Content' scores for 2026 device tenders." },
+    impact: { ja: "サウジ国内に製造・組立拠点を持たない海外メーカーは、価格競争力があっても入札で不利になり、シェアを失うリスク。", en: "Foreign makers without local manufacturing risk losing share despite competitive pricing." },
+    action: { ja: "経営企画部門と連携し、現地パートナー企業への委託製造（CDMO活用）または最終組立工程の現地化F/S（フィージビリティスタディ）を加速させる検討が必要です。", en: "Accelerate F/S for local CDMO or assembly with Corporate Planning." },
+    url: "https://www.nupco.com/"
+  },
+  {
+    id: "1107",
+    title: { ja: "【ケニア】デジタルヘルス法：2026年病院連携始動", en: "[Kenya] Digital Health Act: 2026 Hospital Linkage" },
+    region: "Africa",
+    date: "2026-01-07",
+    riskLevel: "Low",
+    scenario: { ja: "ケニア政府はUHC（国民皆保険）基盤となる「デジタルヘルススーパーハイウェイ」プロジェクトを始動。公立病院のデータ標準化を義務付け。", en: "Kenya starts 'Digital Health Superhighway'. Public hospitals forced to standardize data." },
+    impact: { ja: "ケニア市場に参入する検体検査装置や生体モニタメーカーに対し、HL7 FHIR等の国際標準規格への準拠と、国家システムへの接続性が求められる。", en: "Lab/Monitor makers must comply with HL7 FHIR for national system connectivity." },
+    action: { ja: "R&D部門に対し、自社製品のインターフェース仕様がケニア保健省の指定するデータ標準に適合可能か、技術的なギャップ分析を行うよう指示することが推奨されます。", en: "Instruct R&D to perform gap analysis on interface compliance with Ministry standards." },
+    url: "https://health.go.ke/"
+  },
+  {
+    id: "1108",
+    title: { ja: "【メキシコ】大統領令：2026年医薬品国産化インセンティブ", en: "[Mexico] Presidential Decree: 2026 Domestic Incentives" },
+    region: "Latin America",
+    date: "2026-01-07",
+    riskLevel: "Medium",
+    scenario: { ja: "メキシコ政府は必須医薬品の国内自給率向上を目指し、国内製造企業に対する税制優遇と公共入札優先枠を定めた大統領令を施行。", en: "Decree grants tax breaks/tender priority to domestic pharma to boost self-sufficiency." },
+    impact: { ja: "メキシコへ完成品輸出を行っている製薬企業は、公的市場（IMSS等）での入札機会が減少するリスク。", en: "Exporting pharma firms face reduced opportunities in public tenders (IMSS)." },
+    action: { ja: "現地法人の薬事・開発チームと協議し、現地CMO（受託製造機関）への技術移転による「メキシコ製」ラベル取得の費用対効果を試算することが得策です。", en: "Calculate ROI of local 'Made in Mexico' labeling via CMO with local RA team." },
+    url: "https://www.gob.mx/cofepris"
+  },
+  {
+    id: "1109",
+    title: { ja: "【米国】CMS薬価交渉：2026年適用開始の波紋", en: "[US] CMS Drug Price Negotiation: 2026 Start" },
+    region: "Global",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: { ja: "インフレ抑制法（IRA）に基づく最初の10品目の交渉価格が2026年1月1日より適用開始。民間保険者（PBM）もこれに追随する動き。", en: "First 10 IRA Negotiated Prices effective Jan 1, 2026. PBMs following suit." },
+    impact: { ja: "対象薬と競合する治療領域（糖尿病、循環器等）を持つ製薬企業は、フォーミュラリー（採用医薬品リスト）からの除外や、リベート増額圧力に直面する。", en: "Pharma in competing categories (Diabetes/CV) face formulary exclusion/rebate pressure." },
+    action: { ja: "米国マーケットアクセスチームと連携し、競合品値下げに伴う自社製品の価格戦略見直しと、リアルワールドエビデンス（RWE）を用いた費用対効果の再訴求準備が急務となります。", en: "Urgently review pricing strategy and RWE value proposition with Market Access team." },
+    url: "https://www.cms.gov/inflation-reduction-act-and-medicare"
   }
 ];
 
