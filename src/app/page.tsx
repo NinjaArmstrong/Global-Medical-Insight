@@ -29,6 +29,19 @@ export default function Dashboard() {
     'Latin America': '中南米'
   };
 
+  const displayToDataMap: Record<string, string> = {
+    'すべて': 'All',
+    'グローバル': 'Global',
+    '東アジア': 'East Asia',
+    '東南アジア': 'Southeast Asia',
+    '南アジア': 'South Asia',
+    '中東': 'Middle East',
+    'アフリカ': 'Africa',
+    '欧州': 'Europe',
+    '北米': 'North America',
+    '中南米': 'Latin America'
+  };
+
   const filteredArticles = useMemo(() => {
     return articles.filter(article => {
       const matchSearch =
@@ -36,7 +49,8 @@ export default function Dashboard() {
         article.scenario.toLowerCase().includes(searchQuery.toLowerCase()) ||
         article.impact.toLowerCase().includes(searchQuery.toLowerCase());
 
-      const matchRegion = selectedRegion === 'すべて' || article.region === selectedRegion;
+      const targetRegion = displayToDataMap[selectedRegion];
+      const matchRegion = selectedRegion === 'すべて' || article.region === targetRegion;
       const matchRisk = selectedRisk === 'All' || article.riskLevel === selectedRisk;
       // const matchCompany = selectedCompany === 'All' ||
       //   (selectedCompany === 'Others' ? article.company === 'General Market' : article.company === selectedCompany);

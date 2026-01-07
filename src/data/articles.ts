@@ -239,7 +239,7 @@ export const articles: Article[] = [
   {
     id: "301",
     title: "China NMPA New GMP No. 107",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-11-01",
     riskLevel: "High",
     scenario: "New GMP for Medical Devices (No. 107 of 2025) takes full effect Nov 2026.",
@@ -250,7 +250,7 @@ export const articles: Article[] = [
   {
     id: "302",
     title: "China VBP 6th Round Plan 2025",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-12-10",
     riskLevel: "High",
     scenario: "NHSA announces 6th Volume-Based Procurement round targeting high-value consumables.",
@@ -261,7 +261,7 @@ export const articles: Article[] = [
   {
     id: "303",
     title: "China High-End Device Policy 2025",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-10-15",
     riskLevel: "Low",
     scenario: "NMPA Announcement No. 63 (July 2025) fully operational, fast-tracking innovation.",
@@ -272,7 +272,7 @@ export const articles: Article[] = [
   {
     id: "304",
     title: "Japan Chuikyo FY2026 Reform",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-12-26",
     riskLevel: "Medium",
     scenario: "Chuikyo approves 'Medical Materials Reform Outline' for FY2026.",
@@ -283,7 +283,7 @@ export const articles: Article[] = [
   {
     id: "305",
     title: "Japan PMDA US Office Opening",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-09-10",
     riskLevel: "Low",
     scenario: "PMDA opened Washington DC office to facilitate US-Japan regulatory harmony.",
@@ -294,7 +294,7 @@ export const articles: Article[] = [
   {
     id: "306",
     title: "Japan Digital Health 2026 Strategy",
-    region: "Asia",
+    region: "East Asia",
     date: "2026-01-04",
     riskLevel: "Low",
     scenario: "MHLW pushes 'Medical DX 2030', promoting electronic prescriptions and digital charts.",
@@ -305,7 +305,7 @@ export const articles: Article[] = [
   {
     id: "307",
     title: "Korea MFDS Digital Products Act",
-    region: "Asia",
+    region: "East Asia",
     date: "2026-01-05",
     riskLevel: "High",
     scenario: "Enforcement decrees for Digital Medical Products Act effective Jan 24, 2026.",
@@ -316,7 +316,7 @@ export const articles: Article[] = [
   {
     id: "308",
     title: "Korea AI Device Guidance Update",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-11-20",
     riskLevel: "Medium",
     scenario: "MFDS issues updated guidance on transparency and cybersecurity for AI devices.",
@@ -327,7 +327,7 @@ export const articles: Article[] = [
   {
     id: "309",
     title: "Taiwan TFDA 2026 Regulations",
-    region: "Asia",
+    region: "East Asia",
     date: "2025-12-01",
     riskLevel: "Medium",
     scenario: "Taiwan TFDA aligns QMS requirements closer to ISO 13485:2016.",
@@ -338,7 +338,7 @@ export const articles: Article[] = [
   {
     id: "310",
     title: "Hong Kong Medical Fair 2026",
-    region: "Asia",
+    region: "East Asia",
     date: "2026-01-02",
     riskLevel: "Low",
     scenario: "HKTDC announces dates for Hong Kong International Medical and Healthcare Fair 2026.",
@@ -463,7 +463,7 @@ export const articles: Article[] = [
   {
     id: "501",
     title: "Vietnam MedTech Market Growth 2026",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2026-01-04",
     riskLevel: "Low",
     scenario: "Vietnam market forecast to reach $2.1B; strong Japan investment.",
@@ -474,7 +474,7 @@ export const articles: Article[] = [
   {
     id: "502",
     title: "Vietnam-Japan Healthcare Coop",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2025-11-15",
     riskLevel: "Low",
     scenario: "Asahi Intecc and Omron expand production and sales in Vietnam.",
@@ -485,7 +485,7 @@ export const articles: Article[] = [
   {
     id: "503",
     title: "India CDSCO Risk Classification Module",
-    region: "Asia",
+    region: "South Asia",
     date: "2025-11-27",
     riskLevel: "Medium",
     scenario: "CDSCO launches online Risk Classification Module for transparency.",
@@ -496,7 +496,7 @@ export const articles: Article[] = [
   {
     id: "504",
     title: "India Medical Device Rules Amendment",
-    region: "Asia",
+    region: "South Asia",
     date: "2025-12-04",
     riskLevel: "Low",
     scenario: "Draft rule proposes perpetual validity for manufacturing/import licenses.",
@@ -507,7 +507,7 @@ export const articles: Article[] = [
   {
     id: "505",
     title: "India PLI Scheme 2026 Update",
-    region: "Asia",
+    region: "South Asia",
     date: "2025-12-20",
     riskLevel: "Medium",
     scenario: "India expands Production Linked Incentive (PLI) for high-end devices.",
@@ -518,7 +518,7 @@ export const articles: Article[] = [
   {
     id: "506",
     title: "Indonesia Halal Mandate Class A",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2025-10-25",
     riskLevel: "High",
     scenario: "Mandatory Halal certification for Class A devices deadline set for Oct 2026.",
@@ -529,7 +529,7 @@ export const articles: Article[] = [
   {
     id: "507",
     title: "Indonesia TKDN Local Content",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2025-11-10",
     riskLevel: "Medium",
     scenario: "Stricter TKDN requirements for public procurement in Indonesia.",
@@ -540,7 +540,7 @@ export const articles: Article[] = [
   {
     id: "508",
     title: "Thailand Medical Hub Strategy 2026",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2026-01-05",
     riskLevel: "Low",
     scenario: "509M THB budget allocated for border medical hubs in fiscal 2026.",
@@ -551,7 +551,7 @@ export const articles: Article[] = [
   {
     id: "509",
     title: "Singapore HSA SHARE Platform",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2025-11-01",
     riskLevel: "Medium",
     scenario: "Full transition to SHARE platform for all device applications.",
@@ -562,7 +562,7 @@ export const articles: Article[] = [
   {
     id: "510",
     title: "Malaysia MDA Fee Increase Jan 2026",
-    region: "Asia",
+    region: "Southeast Asia",
     date: "2025-12-10",
     riskLevel: "Medium",
     scenario: "Class A application fees increased effective Jan 1, 2026.",

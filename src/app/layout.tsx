@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Data Reset: Final Synthesis 60 Verified Items)
+// Updated: 2026-01-07 (BugFix: Sidebar Filters & Granular Asia Regions)
