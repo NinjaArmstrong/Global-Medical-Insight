@@ -982,3 +982,4 @@ export const articles: Article[] = [
     action: "2026年7月の期限に向け、全輸出製品のswissdamed登録スケジュールを代理人と確実に共有することをお勧めします。",
     url: "https://www.swissmedic.ch/"
   }
+];
