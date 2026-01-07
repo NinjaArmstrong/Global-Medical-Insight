@@ -793,4 +793,228 @@ export const articles: Article[] = [
     action: { ja: "現地代理店との価格交渉を頻回に行い、MDR適合宣言書の早期提出および製品ポートフォリオの絞り込みをご検討ください。", en: "Discuss price frequently with agents; submit MDR docs early; consider portfolio pruning." },
     url: "https://www.titck.gov.tr/"
   },
+  // --- Designated Emerging Markets (Batch 8) ---
+  {
+    id: "801",
+    title: { ja: "【エジプト】EDA 2026年：医療機器輸入規制と現地化優遇", en: "[Egypt] EDA 2026: Device Import Rules & Localization Incentives" },
+    region: "Africa",
+    date: "2025-11-15",
+    riskLevel: "High",
+    scenario: { ja: "統一調達庁（UPA）が国内製造品の優先購入を強化。輸入品に対する登録要件が厳格化。", en: "UPA prioritizes domestic products. Stricter registration for imports." },
+    impact: { ja: "エジプト市場に輸出するシスメックスやフクダ電子は、現地生産または技術移転の圧力を受ける。", en: "Sysmex/Fukuda Denshi face pressure for local production/tech transfer." },
+    action: { ja: "EDA（エジプト医薬品庁）の最新ガイダンスを確認し、現地パートナーとのジョイントベンチャー可能性を探るのが得策です。", en: "Check latest EDA guidance and explore joint ventures with local partners." },
+    url: "https://www.edaegypt.gov.eg/"
+  },
+  {
+    id: "802",
+    title: { ja: "【モロッコ】AMO 2026：国民皆保険の一般化完了", en: "[Morocco] AMO 2026: Universal Health Coverage Complete" },
+    region: "Africa",
+    date: "2026-01-02",
+    riskLevel: "Low",
+    scenario: { ja: "強制医療保険（AMO）の適用範囲が全国民に拡大。公立病院の近代化予算が増額。", en: "Compulsory Health Insurance (AMO) covers all citizens. Public hospital modernization budget increased." },
+    impact: { ja: "カサブランカ、ラバト以外の地方都市における画像診断装置（キヤノン、富士フイルム）の需要増。", en: "Increased demand for imaging (Canon/Fujifilm) in regional cities beyond Casablanca/Rabat." },
+    action: { ja: "地方自治体の病院整備計画を入手し、販売代理店網を地方都市へ拡張することを推奨します。", en: "Get local hospital plans and expand distributor network to regional cities." },
+    url: "https://www.cnss.ma/"
+  },
+  {
+    id: "803",
+    title: { ja: "【ナイジェリア】NAFDAC 2026：通貨危機と輸入コスト", en: "[Nigeria] NAFDAC 2026: Currency Crisis & Import Costs" },
+    region: "Africa",
+    date: "2025-12-10",
+    riskLevel: "High",
+    scenario: { ja: "ナイラ安の進行により、医薬品・機器の輸入コストが急騰。NAFDACが価格統制を検討。", en: "Naira depreciation spikes import costs. NAFDAC considers price controls." },
+    impact: { ja: "ナイジェリアでの販売価格維持が困難に。代金回収リスクが増大。", en: "Maintaining prices becomes difficult. Increased payment collection risk." },
+    action: { ja: "信用状（L/C）取引の徹底と、前払い条件の交渉を代理店と行うことが不可欠です。", en: "Strict L/C transactions and negotiation of advance payments with agents are essential." },
+    url: "https://www.nafdac.gov.ng/"
+  },
+  {
+    id: "804",
+    title: { ja: "【ケニア】UHC 2026：デジタルヘルス法案の施行", en: "[Kenya] UHC 2026: Digital Health Bill Enforcement" },
+    region: "Africa",
+    date: "2026-01-05",
+    riskLevel: "Medium",
+    scenario: { ja: "ユニバーサル・ヘルス・カバレッジ（UHC）推進のため、デジタルヘルス法が施行され、遠隔医療の標準化が進む。", en: "Digital Health Act enforced to promote UHC; telemedicine standardization advances." },
+    impact: { ja: "ケニアで事業展開するNEC（生体認証）や医療IT企業に、国家ID連携システムの商機。", en: "Business opportunity for NEC (biometrics) and IT firms in national ID integration." },
+    action: { ja: "ケニア保健省のDXプロジェクトチームに対し、技術提案（PoC）を持ちかけることをお勧めします。", en: "We recommend proposing PoCs to the Kenya Ministry of Health's DX team." },
+    url: "https://www.health.go.ke/"
+  },
+  {
+    id: "805",
+    title: { ja: "【南アフリカ】SAHPRA：NHI法と民間医療の行方", en: "[South Africa] SAHPRA: NHI Bill & Private Sector Future" },
+    region: "Africa",
+    date: "2025-12-20",
+    riskLevel: "High",
+    scenario: { ja: "国民健康保険（NHI）法の施行に向け、民間医療保険の役割が制限される可能性。富裕層向け市場が不透明化。", en: "NHI Bill implementation may limit private insurance roles, clouding the premium market outlook." },
+    impact: { ja: "南ア市場で高収益を上げていた高度医療機器メーカー（オリンパス等）のビジネスモデルに転換圧力。", en: "Pressure on business models of high-end makers (Olympus) profiting in SA private sector." },
+    action: { ja: "公的セクター（NHI）への参入障壁を下げるため、ミドルレンジ製品のラインナップ拡充をご検討ください。", en: "Consider expanding mid-range lineups to lower barriers for public sector (NHI) entry." },
+    url: "https://www.sahpra.org.za/"
+  },
+  {
+    id: "806",
+    title: { ja: "【サウジ】Seha現地化：医療機器保守のサウジ人化義務", en: "[Saudi] Seha Localization: Saudization of Maintenance" },
+    region: "Middle East",
+    date: "2026-01-06",
+    riskLevel: "Medium",
+    scenario: { ja: "サウジ化（Saudization）政策が医療機器メンテナンス職にも厳格適用。外国人エンジニアのビザ発給制限。", en: "Saudization strictly applied to device maintenance. Visa curbs for foreign engineers." },
+    impact: { ja: "現地代理店のサービス体制弱体化リスク。日本人エンジニアの派遣が困難に。", en: "Risk of weakened agent service capabilities. Dispatching Japanese engineers becomes hard." },
+    action: { ja: "現地の技術学校と提携し、サウジ人エンジニアの育成プログラムを早期に立ち上げることを推奨します。", en: "We recommend partnering with local tech schools to start Saudi engineer training programs." },
+    url: "https://www.hrsd.gov.sa/"
+  },
+  {
+    id: "807",
+    title: { ja: "【UAE】AI規制：ドバイ保健局のAI診断ガイドライン", en: "[UAE] AI Regulation: DHA AI Diagnostic Guidelines" },
+    region: "Middle East",
+    date: "2025-11-25",
+    riskLevel: "Low",
+    scenario: { ja: "ドバイが医療AIの倫理および責任に関する世界初の包括的ガイドラインを策定。", en: "Dubai formulates world's first comprehensive guidelines on medical AI ethics/liability." },
+    impact: { ja: "AI搭載機器を展開する富士フイルムやキヤノンにとって、中東発のグローバル標準となる可能性。", en: "Potential global standard from Middle East for AI device makers (Fujifilm/Canon)." },
+    action: { ja: "DHAのガイドラインへの適合をアピールポイントとし、中東全域へのマーケティングに活用してください。", en: "Use DHA guideline compliance as a selling point for marketing across the Middle East." },
+    url: "https://www.dha.gov.ae/"
+  },
+  {
+    id: "808",
+    title: { ja: "【パキスタン】DRAP：輸入L/C開設の遅延常態化", en: "[Pakistan] DRAP: Chronic Import L/C Delays" },
+    region: "South Asia",
+    date: "2025-12-05",
+    riskLevel: "High",
+    scenario: { ja: "外貨準備不足により、医療機器の輸入信用状（L/C）開設に数ヶ月の遅れ。", en: "FX shortage causes months-long delays in opening Import L/Cs for devices." },
+    impact: { ja: "パキスタン向け輸出の滞留と、代理店の在庫枯渇。", en: "Stalled exports to Pakistan and agent stockouts." },
+    action: { ja: "人道支援物資としての優先枠確保が可能か、日本大使館やJICAに相談することをお勧めします。", en: "Consult Embassy/JICA on securing priority slots as humanitarian aid." },
+    url: "https://www.dra.gov.pk/"
+  },
+  {
+    id: "809",
+    title: { ja: "【インド】CDSCO：クラスC/D機器の登録期限厳守", en: "[India] CDSCO: Strict Class C/D Deadlines" },
+    region: "South Asia",
+    date: "2025-10-01",
+    riskLevel: "High",
+    scenario: { ja: "高リスク機器（クラスC/D）の強制登録期限が終了し、未登録品の輸入が税関で停止。", en: "Mandatory registration deadline for Class C/D ends; unregistered imports stopped at customs." },
+    impact: { ja: "登録が完了していない日本製品は、インド市場からの撤退を余儀なくされる。", en: "Unregistered Japanese products forced to withdraw from India market." },
+    action: { ja: "登録証（Form MD-15）の有効性を直ちに確認し、未完了の場合は緊急出荷停止措置をとってください。", en: "Verify Form MD-15 validity immediately; stop shipments if incomplete." },
+    url: "https://cdsco.gov.in/"
+  },
+  {
+    id: "810",
+    title: { ja: "【フィリピン】FDA：デジタル化とASEAN整合", en: "[Philippines] FDA: Digitalization & ASEAN Alignment" },
+    region: "Southeast Asia",
+    date: "2026-01-03",
+    riskLevel: "Medium",
+    scenario: { ja: "フィリピンFDAがオンライン申請システムを刷新し、AMDD（ASEAN医療機器指令）への整合を加速。", en: "Philippines FDA revamps online system, accelerating AMDD alignment." },
+    impact: { ja: "CSDT形式での申請が定着し、他のASEAN諸国との資料共通化が可能に。", en: "CSDT application format takes root, allowing doc sharing with other ASEAN nations." },
+    action: { ja: "ASEAN共通技術文書（CSDT）のテンプレートを整備し、フィリピンを含む地域一括申請の効率化を図るべきです。", en: "Prepare ASEAN CSDT templates to streamline regional regional applications." },
+    url: "https://www.fda.gov.ph/"
+  },
+  // --- Essential Gap-Fill Markets (Batch 9) ---
+  {
+    id: "901",
+    title: { ja: "【ブラジル】ANVISA：デジタルヘルス課題2026-2027", en: "[Brazil] ANVISA: Digital Health Agenda 2026-2027" },
+    region: "Latin America",
+    date: "2026-01-07",
+    riskLevel: "Low",
+    scenario: { ja: "ANVISAが次期規制アジェンダにて、SaMDおよびサイバーセキュリティを最優先課題に指定。", en: "ANVISA designates SaMD and cybersecurity as top priorities in next regulatory agenda." },
+    impact: { ja: "ブラジル市場でのソフトウェア医療機器の審査基準が明確化し、参入障壁が低下。", en: "Clarified SaMD review criteria lower entry barriers in Brazil." },
+    action: { ja: "規制アジェンダの草案（Public Consultation）に対し、業界団体を通じて意見提出を行う好機です。", en: "Good chance to submit comments on draft agenda via industry groups." },
+    url: "https://www.gov.br/anvisa/"
+  },
+  {
+    id: "902",
+    title: { ja: "【メキシコ】COFEPRIS：リライアンスパスウェイ活用", en: "[Mexico] COFEPRIS: Reliance Pathway Usage" },
+    region: "Latin America",
+    date: "2025-12-15",
+    riskLevel: "Medium",
+    scenario: { ja: "米国FDAやカナダ保健省の承認を活用した簡易審査ルート（Reliance）の適用実績が増加。", en: "Increased use of Reliance pathway leveraging FDA/Health Canada approvals." },
+    impact: { ja: "北米承認を持つ日本製品のメキシコ登録期間が、従来比で大幅短縮（6ヶ月以内）。", en: "Mexico registration time for NA-approved Japanese products cut significantly (<6 mos)." },
+    action: { ja: "同等性協議ルート（Equivalency Agreement）の適用可否を、現地薬事担当社と再確認してください。", en: "Re-confirm applicability of Equivalency Agreement with local RA staff." },
+    url: "https://www.gob.mx/cofepris"
+  },
+  {
+    id: "903",
+    title: { ja: "【インドネシア】ハラール認証：2026年10月期限への対応", en: "[Indonesia] Halal: Oct 2026 Deadline Response" },
+    region: "Southeast Asia",
+    date: "2025-11-20",
+    riskLevel: "High",
+    scenario: { ja: "BPJPHへのハラール認証申請が殺到し、審査の長期化が懸念される。", en: "Flood of Halal applications to BPJPH raises concerns of prolonged reviews." },
+    impact: { ja: "期限直前の駆け込み申請では、2026年10月の義務化開始に間に合わないリスク。", en: "Last-minute applications risk missing the Oct 2026 mandatory start." },
+    action: { ja: "製品の原材料リスト（BOM）における動物由来物質の有無を証明する書類を早急に準備してください。", en: "Prepare docs proving absence of animal materials in BOM immediately." },
+    url: "https://halalmui.org/"
+  },
+  {
+    id: "904",
+    title: { ja: "【ベトナム】入札規則 Circular 57：2026年改定", en: "[Vietnam] Tender Circular 57: 2026 Revision" },
+    region: "Southeast Asia",
+    date: "2026-01-02",
+    riskLevel: "Medium",
+    scenario: { ja: "公立病院の入札に関するCircularモデルが見直され、価格だけでなく品質評価の比重が増加。", en: "Public hospital tender Circular revised; increased weight on quality over price." },
+    impact: { ja: "高品質な日本製品（シスメックス、日本光電）が、安価な競合品に対して有利になる可能性。", en: "High-quality Japanese products (Sysmex/Nihon Kohden) gain edge over cheap rivals." },
+    action: { ja: "品質優位性を客観的に示すデータを入札書類に盛り込むよう、現地代理店を指導してください。", en: "Instruct agents to include objective quality data in tender documents." },
+    url: "https://moh.gov.vn/"
+  },
+  {
+    id: "905",
+    title: { ja: "【タイ】BCG経済モデル：ウェルネスハブ投資", en: "[Thailand] BCG Model: Wellness Hub Investment" },
+    region: "Southeast Asia",
+    date: "2025-12-25",
+    riskLevel: "Low",
+    scenario: { ja: "BCG（バイオ・循環型・グリーン）経済モデルに基づき、高度医療サービスへの投資優遇が継続。", en: "Investment incentives for advanced medical services continue under BCG model." },
+    impact: { ja: "再生医療やゲノム医療に関連する機器・試薬メーカーにタイ市場での商機。", en: "Opportunities for regenerative/genomic medicine device/reagent makers in Thailand." },
+    action: { ja: "BOI（投資委員会）のインセンティブを活用した現地ラボ設立のF/Sを実施することをお勧めします。", en: "We recommend F/S for local lab establishment using BOI incentives." },
+    url: "https://www.poi.go.th/"
+  },
+  {
+    id: "906",
+    title: { ja: "【オランダ】グリーンディール 3.0：使い捨て機器削減", en: "[Netherlands] Green Deal 3.0: Reducing Disposables" },
+    region: "Europe",
+    date: "2025-11-30",
+    riskLevel: "Medium",
+    scenario: { ja: "オランダ医療セクターが「Green Deal 3.0」に基づき、リユーザブル（再使用可能）機器の採用目標を設定。", en: "Dutch health sector sets reusable device adoption targets under Green Deal 3.0." },
+    impact: { ja: "使い捨てカテーテル等を主力とするメーカーは、環境配慮型製品への転換、またはリサイクル提案が必要。", en: "Single-use catheter makers need eco-friendly shift or recycling proposals." },
+    action: { ja: "製品ライフサイクル評価（LCA）データを整備し、サステナビリティ部門へのアピール材料とすることが重要です。", en: "Prepare LCA data to appeal to sustainability departments." },
+    url: "https://www.government.nl/"
+  },
+  {
+    id: "907",
+    title: { ja: "【スイス】Swissdamed：2026年7月登録義務化", en: "[Switzerland] Swissdamed: Mandatory Reg July 2026" },
+    region: "Europe",
+    date: "2025-12-10",
+    riskLevel: "High",
+    scenario: { ja: "スイス版EUDAMED「swissdamed」へのアクターおよび機器登録が2026年7月より完全義務化。", en: "Actor/Device registration in 'swissdamed' (Swiss EUDAMED) mandatory from July 2026." },
+    impact: { ja: "スイス代理人（CH-REP）を通じた登録作業が必須となり、未登録製品は市場から排除される。", en: "Registration via CH-REP mandatory. Unregistered products excluded from market." },
+    action: { ja: "2026年7月の期限に向け、全輸出製品のswissdamed登録スケジュールを代理人と確実に共有することをお勧めします。", en: "Ensure sharing of swissdamed registration schedule with agents for July 2026 deadline." },
+    url: "https://www.swissmedic.ch/"
+  },
+  // --- Japan Home Market (Batch 10) ---
+  {
+    id: "1001",
+    title: { ja: "【日本】2026年度診療報酬改定：賃上げと医療DX", en: "[Japan] 2026 Fee Revision: Wage Hikes & Medical DX" },
+    region: "East Asia",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: { ja: "中医協は2026年度改定に向け、医療従事者の賃上げ対応（+2.5%ベースアップ評価）と「医療DX推進体制整備加算」の要件厳格化を議論。サイバーセキュリティ対策が必須要件へ。", en: "Chuikyo discusses wage hikes (+2.5%) and stricter Medical DX premiums (Cybersecurity mandatory) for 2026." },
+    impact: { ja: "賃上げ原資確保のため、施設基準を満たさない医療機関の減収リスクが増大。ベンダーにはセキュリティ認証取得の圧力が強まる。", en: "Revenue risk for non-compliant clinics. Pressure on vendors for security certification." },
+    action: { ja: "自社製品のセキュリティ要件適合状況（SBOM対応等）を再確認し、顧客医療機関への加算算定支援ツール提案の検討が望まれます。", en: "Re-confirm security compliance (SBOM) and propose support tools for premium calculation." },
+    url: "https://www.mhlw.go.jp/stf/shingi/shingi-chuo.html"
+  },
+  {
+    id: "1002",
+    title: { ja: "【日本】医師働き方改革：施行2年目のタスクシフト需要", en: "[Japan] Work Style Reform: Year 2 Task Shift Demand" },
+    region: "East Asia",
+    date: "2025-12-15",
+    riskLevel: "Medium",
+    scenario: { ja: "働き方改革施行から約2年、時間外労働上限規制（年960時間）の厳格適用に伴い、特定行為研修修了看護師へのタスクシフトや、AI診断支援・RPAによる業務削減ニーズが急増。", en: "2 years into reform, strict overtime caps drive demand for nurse task shifting and AI/RPA." },
+    impact: { ja: "診断支援AIや自動化ソリューションの導入予算が優先的に確保される傾向。一方で、効果が見えにくいIT投資は凍結。", en: "Priority budget for diagnostic AI/automation. Low-ROI IT investments frozen." },
+    action: { ja: "「医師の時短」に直結するROIデータを明示し、特定行為パッケージとして看護師向けトレーニングとセットでの提案検討をお勧めします。", en: "Show ROI for 'doctor time-saving' and propose nurse training packages." },
+    url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000189198.html"
+  },
+  {
+    id: "1003",
+    title: { ja: "【日本】SaMD動向：二段階承認とリプログラミング", en: "[Japan] SaMD Trends: Two-Step Approval & Reprogramming" },
+    region: "East Asia",
+    date: "2025-11-20",
+    riskLevel: "Medium",
+    scenario: { ja: "「DASH for SaMD 2」戦略に基づき、二段階承認制度の活用事例が増加。2025年後半より、市販後データによる性能向上（リプログラミング）の審査プロセスが一部簡素化。", en: "'DASH for SaMD 2' drives two-step approvals. Post-market reprogramming review simplified from late 2025." },
+    impact: { ja: "開発サイクルの高速化が可能になる一方、市販後データ収集（RWD）の質が承認継続の鍵となる。", en: "Faster dev cycles, but RWD quality becomes key to maintaining approval." },
+    action: { ja: "PMDAの最新相談枠を活用し、市販後学習プラン（IDATEN）の適用可能性について早期に規制当局と協議されることを推奨します。", en: "Consult PMDA early on IDATEN applicability for post-market learning plans." },
+    url: "https://www.pmda.go.jp/review-services/reexamine-revaluate/samd/0001.html"
+  }
+];
 
