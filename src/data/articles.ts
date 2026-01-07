@@ -460,4 +460,337 @@ export const articles: Article[] = [
     action: { ja: "SBOM自動生成ツールを導入し、サプライチェーン全体の脆弱性管理体制を構築することが急務です。", en: "Urgently introduce SBOM automation tools and build a supply chain vulnerability management system." },
     url: "https://www.cisa.gov/"
   },
-];
+  // --- SE Asia & India (Batch 5) ---
+  {
+    id: "501",
+    title: { ja: "【ベトナム】医療機器市場：21億ドル規模へ急成長", en: "[Vietnam] MedTech Market: Rapid Growth to $2.1B" },
+    region: "Southeast Asia",
+    date: "2026-01-04",
+    riskLevel: "Low",
+    scenario: { ja: "公的病院の設備更新需要が牽引し、2026年は二桁成長を持続する見通し。", en: "Double-digit growth expected in 2026, driven by public hospital equipment renewal demand." },
+    impact: { ja: "日本光電やシスメックス等の検査機器メーカーにとって、シェア拡大の好機。", en: "Prime opportunity for lab equipment makers like Nihon Kohden and Sysmex into expand share." },
+    action: { ja: "ハノイ・ホーチミンの主要公立病院に対する入札営業を強化することを提案します。", en: "We propose strengthening tender sales activities for major public hospitals in Hanoi/HCMC." },
+    url: "https://www.vietnam-briefing.com/"
+  },
+  {
+    id: "502",
+    title: { ja: "【ベトナム】日系メーカーの生産拠点拡大", en: "[Vietnam] Japanese Makers Expand Production Bases" },
+    region: "Southeast Asia",
+    date: "2025-11-15",
+    riskLevel: "Low",
+    scenario: { ja: "朝日インテックやオムロンがベトナム工場の増強を発表。「チャイナ・プラス・ワン」が加速。", en: "Asahi Intecc and Omron announce Vietnam factory expansions. 'China Plus One' accelerates." },
+    impact: { ja: "ベトナム現地でのサプライチェーン構築が進み、部材調達の現地化率が向上。", en: "Local supply chain build-up improves local procurement rates." },
+    action: { ja: "ベトナム工場からの欧米輸出ルートを確立し、物流リスク分散を図ることが望ましいです。", en: "It is desirable to establish export routes to US/EU from Vietnam to diversify logistics risk." },
+    url: "https://vir.com.vn/"
+  },
+  {
+    id: "503",
+    title: { ja: "【インド】CDSCO：リスク分類のオンライン化", en: "[India] CDSCO: Risk Classification Goes Online" },
+    region: "South Asia",
+    date: "2025-11-27",
+    riskLevel: "Medium",
+    scenario: { ja: "インド規制当局（CDSCO）がデバイス分類データベースを公開。予見性が向上。", en: "CDSCO publishes device classification database, improving predictability." },
+    impact: { ja: "インド市場参入を検討中の日本企業にとって、登録までのリードタイム見積もりが容易に。", en: "Easier lead time estimation for Japanese firms entering India." },
+    action: { ja: "自社製品の分類をデータベースで確認し、代理人を通じて登録準備を進めてはいかがでしょうか。", en: "Why not verify your product classification in the DB and prepare registration via agents?" },
+    url: "https://cdsco.gov.in/"
+  },
+  {
+    id: "504",
+    title: { ja: "【インド】ライセンス改正：製造・輸入免許が無期限化へ", en: "[India] License Amendment: Perpetual Mfg/Import Licenses" },
+    region: "South Asia",
+    date: "2025-12-04",
+    riskLevel: "Low",
+    scenario: { ja: "手数料支払いと維持要件を満たせば、ライセンス更新が不要になる規則案が浮上。", en: "Draft rule proposes perpetual licenses subject to fee payment and maintenance conditions." },
+    impact: { ja: "テルモインド等の現地法人にとって、5年ごとの更新事務負担が大幅に軽減。", en: "Significant reduction in 5-year renewal admin burden for subsidiaries like Terumo India." },
+    action: { ja: "現地法務担当に対し、新規則施行後のコンプライアンス維持要件の確認を依頼してください。", en: "Please request local legal staff to check compliance maintenance requirements under new rules." },
+    url: "https://cdsco.gov.in/"
+  },
+  {
+    id: "505",
+    title: { ja: "【インド】PLIスキーム：高度医療機器の国産化推進", en: "[India] PLI Scheme: Promoting High-End Device Indigenization" },
+    region: "South Asia",
+    date: "2025-12-20",
+    riskLevel: "Medium",
+    scenario: { ja: "生産連動型インセンティブ（PLI）が拡大。CT/MRI等の高度機器のインド国内製造を優遇。", en: "PLI scheme expands, favoring domestic manufacturing of high-end devices like CT/MRI." },
+    impact: { ja: "キヤノンメディカル等は、完成品輸出から現地ノックダウン生産への切り替え検討が必要。", en: "Canon Medical etc. need to consider switching from export to local knockdown production." },
+    action: { ja: "PLI適用を受けるための現地パートナー選定と、投資対効果の分析をお勧めします。", en: "We recommend selecting local partners for PLI eligibility and analyzing ROI." },
+    url: "https://pharmaceuticals.gov.in/"
+  },
+  {
+    id: "506",
+    title: { ja: "【インドネシア】ハラール認証：クラスA機器も義務化へ", en: "[Indonesia] Halal Certification: Mandatory for Class A" },
+    region: "Southeast Asia",
+    date: "2025-10-25",
+    riskLevel: "High",
+    scenario: { ja: "2026年10月より、動物由来材料を含まないクラスA機器でもハラール認証が必須に。", en: "Halal certification becomes mandatory for Class A devices (even non-animal based) from Oct 2026." },
+    impact: { ja: "現地シェアを持つ多くの日本メーカーが、認証未取得による販売停止リスクに直面。", en: "Many Japanese makers face sales stop risks if uncertified." },
+    action: { ja: "BPJPH認定の認証機関にて、直ちに申請手続きを開始することを強く推奨します。", en: "We strongly recommend starting application procedures immediately at BPJPH-accredited bodies." },
+    url: "https://halalmui.org/"
+  },
+  {
+    id: "507",
+    title: { ja: "【インドネシア】TKDN：公共入札での国産優先", en: "[Indonesia] TKDN: Local Content Priority in Tenders" },
+    region: "Southeast Asia",
+    date: "2025-11-10",
+    riskLevel: "Medium",
+    scenario: { ja: "国産化率（TKDN）要件を満たさない輸入品が、e-Catalogue（電子カタログ）から排除される傾向。", en: "Trend of excluding imports meeting Local Content (TKDN) requirements from e-Catalogue." },
+    impact: { ja: "日本からの完成品輸出に依存する企業は、公的市場から閉め出される恐れ。", en: "Firms relying on finished exports risk exclusion from public markets." },
+    action: { ja: "現地メーカーへのOEM委託による「インドネシア製」化の検討が急務です。", en: "Urgent consideration of 'Made in Indonesia' via OEM to local makers is needed." },
+    url: "https://kemenperin.go.id/"
+  },
+  {
+    id: "508",
+    title: { ja: "【タイ】メディカルハブ構想：国境医療への投資", en: "[Thailand] Medical Hub: Border Healthcare Investment" },
+    region: "Southeast Asia",
+    date: "2026-01-05",
+    riskLevel: "Low",
+    scenario: { ja: "2026年度予算にて国境地域の医療機関整備に重点配分。医療ツーリズム復興。", en: "2026 budget focuses on border medical facilities. Medical tourism revival." },
+    impact: { ja: "タイに進出する日本の病院（藤田医科大等）や機器メーカーに周辺国からの患者流入効果。", en: "Patient inflow benefits for Japanese hospitals (Fujita Health Univ) and makers in Thailand." },
+    action: { ja: "タイ国境付近の新規病院プロジェクトに対する機器スペックイン活動の強化をご検討ください。", en: "Consider strengthening spec-in activities for new hospital projects near Thai borders." },
+    url: "https://www.thailand.go.th/"
+  },
+  {
+    id: "509",
+    title: { ja: "【シンガポール】HSA：SHAREシステム完全移行", en: "[Singapore] HSA: Full Transition to SHARE System" },
+    region: "Southeast Asia",
+    date: "2025-11-01",
+    riskLevel: "Medium",
+    scenario: { ja: "医療機器登録が新システム「SHARE」に一本化。旧システムは廃止。", en: "Device registration unified to 'SHARE' system. Old system phased out." },
+    impact: { ja: "シンガポール拠点の薬事担当者は、新インターフェースへの習熟が必要。", en: "Local RA staff must master the new interface." },
+    action: { ja: "社内SOPをSHAREシステムの操作手順に合わせて更新するよう指示してください。", en: "Instruct updates to internal SOPs to match SHARE system procedures." },
+    url: "https://www.hsa.gov.sg/"
+  },
+  {
+    id: "510",
+    title: { ja: "【マレーシア】MDA：2026年より申請手数料値上げ", en: "[Malaysia] MDA: Fee Hikes from 2026" },
+    region: "Southeast Asia",
+    date: "2025-12-10",
+    riskLevel: "Medium",
+    scenario: { ja: "MDAが手数料体系を改定。クラスA届出およびライセンス更新料が増額。", en: "MDA revises fee structure. Increases for Class A notification and license renewal." },
+    impact: { ja: "マレーシアでの製品維持コスト上昇。低価格品のマージン圧迫。", en: "Increased product maintenance costs in Malaysia. Margin squeeze for low-cost items." },
+    action: { ja: "2026年度の薬事予算に手数料増額分をあらかじめ反映させておくのが得策です。", en: "It is advisable to reflect fee increases in the 2026 RA budget in advance." },
+    url: "https://www.mda.gov.my/"
+  },
+  // --- MEA & LATAM (Batch 6) ---
+  {
+    id: "601",
+    title: { ja: "【サウジ】Vision 2030：2026年医療予算4600億リヤル", en: "[Saudi] Vision 2030: 2026 Healthcare Budget SAR 460B" },
+    region: "Middle East",
+    date: "2026-01-03",
+    riskLevel: "Low",
+    scenario: { ja: "原油収入を背景に医療・教育へ巨額投資。Sehaバーチャルホスピタルが機能拡大。", en: "Huge investment in health/education backed by oil revenues. Seha Virtual Hospital expands." },
+    impact: { ja: "富士フイルムやキヤノン等の画像診断・ITシステムに対し、国家規模の商談機会。", en: "National-scale opportunities for imaging/IT systems from Fujifilm, Canon, etc." },
+    action: { ja: "サウジ現地代理店と連携し、MOH（保健省）の大型入札情報を早期に入手することを推奨します。", en: "We recommend partnering with local agents to get early intel on major MOH tenders." },
+    url: "https://www.mof.gov.sa/"
+  },
+  {
+    id: "602",
+    title: { ja: "【中東】Arab Health 2026：日本パビリオン拡大", en: "[Middle East] Arab Health 2026: Expanded Japan Pavilion" },
+    region: "Middle East",
+    date: "2026-01-02",
+    riskLevel: "Low",
+    scenario: { ja: "2月開催のArab Healthにて、JETRO主導のジャパンパビリオンが過去最大規模に。", en: "JETRO-led Japan Pavilion will be largest ever at Arab Health in Feb." },
+    impact: { ja: "中東代理店開拓を目指す日本の中小医療機器メーカーにとって最大の好機。", en: "Greatest opportunity for Japanese SMEs to find Middle East distributors." },
+    action: { ja: "展示会での商談アポイントを事前に確定させ、代理店候補をリストアップしておくことをお勧めします。", en: "We recommend pre-booking meetings and listing candidate distributors." },
+    url: "https://www.arabhealthonline.com/"
+  },
+  {
+    id: "603",
+    title: { ja: "【UAE】統一医療プラットフォーム：人材流動化", en: "[UAE] Unified Health Platform: Workforce Mobility" },
+    region: "Middle East",
+    date: "2025-12-15",
+    riskLevel: "Medium",
+    scenario: { ja: "UAE全土で有効な医療従事者ライセンス統合システムが2026年Q2稼働。", en: "Unified UAE-wide healthcare license system launches Q2 2026." },
+    impact: { ja: "ドバイ・アブダビ間での医師移動が容易になり、医療機器操作トレーニングの効率化に寄与。", en: "Easier doctor mobility between Dubai-Abu Dhabi efficiency in device training." },
+    action: { ja: "クリニカルスペシャリストの配置計画をUAE全域視点で見直すことが望まれます。", en: "It is desirable to review clinical specialist allocation from a UAE-wide perspective." },
+    url: "https://gulfnews.com/"
+  },
+  {
+    id: "604",
+    title: { ja: "【UAE】ドバイ2026戦略：遠隔医療が標準化", en: "[UAE] Dubai 2026 Strategy: Telemedicine Standardization" },
+    region: "Middle East",
+    date: "2025-11-20",
+    riskLevel: "Low",
+    scenario: { ja: "DHA（ドバイ保健局）が遠隔モニタリングを保険償還対象として拡充。", en: "DHA expands insurance reimbursement for remote monitoring." },
+    impact: { ja: "オムロン等の家庭用通信血圧計の需要がB2G（政府向け）で拡大する可能性。", en: "Potential B2G demand expansion for home connected BP monitors (Omron etc.)." },
+    action: { ja: "DHAの遠隔医療プログラムに自社デバイスが採用されるよう、働きかけをご検討ください。", en: "Consider lobbying for adoption of your devices in DHA telemedicine programs." },
+    url: "https://www.dha.gov.ae/"
+  },
+  {
+    id: "605",
+    title: { ja: "【ブラジル】ANVISA：新認証システム稼働", en: "[Brazil] ANVISA: New Certification System Live" },
+    region: "Latin America",
+    date: "2025-11-01",
+    riskLevel: "Medium",
+    scenario: { ja: "旧システムSicertが廃止され、Solicita統合型の新認証データベースへ移行。", en: "Old Sicert system phased out; migration to Solicita-integrated database." },
+    impact: { ja: "ブラジル向け輸出を行う全日本企業の薬事担当者は、新システムでのID取得が必要。", en: "RA staff of Japanese exporters must obtain IDs for the new system." },
+    action: { ja: "現地コンサルタントを通じて、新システムへのデータ移行状況を確認するよう手配してください。", en: "Arrange to check data migration status via local consultants." },
+    url: "https://www.gov.br/anvisa/"
+  },
+  {
+    id: "606",
+    title: { ja: "【ブラジル】RDC 848/2024：IMDRF整合の本格化", en: "[Brazil] RDC 848/2024: IMDRF Alignment" },
+    region: "Latin America",
+    date: "2025-10-10",
+    riskLevel: "Medium",
+    scenario: { ja: "医療機器規制が改正され、技術文書の構成が国際標準（IMDRF ToC）と調和。", en: "Regulations amended; technical file structure aligns with IMDRF ToC." },
+    impact: { ja: "グローバル展開する日本企業にとって、ブラジル専用資料の作成負担が軽減。", en: "Reduced burden of creating Brazil-specific docs for global Japanese firms." },
+    action: { ja: "STED形式またはToC形式で技術ファイルを整備し、申請効率を高めることをお勧めします。", en: "We recommend organizing technical files in STED/ToC format to boost efficiency." },
+    url: "https://www.gov.br/anvisa/"
+  },
+  {
+    id: "607",
+    title: { ja: "【メキシコ】ニアショアリング：2026年は対米輸出の要", en: "[Mexico] Nearshoring: Key to US Exports in 2026" },
+    region: "Latin America",
+    date: "2026-01-05",
+    riskLevel: "Low",
+    scenario: { ja: "米中摩擦を背景に、医療機器の製造拠点をアジアからメキシコへ移す動きが加速。", en: "Shift of production from Asia to Mexico accelerates due to US-China friction." },
+    impact: { ja: "北米市場を持つテルモやニプロは、メキシコ工場の増強がサプライチェーン安定の鍵。", en: "Expanding Mexico plants is key for Terumo/Nipro with US markets." },
+    action: { ja: "バハ・カリフォルニア等の医療機器クラスターにおいて、拠点確保の調査を進めてはいかがでしょうか。", en: "Why not investigate site security in clusters like Baja California?" },
+    url: "https://www.panoramadvisors.com/"
+  },
+  {
+    id: "608",
+    title: { ja: "【メキシコ】MedTech市場：米国需要で成長", en: "[Mexico] MedTech Market: Growth via US Demand" },
+    region: "Latin America",
+    date: "2025-12-12",
+    riskLevel: "Low",
+    scenario: { ja: "メキシコ国内の医療機器製造が活況。対米輸出拠点としての重要性が増大。", en: "Domestic manufacturing booming. Increasing importance as US export hub." },
+    impact: { ja: "日系部品メーカー（金属加工、射出成形）にとって、メキシコ現地調達ニーズへの参入機会。", en: "Entry opportunity for Japanese parts makers (machining, molding) for local sourcing." },
+    action: { ja: "メキシコ進出済みの欧米大手デバイスメーカーに対する部品供給営業を推奨します。", en: "We recommend part supply sales to Western majors already in Mexico." },
+    url: "https://www.entradagroup.com/"
+  },
+  {
+    id: "609",
+    title: { ja: "【アフリカ】2026年市場展望：ケニア・ナイジェリア躍進", en: "[Africa] 2026 Outlook: Kenya/Nigeria surge" },
+    region: "Africa",
+    date: "2026-01-04",
+    riskLevel: "Low",
+    scenario: { ja: "人口増と都市化により、主要国で8%超の医療機器市場成長が見込まれる。", en: ">8% market growth expected in key countries due to population/urbanization." },
+    impact: { ja: "シスメックス等の検体検査機器は、アフリカ都市部の民間検査センター需要を取り込める。", en: "Sysmex lab instruments can capture private lab demand in African cities." },
+    action: { ja: "信頼できる現地代理店を発掘し、販売網構築に向けたステップを踏むことをお勧めします。", en: "We recommend identifying reliable agents and taking steps to build a sales network." },
+    url: "https://www.fitchsolutions.com/"
+  },
+  {
+    id: "610",
+    title: { ja: "【ケニア】eヘルス戦略：デジタルインフラ整備", en: "[Kenya] eHealth Strategy: Digital Infra Buildout" },
+    region: "Africa",
+    date: "2025-11-30",
+    riskLevel: "Low",
+    scenario: { ja: "ケニア政府が遠隔医療プラットフォームの整備入札を実施。", en: "Kenya government tenders for telemedicine platform development." },
+    impact: { ja: "日本のODA等と連携した、日本製の簡易診断キットや遠隔システムの参入機会。", en: "Opportunity for Japanese diagnostic kits/remote systems linked to ODA." },
+    action: { ja: "JICAやJETROのアフリカ支援スキームを活用し、実証実験の機会を模索してみてはいかがでしょうか。", en: "Why not explore pilot opportunities using JICA/JETRO African support schemes?" },
+    url: "https://www.health.go.ke/"
+  },
+  // --- Advanced & Strategic Markets (Batch 7) ---
+  {
+    id: "701",
+    title: { ja: "【カナダ】Health Canada 2026：デジタルヘルス投資の加速", en: "[Canada] Health Canada 2026: Accel. Digital Health Investment" },
+    region: "North America",
+    date: "2026-01-05",
+    riskLevel: "Low",
+    scenario: { ja: "カナダ保健省が2026年度の優先事項として、AI活用および医療システムの相互運用性強化に大規模予算を配分。", en: "Health Canada allocates major 2026 budget to AI and interoperability." },
+    impact: { ja: "医療ITに強みを持つ富士フイルムやキヤノンメディカルにとって、州政府レベルの大型入札獲得の好機。", en: "Prime chance for Fujifilm/Canon Medical IT to win large provincial tenders." },
+    action: { ja: "各州のデジタルヘルス調達要件を精査し、現地パートナーとのコンソーシアム形成を検討することが推奨されます。", en: "It is recommended to review provincial requirements and consider consortiums." },
+    url: "https://www.canada.ca/en/health-canada.html"
+  },
+  {
+    id: "702",
+    title: { ja: "【フィンランド】EHDS実装：2026年二次利用法改正", en: "[Finland] EHDS Impl: 2026 Secondary Use Law Amendment" },
+    region: "Europe",
+    date: "2025-12-20",
+    riskLevel: "Low",
+    scenario: { ja: "欧州ヘルスデータ空間（EHDS）に先行し、フィンランドが医療データ二次利用法の改正を2026年5月に施行予定。", en: "Finland amends secondary use law ahead of EHDS, effective May 2026." },
+    impact: { ja: "現地で医療データ基盤に関与する富士通等は、実証実験を通じた欧州標準モデル構築のリーダーシップを発揮可能。", en: "Fujitsu etc. can lead Euro-standard model building via local pilots." },
+    action: { ja: "ヘルシンキのスタートアップエコシステムと連携し、データ活用サービスのR&D拠点を強化するのが得策です。", en: "It is wise to strengthen R&D bases for data services with Helsinki startups." },
+    url: "https://stm.fi/en/frontpage"
+  },
+  {
+    id: "703",
+    title: { ja: "【ドイツ】病院改革法：2026年「サービス群」割当開始", en: "[Germany] Hospital Reform: 'Service Group' Allocation 2026" },
+    region: "Europe",
+    date: "2026-01-06",
+    riskLevel: "High",
+    scenario: { ja: "ラウターバッハ改革に基づく病院の「サービス群（Leistungsgruppen）」割当プロセスが2026年に本格化。病院の集約が進む。", en: "Hospital 'Service Group' allocation under Lauterbach reform intensifies in 2026. Hospital consolidation." },
+    impact: { ja: "オリンパスやHOYA（PENTAX）は、顧客である病院の統廃合により、販売チャネルの再編が必要に。", en: "Olympus/HOYA (PENTAX) need channel restructuring due to client hospital mergers." },
+    action: { ja: "州ごとの病院指定状況をモニタリングし、重点顧客（センター病院）へのリソース集中をご検討ください。", en: "Monitor state designations and concentrate resources on key center hospitals." },
+    url: "https://www.bundesgesundheitsministerium.de/"
+  },
+  {
+    id: "704",
+    title: { ja: "【フランス】PLFSS 2026：医療機器への価格圧力", en: "[France] PLFSS 2026: Price Pressure on Devices" },
+    region: "Europe",
+    date: "2025-12-16",
+    riskLevel: "Medium",
+    scenario: { ja: "2026年社会保障予算（PLFSS）にて、医療機器に対する「セーフガード条項」の上限が見直され、実質的な価格引き下げ圧力。", en: "PLFSS 2026 revises safeguard caps for devices, creating real price cut pressure." },
+    impact: { ja: "テルモやニプロ等の現地法人は、償還価格維持のための追加エビデンス提出やリベート交渉が不可避。", en: "Subsidiaries of Terumo/Nipro face unavoidable rebate talks/evidence submission." },
+    action: { ja: "フランス当局に対し、製品の経済的有用性を示すHEORデータを提示し、価格防衛を図ることを強く推奨します。", en: "We strongly recommend presenting HEOR data to French authorities to defend prices." },
+    url: "https://sante.gouv.fr/"
+  },
+  {
+    id: "705",
+    title: { ja: "【イタリア】PNRR：2026年地域医療テレワーク入札", en: "[Italy] PNRR: 2026 Community House Tenders" },
+    region: "Europe",
+    date: "2026-01-04",
+    riskLevel: "Low",
+    scenario: { ja: "復興計画（PNRR）Mission 6に基づき、地域医療施設（Community Houses）向けのデジタル機器入札が2026年初頭に集中。", en: "Digital equipment tenders for Community Houses (PNRR Mission 6) peak in early 2026." },
+    impact: { ja: "イタリア市場で展開する日立（現：富士フイルムヘルスケア）やキヤノンメディカルに特需の可能性。", en: "Potential special demand for Hitachi (Fujifilm HC) and Canon Medical in Italy." },
+    action: { ja: "Consip（公共調達公社）の入札情報を早期に捕捉し、現地代理店を通じた応札準備を進めるのが賢明です。", en: "It is wise to catch Consip tender info early and prepare bids via agents." },
+    url: "https://www.consip.it/"
+  },
+  {
+    id: "706",
+    title: { ja: "【英国】MHRA：2026年新承認プロセスの適用開始", en: "[UK] MHRA: New 2026 Approval Process Starts" },
+    region: "Europe",
+    date: "2025-12-15",
+    riskLevel: "Medium",
+    scenario: { ja: "ブレグジット後の新規制枠組みにおいて、2026年より一部の高リスク機器に対する新承認要件が適用開始。", en: "New post-Brexit approval requirements for some high-risk devices start in 2026." },
+    impact: { ja: "シスメックス等のIVDメーカーやインプラント企業は、UKCAマーキング維持のために追加の技術文書提出が必要。", en: "Sysmex (IVD) and implant firms need extra tech docs to keep UKCA marking." },
+    action: { ja: "英国内の承認機関（Approved Body）の審査枠を早期に確保し、新要件へのギャップ分析を行うことを推奨します。", en: "We recommend securing Approved Body slots early and conducting gap analysis." },
+    url: "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency"
+  },
+  {
+    id: "707",
+    title: { ja: "【スペイン】2026年度予算：州間格差の拡大", en: "[Spain] 2026 Budget: Widening Regional Gaps" },
+    region: "Europe",
+    date: "2026-01-07",
+    riskLevel: "Medium",
+    scenario: { ja: "アンダルシア州が医療予算を大幅増額する一方、マドリード州は伸び悩み。地域ごとの調達力に差。", en: "Andalusia boosts health budget; Madrid lags. Regional procurement power diverges." },
+    impact: { ja: "島津製作所やオムロンの現地販売網において、予算潤沢な南部地域への営業リソースシフトが有効。", en: "Shift sales resources to budget-rich southern regions for Shimadzu/Omron." },
+    action: { ja: "州ごとの2026年予算配分を分析し、地域別セールスターゲットの再設定をご検討ください。", en: "Analyze 2026 budget allocation by region and reset sales targets." },
+    url: "https://www.fenin.es/"
+  },
+  {
+    id: "708",
+    title: { ja: "【韓国】デジタル医療製品法：2026年完全施行", en: "[Korea] Digital Medical Product Act: Full 2026 Enforcement" },
+    region: "East Asia",
+    date: "2026-01-05",
+    riskLevel: "Low",
+    scenario: { ja: "デジタル医療製品法（DMPA）の主要規定が2026年1月に完全施行。SaMD（プログラム医療機器）の審査が迅速化。", en: "DMPA fully enforced Jan 2026. SaMD review accelerated." },
+    impact: { ja: "オリンパスのAI内視鏡診断支援システムなど、デジタル付加価値製品の韓国市場投入が容易に。", en: "Easier Korea launch for digital value-add products like Olympus AI endoscopy." },
+    action: { ja: "現地法人の薬事チームと連携し、新法に基づく早期承認制度の適用申請を行うことをお勧めします。", en: "We recommend applying for early approval schemes under the new law with local RA." },
+    url: "https://www.mfds.go.kr/eng/index.do"
+  },
+  {
+    id: "709",
+    title: { ja: "【豪州】TGA：2026年UDI義務化の適用", en: "[Australia] TGA: 2026 UDI Mandate" },
+    region: "Southeast Asia",
+    date: "2026-01-03",
+    riskLevel: "Medium",
+    scenario: { ja: "2026年7月より、埋込み型医療機器に対するUDI（機器固有識別子）表示が完全義務化。", en: "UDI labeling fully mandatory for implantable devices from July 2026." },
+    impact: { ja: "豪州向けに整形外科インプラント等を輸出する京セラ等は、ラベル表示およびデータベース登録の完了が急務。", en: "Urgent label/DB updates needed for Kyocera exporting implants to Australia." },
+    action: { ja: "7月の期限に向け、豪州向け製品ラベルの版下修正とAusUDIDへの登録状況を最終確認することが望まれます。", en: "Please confirm final label artwork and AusUDID registration before July deadline." },
+    url: "https://www.tga.gov.au/"
+  },
+  {
+    id: "710",
+    title: { ja: "【トルコ】MDR完全準拠とインフレ下の価格改定", en: "[Turkey] MDR Compliance & Inflation Pricing" },
+    region: "Middle East",
+    date: "2025-12-10",
+    riskLevel: "High",
+    scenario: { ja: "トルコTITCKはEU MDRへの完全準拠を要求。一方で、インフレ率50%超に伴う公定価格（SUT）の改定遅延が、輸入・販売継続の重大なリスク要因となっている。", en: "TITCK demands full MDR compliance. >50% inflation + delayed official price (SUT) updates risk sales continuity." },
+    impact: { ja: "日系メーカー（テルモ、オムロン等）の利益圧迫およびMDR未対応製品の市場排除リスク。", en: "Profit squeeze and market exclusion risk for Terumo/Omron." },
+    action: { ja: "現地代理店との価格交渉を頻回に行い、MDR適合宣言書の早期提出および製品ポートフォリオの絞り込みをご検討ください。", en: "Discuss price frequently with agents; submit MDR docs early; consider portfolio pruning." },
+    url: "https://www.titck.gov.tr/"
+  },
+
