@@ -981,5 +981,39 @@ export const articles: Article[] = [
     impact: "スイス代理人（CH-REP）を通じた登録作業が必須となり、未登録製品は市場から排除される。",
     action: "2026年7月の期限に向け、全輸出製品のswissdamed登録スケジュールを代理人と確実に共有することをお勧めします。",
     url: "https://www.swissmedic.ch/"
+  },
+  // --- Japan Home Market (Batch 10) ---
+  {
+    id: "1001",
+    title: "【日本】2026年度診療報酬改定：賃上げと医療DX",
+    region: "East Asia",
+    date: "2026-01-07",
+    riskLevel: "High",
+    scenario: "中医協は2026年度改定に向け、医療従事者の賃上げ対応（+2.5%ベースアップ評価）と「医療DX推進体制整備加算」の要件厳格化を議論。サイバーセキュリティ対策が必須要件へ。",
+    impact: "賃上げ原資確保のため、施設基準を満たさない医療機関の減収リスクが増大。ベンダーにはセキュリティ認証取得の圧力が強まる。",
+    action: "自社製品のセキュリティ要件適合状況（SBOM対応等）を再確認し、顧客医療機関への加算算定支援ツール提案の検討が望まれます。",
+    url: "https://www.mhlw.go.jp/stf/shingi/shingi-chuo.html"
+  },
+  {
+    id: "1002",
+    title: "【日本】医師働き方改革：施行2年目のタスクシフト需要",
+    region: "East Asia",
+    date: "2025-12-15",
+    riskLevel: "Medium",
+    scenario: "働き方改革施行から約2年、時間外労働上限規制（年960時間）の厳格適用に伴い、特定行為研修修了看護師へのタスクシフトや、AI診断支援・RPAによる業務削減ニーズが急増。",
+    impact: "診断支援AIや自動化ソリューションの導入予算が優先的に確保される傾向。一方で、効果が見えにくいIT投資は凍結。",
+    action: "「医師の時短」に直結するROIデータを明示し、特定行為パッケージとして看護師向けトレーニングとセットでの提案検討をお勧めします。",
+    url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000189198.html"
+  },
+  {
+    id: "1003",
+    title: "【日本】SaMD動向：二段階承認とリプログラミング",
+    region: "East Asia",
+    date: "2025-11-20",
+    riskLevel: "Medium",
+    scenario: "「DASH for SaMD 2」戦略に基づき、二段階承認制度の活用事例が増加。2025年後半より、市販後データによる性能向上（リプログラミング）の審査プロセスが一部簡素化。",
+    impact: "開発サイクルの高速化が可能になる一方、市販後データ収集（RWD）の質が承認継続の鍵となる。",
+    action: "PMDAの最新相談枠を活用し、市販後学習プラン（IDATEN）の適用可能性について早期に規制当局と協議されることを推奨します。",
+    url: "https://www.pmda.go.jp/review-services/reexamine-revaluate/samd/0001.html"
   }
 ];
