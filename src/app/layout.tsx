@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Data Reset: Force EU MDR Source Fix)
+// Updated: 2026-01-07 (Data Reset: Final Synthesis 60 Verified Items)
