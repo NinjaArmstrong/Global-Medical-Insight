@@ -682,4 +682,115 @@ export const articles: Article[] = [
     action: "JICAやJETROのアフリカ支援スキームを活用し、実証実験の機会を模索してみてはいかがでしょうか。",
     url: "https://www.health.go.ke/"
   }
+  // --- Advanced & Strategic Markets (Batch 7) ---
+  {
+    id: "701",
+    title: "【カナダ】Health Canada 2026：デジタルヘルス投資の加速",
+    region: "North America",
+    date: "2026-01-05",
+    riskLevel: "Low",
+    scenario: "カナダ保健省が2026年度の優先事項として、AI活用および医療システムの相互運用性強化に大規模予算を配分。",
+    impact: "医療ITに強みを持つ富士フイルムやキヤノンメディカルにとって、州政府レベルの大型入札獲得の好機。",
+    action: "各州のデジタルヘルス調達要件を精査し、現地パートナーとのコンソーシアム形成を検討することが推奨されます。",
+    url: "https://www.canada.ca/en/health-canada.html"
+  },
+  {
+    id: "702",
+    title: "【フィンランド】EHDS実装：2026年二次利用法改正",
+    region: "Europe",
+    date: "2025-12-20",
+    riskLevel: "Low",
+    scenario: "欧州ヘルスデータ空間（EHDS）に先行し、フィンランドが医療データ二次利用法の改正を2026年5月に施行予定。",
+    impact: "現地で医療データ基盤に関与する富士通等は、実証実験を通じた欧州標準モデル構築のリーダーシップを発揮可能。",
+    action: "ヘルシンキのスタートアップエコシステムと連携し、データ活用サービスのR&D拠点を強化するのが得策です。",
+    url: "https://stm.fi/en/frontpage"
+  },
+  {
+    id: "703",
+    title: "【ドイツ】病院改革法：2026年「サービス群」割当開始",
+    region: "Europe",
+    date: "2026-01-06",
+    riskLevel: "High",
+    scenario: "ラウターバッハ改革に基づく病院の「サービス群（Leistungsgruppen）」割当プロセスが2026年に本格化。病院の集約が進む。",
+    impact: "オリンパスやHOYA（PENTAX）は、顧客である病院の統廃合により、販売チャネルの再編が必要に。",
+    action: "州ごとの病院指定状況をモニタリングし、重点顧客（センター病院）へのリソース集中をご検討ください。",
+    url: "https://www.bundesgesundheitsministerium.de/"
+  },
+  {
+    id: "704",
+    title: "【フランス】PLFSS 2026：医療機器への価格圧力",
+    region: "Europe",
+    date: "2025-12-16",
+    riskLevel: "Medium",
+    scenario: "2026年社会保障予算（PLFSS）にて、医療機器に対する「セーフガード条項」の上限が見直され、実質的な価格引き下げ圧力。",
+    impact: "テルモやニプロ等の現地法人は、償還価格維持のための追加エビデンス提出やリベート交渉が不可避。",
+    action: "フランス当局に対し、製品の経済的有用性を示すHEORデータを提示し、価格防衛を図ることを強く推奨します。",
+    url: "https://sante.gouv.fr/"
+  },
+  {
+    id: "705",
+    title: "【イタリア】PNRR：2026年地域医療テレワーク入札",
+    region: "Europe",
+    date: "2026-01-04",
+    riskLevel: "Low",
+    scenario: "復興計画（PNRR）Mission 6に基づき、地域医療施設（Community Houses）向けのデジタル機器入札が2026年初頭に集中。",
+    impact: "イタリア市場で展開する日立（現：富士フイルムヘルスケア）やキヤノンメディカルに特需の可能性。",
+    action: "Consip（公共調達公社）の入札情報を早期に捕捉し、現地代理店を通じた応札準備を進めるのが賢明です。",
+    url: "https://www.consip.it/"
+  },
+  {
+    id: "706",
+    title: "【英国】MHRA：2026年新承認プロセスの適用開始",
+    region: "Europe",
+    date: "2025-12-15",
+    riskLevel: "Medium",
+    scenario: "ブレグジット後の新規制枠組みにおいて、2026年より一部の高リスク機器に対する新承認要件が適用開始。",
+    impact: "シスメックス等のIVDメーカーやインプラント企業は、UKCAマーキング維持のために追加の技術文書提出が必要。",
+    action: "英国内の承認機関（Approved Body）の審査枠を早期に確保し、新要件へのギャップ分析を行うことを推奨します。",
+    url: "https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency"
+  },
+  {
+    id: "707",
+    title: "【スペイン】2026年度予算：州間格差の拡大",
+    region: "Europe",
+    date: "2026-01-07",
+    riskLevel: "Medium",
+    scenario: "アンダルシア州が医療予算を大幅増額する一方、マドリード州は伸び悩み。地域ごとの調達力に差。",
+    impact: "島津製作所やオムロンの現地販売網において、予算潤沢な南部地域への営業リソースシフトが有効。",
+    action: "州ごとの2026年予算配分を分析し、地域別セールスターゲットの再設定をご検討ください。",
+    url: "https://www.fenin.es/"
+  },
+  {
+    id: "708",
+    title: "【韓国】デジタル医療製品法：2026年完全施行",
+    region: "East Asia",
+    date: "2026-01-05",
+    riskLevel: "Low",
+    scenario: "デジタル医療製品法（DMPA）の主要規定が2026年1月に完全施行。SaMD（プログラム医療機器）の審査が迅速化。",
+    impact: "オリンパスのAI内視鏡診断支援システムなど、デジタル付加価値製品の韓国市場投入が容易に。",
+    action: "現地法人の薬事チームと連携し、新法に基づく早期承認制度の適用申請を行うことをお勧めします。",
+    url: "https://www.mfds.go.kr/eng/index.do"
+  },
+  {
+    id: "709",
+    title: "【豪州】TGA：2026年UDI義務化の適用",
+    region: "Southeast Asia", // Grouping Australia under SE Asia/Pacific as per typical regional buckets if specific one not Avail. Or keep generalized.
+    date: "2026-01-03",
+    riskLevel: "Medium",
+    scenario: "2026年7月より、埋込み型医療機器に対するUDI（機器固有識別子）表示が完全義務化。",
+    impact: "豪州向けに整形外科インプラント等を輸出する京セラ等は、ラベル表示およびデータベース登録の完了が急務。",
+    action: "7月の期限に向け、豪州向け製品ラベルの版下修正とAusUDIDへの登録状況を最終確認することが望まれます。",
+    url: "https://www.tga.gov.au/"
+  },
+  {
+    id: "710",
+    title: "【トルコ】MDR調和とインフレ下の価格統制",
+    region: "Middle East",
+    date: "2026-01-02",
+    riskLevel: "High",
+    scenario: "EU MDRへの法規制調和が進む一方、ハイパーインフレ対策として独自の価格統制（公定レート）が継続。",
+    impact: "ニプロ等の輸出企業は、規制対応コスト増と実勢レート乖離による採算悪化のダブルパンチ。",
+    action: "トルコ代理店との契約条件（通貨条項等）を見直し、為替リスクを最小化する措置を講じるのが得策です。",
+    url: "https://www.titck.gov.tr/"
+  }
 ];

@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Refinement: Consultative Tone)
+// Updated: 2026-01-07 (Batch 7: Advanced & Strategic Markets)
