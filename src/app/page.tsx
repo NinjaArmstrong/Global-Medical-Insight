@@ -10,24 +10,10 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('すべて');
   const [selectedRisk, setSelectedRisk] = useState<'All' | 'High' | 'Medium' | 'Low'>('All');
-  // const [selectedCompany, setSelectedCompany] = useState('All'); // Disabled as data no longer has company
+  const [language, setLanguage] = useState<'ja' | 'en'>('ja');
+  const isEn = language === 'en';
 
   const regions = ["すべて", "グローバル", "東アジア", "東南アジア", "南アジア", "中東", "アフリカ", "欧州", "北米", "中南米"];
-
-  // const companies = ['All', ...Array.from(new Set(articles.map(a => a.company).filter(c => c !== 'General Market')))];
-
-  const regionNameMap: Record<string, string> = {
-    'All': 'すべて',
-    'Global': 'グローバル',
-    'East Asia': '東アジア',
-    'Southeast Asia': '東南アジア',
-    'South Asia': '南アジア',
-    'Middle East': '中東',
-    'Africa': 'アフリカ',
-    'Europe': '欧州',
-    'North America': '北米',
-    'Latin America': '中南米'
-  };
 
   const displayToDataMap: Record<string, string> = {
     'すべて': 'All',
@@ -44,16 +30,18 @@ export default function Dashboard() {
 
   const filteredArticles = useMemo(() => {
     return articles.filter(article => {
-      const matchSearch =
-        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        article.scenario.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        article.impact.toLowerCase().includes(searchQuery.toLowerCase());
+      // Search across both Japanese and English content
+      const searchContent = `
+        ${article.title.ja} ${article.title.en}
+        ${article.scenario.ja} ${article.scenario.en}
+        ${article.impact.ja} ${article.impact.en}
+      `.toLowerCase();
+
+      const matchSearch = searchContent.includes(searchQuery.toLowerCase());
 
       const targetRegion = displayToDataMap[selectedRegion];
       const matchRegion = selectedRegion === 'すべて' || article.region === targetRegion;
       const matchRisk = selectedRisk === 'All' || article.riskLevel === selectedRisk;
-      // const matchCompany = selectedCompany === 'All' ||
-      //   (selectedCompany === 'Others' ? article.company === 'General Market' : article.company === selectedCompany);
 
       return matchSearch && matchRegion && matchRisk;
     });
@@ -73,12 +61,14 @@ export default function Dashboard() {
           <div className="space-y-6">
             {/* Search */}
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block">キーワード検索</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block">
+                {isEn ? 'Keyword Search' : 'キーワード検索'}
+              </label>
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 text-slate-500 w-4 h-4" />
                 <input
                   type="text"
-                  placeholder="記事を検索..."
+                  placeholder={isEn ? "Search articles..." : "記事を検索..."}
                   className="w-full bg-slate-800 border border-slate-700 rounded p-2 pl-9 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors placeholder:text-slate-600"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -89,17 +79,16 @@ export default function Dashboard() {
             {/* Region Filter */}
             <div>
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
-                <Globe size={12} /> 対象地域
+                <Globe size={12} /> {isEn ? 'Regions' : '対象地域'}
               </label>
               <div className="space-y-1">
-                {/* Explicitly mapping the hardcoded 'regions' array to ensure order */}
                 {regions.map(r => (
                   <button
                     key={r}
                     onClick={() => setSelectedRegion(r)}
                     className={`w-full text-left px-3 py-1.5 rounded text-sm transition-colors ${selectedRegion === r ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30' : 'hover:bg-slate-800'}`}
                   >
-                    {regionNameMap[r] || r}
+                    {isEn ? displayToDataMap[r] : r}
                   </button>
                 ))}
               </div>
@@ -108,36 +97,31 @@ export default function Dashboard() {
             {/* Risk Level Filter */}
             <div>
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
-                <ShieldAlert size={12} /> リスクレベル
+                <ShieldAlert size={12} /> {isEn ? 'Risk Level' : 'リスクレベル'}
               </label>
               <div className="flex bg-slate-800 rounded p-1">
-                <button onClick={() => setSelectedRisk('All')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'All' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white'}`}>すべて</button>
-                <button onClick={() => setSelectedRisk('High')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'High' ? 'bg-red-900/50 text-red-200' : 'text-slate-400 hover:text-white'}`}>高</button>
-                <button onClick={() => setSelectedRisk('Medium')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'Medium' ? 'bg-amber-900/50 text-amber-200' : 'text-slate-400 hover:text-white'}`}>中</button>
-                <button onClick={() => setSelectedRisk('Low')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'Low' ? 'bg-emerald-900/50 text-emerald-200' : 'text-slate-400 hover:text-white'}`}>低</button>
+                <button onClick={() => setSelectedRisk('All')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'All' ? 'bg-slate-600 text-white' : 'text-slate-400 hover:text-white'}`}>
+                  {isEn ? 'All' : 'すべて'}
+                </button>
+                <button onClick={() => setSelectedRisk('High')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'High' ? 'bg-red-900/50 text-red-200' : 'text-slate-400 hover:text-white'}`}>
+                  {isEn ? 'High' : '高'}
+                </button>
+                <button onClick={() => setSelectedRisk('Medium')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'Medium' ? 'bg-amber-900/50 text-amber-200' : 'text-slate-400 hover:text-white'}`}>
+                  {isEn ? 'Med' : '中'}
+                </button>
+                <button onClick={() => setSelectedRisk('Low')} className={`flex-1 text-xs py-1 rounded ${selectedRisk === 'Low' ? 'bg-emerald-900/50 text-emerald-200' : 'text-slate-400 hover:text-white'}`}>
+                  {isEn ? 'Low' : '低'}
+                </button>
               </div>
             </div>
-
-            {/* Company Filter - REMOVED but code structure kept minimal for safety */}
-            {/* <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 block flex items-center gap-1">
-                <Building2 size={12} /> 関連企業
-              </label>
-              <select
-                className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-sm text-slate-300 focus:outline-none"
-                disabled
-              >
-                <option>All</option>
-              </select>
-            </div> */}
 
           </div>
         </div>
 
         <div className="p-6 border-t border-slate-800 mt-auto">
           <div className="text-xs text-slate-600">
-            データソース: ローカルキャッシュ<br />
-            最終更新: {new Date().toLocaleDateString('ja-JP')}
+            {isEn ? 'Data Source: Local Cache' : 'データソース: ローカルキャッシュ'}<br />
+            {isEn ? 'Last Updated: ' : '最終更新: '}{new Date().toLocaleDateString(isEn ? 'en-US' : 'ja-JP')}
           </div>
         </div>
       </aside>
@@ -146,16 +130,25 @@ export default function Dashboard() {
       <main className="flex-1 p-4 md:p-8 overflow-y-auto h-screen">
         <header className="flex justify-between items-end mb-8 pb-4 border-b border-slate-200">
           <div>
-            <h2 className="text-2xl font-serif font-bold text-slate-800">グローバル医療インサイト</h2>
+            <h2 className="text-2xl font-serif font-bold text-slate-800">
+              {isEn ? 'Global Medical Insight' : 'グローバル医療インサイト'}
+            </h2>
             <p className="text-slate-500 mt-1 flex items-center gap-2">
-              現在 {articles.length}件のシグナルを監視中
+              {isEn ? `Monitoring ${articles.length} signals` : `現在 ${articles.length}件のシグナルを監視中`}
               <span className="w-1 h-1 rounded-full bg-slate-400"></span>
-              {filteredArticles.length}件を表示
+              {isEn ? `Showing ${filteredArticles.length} items` : `${filteredArticles.length}件を表示`}
             </p>
           </div>
           <div className="hidden md:flex gap-3">
+            <button
+              onClick={() => setLanguage(prev => prev === 'ja' ? 'en' : 'ja')}
+              className="px-4 py-2 bg-slate-800 text-white border border-slate-700 text-sm font-medium rounded hover:bg-slate-700 flex items-center gap-2 shadow-sm transition-all"
+            >
+              <Globe size={16} /> {isEn ? '日本語' : 'English'}
+            </button>
+            {/* Grid View button hidden/disabled or reused? Keeping mostly static as text was Japanese */}
             <button className="px-4 py-2 bg-white border border-slate-300 text-slate-600 text-sm font-medium rounded hover:bg-slate-50 flex items-center gap-2">
-              <LayoutGrid size={16} /> グリッド表示
+              <LayoutGrid size={16} /> {isEn ? 'Grid View' : 'グリッド表示'}
             </button>
           </div>
         </header>
@@ -163,19 +156,23 @@ export default function Dashboard() {
         {filteredArticles.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-lg border border-dashed border-slate-300">
             <Filter className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-            <h3 className="text-lg font-medium text-slate-500">該当するシグナルが見つかりません</h3>
-            <p className="text-slate-400 text-sm">検索条件を変更してください。</p>
+            <h3 className="text-lg font-medium text-slate-500">
+              {isEn ? 'No signals found' : '該当するシグナルが見つかりません'}
+            </h3>
+            <p className="text-slate-400 text-sm">
+              {isEn ? 'Please change your search criteria.' : '検索条件を変更してください。'}
+            </p>
             <button
-              onClick={() => { setSearchQuery(''); setSelectedRegion('All'); setSelectedRisk('All'); /* setSelectedCompany('All'); */ }}
+              onClick={() => { setSearchQuery(''); setSelectedRegion('All'); setSelectedRisk('All'); }}
               className="mt-4 text-blue-600 text-sm font-medium hover:underline"
             >
-              フィルターをクリア
+              {isEn ? 'Clear Filters' : 'フィルターをクリア'}
             </button>
           </div>
         ) : (
           <div className={`grid grid-cols-1 xl:grid-cols-2 gap-6`}>
             {filteredArticles.map(article => (
-              <RiskScenarioCard key={article.id} article={article} />
+              <RiskScenarioCard key={article.id} article={article} language={language} />
             ))}
           </div>
         )}
