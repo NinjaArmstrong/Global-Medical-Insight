@@ -681,7 +681,7 @@ export const articles: Article[] = [
     impact: "日本のODA等と連携した、日本製の簡易診断キットや遠隔システムの参入機会。",
     action: "JICAやJETROのアフリカ支援スキームを活用し、実証実験の機会を模索してみてはいかがでしょうか。",
     url: "https://www.health.go.ke/"
-  }
+  },
   // --- Advanced & Strategic Markets (Batch 7) ---
   {
     id: "701",
