@@ -32,4 +32,4 @@ export default function RootLayout({
     </html>
   );
 }
-// Updated: 2026-01-07 (Localization: Translated 60 Verified Items to Japanese)
+// Updated: 2026-01-07 (Refinement: Business Style Japanese & Company Names)
