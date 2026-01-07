@@ -1023,9 +1023,9 @@ export const articles: Article[] = [
     region: "North America",
     date: "2026-01-07",
     riskLevel: "High",
-    scenario: { ja: "2026年2月2日のQMSR（品質マネジメントシステム規則）施行まで残り1ヶ月を切る。ISO 13485:2016への完全調和が求められ、FDA査察基準（QSIT）も刷新される。", en: "Less than 1 month to Feb 2, 2026 QMSR enforcement. Full alignment with ISO 13485:2016 demanded." },
-    impact: { ja: "米国向け輸出を行う全ての医療機器メーカーにおいて、QMS文書（特にリスクマネジメント規定）の不整合が査察指摘の対象となるリスク。", en: "Risk of inspection findings for exporters if QMS docs (esp. Risk Mgmt) are misaligned." },
-    action: { ja: "品質保証部門と連携し、ISO 13485対応ギャップ分析の最終確認と、模擬査察（Mock Inspection）による現場対応力の再点検が強く推奨されます。", en: "Strongly recommend final gap analysis with QA and Mock Inspections." },
+    scenario: { ja: "2026年2月2日のQMSR（品質マネジメントシステム規則）施行まで残り1ヶ月未満。FDAはISO 13485:2016への完全調和を求め、査察手法も「QSIT」から新基準へ移行する。", en: "Less than 1 month to Feb 2, 2026 QMSR enforcement. FDA demands full ISO 13485:2016 alignment; inspection shifts from QSIT to new standards." },
+    impact: { ja: "特にクラスIII機器（循環器・整形外科）の製造拠点において、旧QSRに基づく手順書（特にリスク管理と設計管理）が残存している場合、査察での指摘から出荷停止に至る重大な事業リスクとなる。", en: "Critical business risk (shipment stop) for Class III (CV/Ortho) sites if old QSR docs (Risk/Design Mgmt) persist under new inspection standards." },
+    action: { ja: "品質保証(QA)部門責任者は、直ちに設計・開発手順書（DHF）とISO規格のギャップ分析を完了させ、査察官の視点変更に対応した模擬監査を実施することが推奨されます。", en: "QA Heads should immediately complete DHF/ISO gap analysis and conduct mock audits tailored to the new inspection perspective." },
     url: "https://www.fda.gov/medical-devices/quality-system-qs-regulationmedical-device-current-good-manufacturing-practices-cgmp/quality-management-system-regulation-final-rule-questions-and-answers"
   },
   {
@@ -1034,9 +1034,9 @@ export const articles: Article[] = [
     region: "Europe",
     date: "2026-01-07",
     riskLevel: "High",
-    scenario: { ja: "EU AI法に基づく高リスクAIシステムの適合期限（2026年8月2日）が迫る。医療機器規則（MDR）との重複要件に関するガイドラインが発出。", en: "Aug 2, 2026 deadline for High-Risk AI systems approaches. Guidelines on MDR overlap issued." },
-    impact: { ja: "AI搭載画像診断支援システムやトリアージSWを展開する企業は、技術文書（Technical File）へのAI法要件（人間による監視、データガバナンス）の追記が必須。", en: "Technical Files for AI CAD/triage SW must include AI Act reqs (Transparency, Oversight)." },
-    action: { ja: "開発部門に対し、自社製品AIアルゴリズムの「透明性」および「人間による監視（Human Oversight）」要件への適合状況を、技術文書レベルで検証するよう指示することが望まれます。", en: "Instruct R&D to verify algorithm transparency and human oversight compliance in Tech Files." },
+    scenario: { ja: "EU AI法に基づく高リスクAIシステムの適合期限（2026年8月2日）が迫る。MDR（医療機器規則）との重複要件に関するガイドラインが明確化された。", en: "Aug 2, 2026 deadline for High-Risk AI systems. Guidelines verify overlap with MDR requirements." },
+    impact: { ja: "画像診断支援(CADe/x)や患者トリアージ用ソフトウェアを展開する企業は、技術文書への「AI解釈可能性」「人間による監視」要件の追記が遅れると、MDR認証の維持が困難になる。", en: "Delay in adding 'Explainability' & 'Human Oversight' to Tech Files threatens MDR validity for CADe/x & Triage SW firms." },
+    action: { ja: "R&Dおよい薬事部門は、自社AIモデルの「ブラックボックス性」に対する説明責任文書を作成し、8月までにNotified Bodyへの提出準備を整えることが急務となります。", en: "R&D/RA must draft accountability docs for AI 'black boxes' and prepare for Notified Body submission by August." },
     url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
   },
   {
@@ -1045,9 +1045,9 @@ export const articles: Article[] = [
     region: "East Asia",
     date: "2026-01-07",
     riskLevel: "Medium",
-    scenario: { ja: "厚労省は2026年度の医療DX推進予算の執行を開始。電子カルテ情報共有サービスの普及に向け、サイバーセキュリティ対策助成が重点化される。", en: "MHLW starts 2026 DX budget execution. Focus on Cybersec subsidies for EHR sharing service." },
-    impact: { ja: "医療機関向けシステムベンダーおよび接続機器メーカーには、SBOM（ソフトウェア部品表）の提供と脆弱性対応プロセスが調達要件として課される。", en: "SBOM and vulnerability handling become procurement requirements for vendors/connected devices." },
-    action: { ja: "製品セキュリティ対応チーム（PSIRT）を主導し、厚労省の最新ガイドラインに準拠したSBOM提供体制が整っているか、営業部門と共有確認を行うことをお勧めします。", en: "Confirm with PSIRT if SBOM provision meets latest MHLW guidelines to support sales." },
+    scenario: { ja: "厚労省は2026年度医療DX推進予算を執行開始。電子カルテ情報共有サービスへの接続要件として、サイバーセキュリティ対策（SBOM等）が厳格化された。", en: "MHLW executes 2026 DX budget. Cybersecurity (SBOM) strictly enforced as condition for EHR sharing service connection." },
+    impact: { ja: "クラウド型電子カルテや院内接続機器（生体モニタ等）を提供するベンダーは、SBOM未提供の場合、医療機関の「DX加算」算定対象から除外され、商談失注に直結する。", en: "Vendors of Cloud EHR/Connected Monitors risk losing deals if lack of SBOM disqualifies hospitals from DX premiums." },
+    action: { ja: "製品セキュリティ(PSIRT)部門は、厚労省ガイドライン準拠のSBOM生成プロセスを確立し、営業部門が顧客に対し「DX加算適合性」を証明できる資料を配布することが得策です。", en: "PSIRT must establish SBOM processes; Sales needs proof materials of 'DX Premium Compliance' for customers." },
     url: "https://www.mhlw.go.jp/stf/2026budget_dx.html"
   },
   {
@@ -1056,9 +1056,9 @@ export const articles: Article[] = [
     region: "Southeast Asia",
     date: "2026-01-07",
     riskLevel: "High",
-    scenario: { ja: "医療機器・医薬品のハラール認証義務化期限（2026年10月）まで残り9ヶ月。BPJPH（ハラール製品保証実施機関）への申請が急増中。", en: "9 months to Oct 2026 Halal mandate for devices/pharma. Flood of apps to BPJPH." },
-    impact: { ja: "動物由来原料（ゼラチン等）を使用する製品において、代替原料への切り替え、またはハラール非該当証明の取得が遅れると、販売停止リスクが生じる。", en: "Risk of sales stop for animal-derived products if replacement or non-Halal proof is delayed." },
-    action: { ja: "サプライチェーン部門において、インドネシア向け製品のBOM（部品表）詳細スクリーニングを完了させ、現地代理店を通じてBPJPHへの事前相談枠を確保することが賢明です。", en: "Supply Chain should screen BOMs and secure BPJPH consultation slots via agents." },
+    scenario: { ja: "2026年10月の医療機器・医薬品ハラール認証完全義務化まで残り9ヶ月。BPJPH（実施機関）への申請窓口が混雑し、審査遅延が常態化している。", en: "9 months to Oct 2026 Halal mandate. BPJPH application backlog causes chronic review delays." },
+    impact: { ja: "動物由来成分（カプセル、培地等）を含む製品を扱う製薬・医療機器メーカーは、10月までに認証を取得できなければ、税関で輸入停止措置を受ける。", en: "Pharma/Device makers using animal-derived materials face import bans if certification is missed by Oct." },
+    action: { ja: "サプライチェーン部門は、インドネシア向け全SKUの原材料スクリーニングを今週中に完了し、現地法人はBPJPH指定の監査機関（LPH）の予約を最優先で確保すべきです。", en: "SCM must screen all IDN SKUs this week; Local entity must prioritize booking BPJPH-designated auditors (LPH)." },
     url: "https://bpjph.halal.go.id/"
   },
   {
@@ -1067,9 +1067,9 @@ export const articles: Article[] = [
     region: "South Asia",
     date: "2026-01-07",
     riskLevel: "High",
-    scenario: { ja: "2025年末の登録期限経過を受け、CDSCO（中央医薬品標準管理機構）は主要港湾でのクラスC/D機器（高リスク）の通関検査を厳格化。", en: "CDSCO tightens port checks for Class C/D following end-2025 deadline." },
-    impact: { ja: "登録証（Form MD-15）未取得のインプラント製品等が税関で滞留し、現地の病院在庫が枯渇する恐れがある。", en: "Customs stoppages for unregistered implants risk depleting local hospital stock." },
-    action: { ja: "物流部門に対し、インド向け出荷製品全ロットについて登録証コピーの同梱を徹底させるとともに、現地代理店の在庫状況を緊急確認することが推奨されます。", en: "Logistics must include Form MD-15 copies with all lots; urgently check agent inventory." },
+    scenario: { ja: "2025年末の登録猶予期限終了に伴い、CDSCOは主要港湾にてクラスC/D（高リスク）機器の悉皆検査を開始。未登録品の没収事例が発生。", en: "CDSCO starts 100% inspection of Class C/D devices at ports after grace period ends. Unregistered items seized." },
+    impact: { ja: "整形外科インプラントやステント等の在庫回転率が高い製品において、通関停止による欠品は、現地の代理店契約解除や違約金請求に繋がる。", en: "Stockouts of rapid-turnover implants/stents due to customs stops risk agent contract termination/penalties." },
+    action: { ja: "物流・貿易管理部門は、出荷書類に「Form MD-15（登録証）」の写しが添付されているか全件監査し、現地法人は税関に対し登録状況を事前説明することが推奨されます。", en: "Logistics must audit all shipping docs for MD-15 copies; Local entity should pre-brief customs on Reg status." },
     url: "https://cdsco.gov.in/"
   },
   {
@@ -1078,9 +1078,9 @@ export const articles: Article[] = [
     region: "Middle East",
     date: "2026-01-07",
     riskLevel: "Medium",
-    scenario: { ja: "統一調達会社NUPCOは、2026年度の医療機器入札において「現地製造比率」の加点評価を大幅に引き上げると発表。", en: "NUPCO hikes 'Local Content' scores for 2026 device tenders." },
-    impact: { ja: "サウジ国内に製造・組立拠点を持たない海外メーカーは、価格競争力があっても入札で不利になり、シェアを失うリスク。", en: "Foreign makers without local manufacturing risk losing share despite competitive pricing." },
-    action: { ja: "経営企画部門と連携し、現地パートナー企業への委託製造（CDMO活用）または最終組立工程の現地化F/S（フィージビリティスタディ）を加速させる検討が必要です。", en: "Accelerate F/S for local CDMO or assembly with Corporate Planning." },
+    scenario: { ja: "サウジ統一調達会社NUPCOは、2026年度入札の技術評価項目において、「現地製造比率（Local Content）」の重み付けを従来の10%から25%へ引き上げた。", en: "NUPCO increases 'Local Content' weight from 10% to 25% in 2026 tender technical evaluations." },
+    impact: { ja: "消耗品や汎用医療機器（シリンジ、ガーゼ等）の分野では、現地工場を持たないメーカーは価格競争力を失い、大規模入札からの締め出しが確実視される。", en: "Makers of consumables (syringes/gauze) without local plants will lose price competitiveness and face shut-out." },
+    action: { ja: "海外事業本部は、現地代理店が保有する組み立て工場の活用またはサウジ企業へのライセンス供与（OEM）による「現地化」適格性の取得を、次期入札までに決定する必要があります。", en: "Global Div must decide on local assembly via agents or OEM licensing to qualify for Local Content before next tender." },
     url: "https://www.nupco.com/"
   },
   {
@@ -1089,9 +1089,9 @@ export const articles: Article[] = [
     region: "Africa",
     date: "2026-01-07",
     riskLevel: "Low",
-    scenario: { ja: "ケニア政府はUHC（国民皆保険）基盤となる「デジタルヘルススーパーハイウェイ」プロジェクトを始動。公立病院のデータ標準化を義務付け。", en: "Kenya starts 'Digital Health Superhighway'. Public hospitals forced to standardize data." },
-    impact: { ja: "ケニア市場に参入する検体検査装置や生体モニタメーカーに対し、HL7 FHIR等の国際標準規格への準拠と、国家システムへの接続性が求められる。", en: "Lab/Monitor makers must comply with HL7 FHIR for national system connectivity." },
-    action: { ja: "R&D部門に対し、自社製品のインターフェース仕様がケニア保健省の指定するデータ標準に適合可能か、技術的なギャップ分析を行うよう指示することが推奨されます。", en: "Instruct R&D to perform gap analysis on interface compliance with Ministry standards." },
+    scenario: { ja: "ケニア政府は「デジタルヘルス法」に基づき、全公立病院に対し国家データハブへの接続を義務化。2026年1月よりパイロット接続を開始。", en: "Digital Health Act mandates public hospital connection to National Data Hub. Pilot starts Jan 2026." },
+    impact: { ja: "POCT（臨床現場即時検査）機器や生体情報モニタを展開する企業は、データ出力形式が政府標準（HL7 FHIR等）に非対応の場合、公的病院への納入資格を失う。", en: "POCT/Monitor makers lose public hospital eligibility if data output fails to meet govt standards (HL7 FHIR)." },
+    action: { ja: "商品企画部門は、アフリカ向けモデルの通信仕様を見直し、ローカルなEHR（電子カルテ）ベンダーとのAPI連携テストを現地で実施することが有効です。", en: "Product Planning should review Comms specs for Africa models and conduct local API tests with EHR vendors." },
     url: "https://health.go.ke/"
   },
   {
@@ -1100,9 +1100,9 @@ export const articles: Article[] = [
     region: "Latin America",
     date: "2026-01-07",
     riskLevel: "Medium",
-    scenario: { ja: "メキシコ政府は必須医薬品の国内自給率向上を目指し、国内製造企業に対する税制優遇と公共入札優先枠を定めた大統領令を施行。", en: "Decree grants tax breaks/tender priority to domestic pharma to boost self-sufficiency." },
-    impact: { ja: "メキシコへ完成品輸出を行っている製薬企業は、公的市場（IMSS等）での入札機会が減少するリスク。", en: "Exporting pharma firms face reduced opportunities in public tenders (IMSS)." },
-    action: { ja: "現地法人の薬事・開発チームと協議し、現地CMO（受託製造機関）への技術移転による「メキシコ製」ラベル取得の費用対効果を試算することが得策です。", en: "Calculate ROI of local 'Made in Mexico' labeling via CMO with local RA team." },
+    scenario: { ja: "メキシコ大統領令により、2026年度以降の公的入札（IMSS等）において、国内製造医薬品に対する15%の価格優遇（プライス・プリファレンス）が導入された。", en: "Decree introduces 15% price preference for domestic meds in public tenders (IMSS) from 2026." },
+    impact: { ja: "メキシコへの完成品輸出に依存しているジェネリック医薬品メーカーは、価格競争で圧倒的に不利となり、公的市場シェアが急減するリスクがある。", en: "Generic exporters face explicit disadvantage and sharp public share loss due to pricing gap." },
+    action: { ja: "経営企画部門は、現地CMO（受託製造）へのバルク供給・現地包装への切り替えによる「国産品扱い」の取得について、コスト対効果の試算を直ちに行うことが推奨されます。", en: "Corporate Planning should immediately estimate ROI of switching to bulk supply/local pkg to qualify as 'Domestic'." },
     url: "https://www.gob.mx/cofepris"
   },
   {
@@ -1111,9 +1111,9 @@ export const articles: Article[] = [
     region: "Global",
     date: "2026-01-07",
     riskLevel: "High",
-    scenario: { ja: "インフレ抑制法（IRA）に基づく最初の10品目の交渉価格が2026年1月1日より適用開始。民間保険者（PBM）もこれに追随する動き。", en: "First 10 IRA Negotiated Prices effective Jan 1, 2026. PBMs following suit." },
-    impact: { ja: "対象薬と競合する治療領域（糖尿病、循環器等）を持つ製薬企業は、フォーミュラリー（採用医薬品リスト）からの除外や、リベート増額圧力に直面する。", en: "Pharma in competing categories (Diabetes/CV) face formulary exclusion/rebate pressure." },
-    action: { ja: "米国マーケットアクセスチームと連携し、競合品値下げに伴う自社製品の価格戦略見直しと、リアルワールドエビデンス（RWE）を用いた費用対効果の再訴求準備が急務となります。", en: "Urgently review pricing strategy and RWE value proposition with Market Access team." },
+    scenario: { ja: "2026年1月1日より、IRA（インフレ抑制法）に基づく交渉価格が適用開始。大手PBMは、交渉対象薬およびその競合品に対するフォーミュラリー（採用リスト）掲載基準を厳格化した。", en: "IRA Negotiated Prices effective Jan 1, 2026. Major PBMs tighten formulary criteria for subject and competing drugs." },
+    impact: { ja: "交渉対象薬と同一の治療クラス（抗凝固薬、糖尿病治療薬等）を持つ製薬企業は、自社製品が「非優先」カテゴリに格下げされ、アクセス制限を受けるリスクが現実化した。", en: "Firms with drugs in competing classes (Anticoagulants/Diabetes) face real risk of strict formulary relegation." },
+    action: { ja: "マーケットアクセス部門は、PBMとのリベート契約を緊急で見直し、RWE（リアルワールドエビデンス）を用いた「価格以外の臨床価値」を主要ペイヤーに再提案することが急務となります。", en: "Market Access must urgently review rebate contracts and re-pitch RWE-based clinical value to major payers." },
     url: "https://www.cms.gov/inflation-reduction-act-and-medicare"
   }
 ];
