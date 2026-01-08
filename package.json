@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "update-news": "tsx scripts/update-news.ts"
+    "update-news": "tsx scripts/update-news.ts",
+    "update-realtime": "tsx scripts/run-realtime.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.89.0",
+    "@vercel/postgres": "^0.10.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
