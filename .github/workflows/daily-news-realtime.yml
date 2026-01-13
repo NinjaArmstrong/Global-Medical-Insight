@@ -2,8 +2,8 @@ name: Real-Time News Update
 
 on:
   schedule:
-    # 17:10 JST = 08:10 UTC
-    - cron: '10 8 * * *'
+    # 18:10 JST = 09:10 UTC
+    - cron: '10 9 * * *'
   workflow_dispatch:
 
 jobs:
