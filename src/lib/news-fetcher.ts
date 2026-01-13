@@ -107,22 +107,35 @@ Output JSON ONLY:
 }
 `;
 
-    try {
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
-        // Simple JSON extraction
-        const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
-        const data = JSON.parse(jsonStr);
+    // Retry logic for 429 (Rate Limit)
+    for (const attempt of [1, 2, 3]) {
+        try {
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+            // Simple JSON extraction
+            const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+            const data = JSON.parse(jsonStr);
 
-        return {
-            ...data,
-            date: new Date().toISOString().split('T')[0] // Use current date for "Real-Time"
-        };
-    } catch (e) {
-        console.error('Gemini Analysis Failed:', e);
-        return null;
+            return {
+                ...data,
+                date: new Date().toISOString().split('T')[0] // Use current date for "Real-Time"
+            };
+        } catch (e: any) {
+            console.error(`Gemini Analysis Failed (Attempt ${attempt}/3):`, e.status || e.message);
+
+            // If Rate Limit (429) or Service Unavailable (503), wait and retry
+            if (e.status === 429 || e.status === 503) {
+                console.log(`  ⏳ Rate limit hit. Waiting ${attempt * 10} seconds...`);
+                await new Promise(r => setTimeout(r, attempt * 10000));
+                continue;
+            }
+
+            // Other errors, break
+            return null;
+        }
     }
+    return null;
 }
 
 export async function runRealTimeUpdate(targetRegion?: string) {
@@ -153,8 +166,8 @@ export async function runRealTimeUpdate(targetRegion?: string) {
                 }
             }
 
-            // Delay to avoid rate limits?
-            await new Promise(r => setTimeout(r, 2000));
+            // Delay to avoid rate limits (Safe: 10s)
+            await new Promise(r => setTimeout(r, 10000));
         }
     }
 }
