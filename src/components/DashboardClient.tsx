@@ -2,11 +2,15 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { articles } from '@/data/articles';
 import { RiskScenarioCard } from '@/components/RiskScenarioCard';
 import { Search, Filter, Globe, ShieldAlert, Building2, LayoutGrid } from 'lucide-react';
+import { Article } from '@/data/articles';
 
-export default function DashboardClient() {
+interface DashboardClientProps {
+  initialArticles: Article[];
+}
+
+export default function DashboardClient({ initialArticles = [] }: DashboardClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('すべて');
   const [selectedRisk, setSelectedRisk] = useState<'All' | 'High' | 'Medium' | 'Low'>('All');
@@ -29,7 +33,7 @@ export default function DashboardClient() {
   };
 
   const filteredArticles = useMemo(() => {
-    return articles.filter(article => {
+    return initialArticles.filter(article => {
       // Search across both Japanese and English content
       const searchContent = `
         ${article.title.ja} ${article.title.en}
@@ -134,7 +138,7 @@ export default function DashboardClient() {
               {isEn ? 'Global Medical Insight' : 'グローバル医療インサイト'}
             </h2>
             <p className="text-slate-500 mt-1 flex items-center gap-2">
-              {isEn ? `Monitoring ${articles.length} signals` : `現在 ${articles.length}件のシグナルを監視中`}
+              {isEn ? `Monitoring ${initialArticles.length} signals` : `現在 ${initialArticles.length}件のシグナルを監視中`}
               <span className="w-1 h-1 rounded-full bg-slate-400"></span>
               {isEn ? `Showing ${filteredArticles.length} items` : `${filteredArticles.length}件を表示`}
             </p>

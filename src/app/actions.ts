@@ -2,6 +2,34 @@
 
 import { fetchAndSaveRawArticles, processPendingArticles } from '@/lib/newsUpdater';
 import { revalidatePath } from 'next/cache';
+import { sql } from '@vercel/postgres';
+
+export async function getArticles() {
+  try {
+    const { rows } = await sql`
+      SELECT * FROM articles 
+      WHERE importance != 'PENDING_SUMMARY'
+      ORDER BY date DESC, created_at DESC 
+      LIMIT 100
+    `;
+
+    // Map DB rows to Frontend Article Interface
+    return rows.map((row) => ({
+      id: row.id.toString(),
+      title: { ja: row.title, en: row.original_title || row.title }, // Fallback to same if no English
+      region: row.region ? (Array.isArray(row.region) ? row.region[0] : row.region) : 'Global',
+      date: row.date ? new Date(row.date).toISOString().split('T')[0] : new Date(row.created_at).toISOString().split('T')[0],
+      riskLevel: (row.risk_level === 'High' || row.risk_level === 'Medium' || row.risk_level === 'Low') ? row.risk_level : 'Medium',
+      scenario: { ja: row.content_risk || row.summary_points?.[0] || '', en: row.content_risk || '' },
+      impact: { ja: row.content_impact || row.japan_impact || '', en: row.content_impact || '' },
+      action: { ja: row.content_action || '', en: row.content_action || '' },
+      url: row.url
+    }));
+  } catch (error) {
+    console.error('Database Fetch Error:', error);
+    return [];
+  }
+}
 
 export async function triggerFetchNews() {
     console.log('--- Triggering News Fetch (Raw) ---');
